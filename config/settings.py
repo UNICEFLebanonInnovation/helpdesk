@@ -27,7 +27,7 @@ SECRET_KEY = '_crkn1+fnzu5$vns_-d+^ayiq%z4k*s!!ag0!mfy36(y!vrazd'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['unicef-helpdesk.herokuapp.com', ]
+ALLOWED_HOSTS = ['unicef-helpdesk.herokuapp.com', '127.0.0.1', ]
 
 
 # Application definition
@@ -201,15 +201,17 @@ USE_TZ = True
 # STATIC FILE CONFIGURATION
 # ------------------------------------------------------------------------------
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#static-root
-STATIC_ROOT = str(ROOT_DIR('staticfiles'))
+# STATIC_ROOT = str(ROOT_DIR('staticfiles'))
+# print(STATIC_ROOT)
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#static-url
-STATIC_URL = '/static/'
+# STATIC_URL = '/static/'
 
 # See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
-STATICFILES_DIRS = [
-    str(APPS_DIR.path('static')),
-]
+# STATICFILES_DIRS = [
+    # os.path.join(BASE_DIR, '/helpdesk/static/'),
+    # str(APPS_DIR.path('/helpdesk/static')),
+# ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles-finders
 STATICFILES_FINDERS = [
@@ -220,9 +222,9 @@ STATICFILES_FINDERS = [
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
-# STATIC_URL = '/static/'
+STATIC_URL = '/static/'
 # static root needs to be defined in order to use collectstatic
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # MEDIA_ROOT is where media uploads are stored.
 # We set this to a directory to host file attachments created
