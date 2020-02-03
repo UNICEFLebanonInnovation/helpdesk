@@ -207,9 +207,9 @@ STATIC_ROOT = str(ROOT_DIR('staticfiles'))
 STATIC_URL = '/static/'
 
 # See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
-STATICFILES_DIRS = [
-    str(APPS_DIR.path('static')),
-]
+# STATICFILES_DIRS = [
+#     str(APPS_DIR.path('static')),
+# ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles-finders
 STATICFILES_FINDERS = [
@@ -223,6 +223,11 @@ STATICFILES_FINDERS = [
 # STATIC_URL = '/static/'
 # static root needs to be defined in order to use collectstatic
 # STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
+STATICFILES_DIRS = (
+  os.path.join(SITE_ROOT, 'static/'),
+)
 
 # MEDIA_ROOT is where media uploads are stored.
 # We set this to a directory to host file attachments created
