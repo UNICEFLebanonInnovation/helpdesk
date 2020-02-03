@@ -7,3 +7,5 @@ lxml
 simplejson
 pytz
 six
+gevent==1.2.2
+gunicorn==19.7.1
