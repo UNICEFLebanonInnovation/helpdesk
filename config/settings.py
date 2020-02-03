@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 import os
 import environ
 
-ROOT_DIR = environ.Path(__file__) - 3  # (student_registration/config/settings/base.py - 3 = student_registration/)
+ROOT_DIR = environ.Path(__file__) - 3
 APPS_DIR = ROOT_DIR.path('helpdesk')
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -203,13 +203,16 @@ USE_TZ = True
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#static-root
 STATIC_ROOT = str(ROOT_DIR('staticfiles'))
 
+print(STATIC_ROOT)
+print(STATIC_ROOT)
+print(STATIC_ROOT)
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#static-url
 STATIC_URL = '/static/'
 
 # See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
-# STATICFILES_DIRS = [
-#     str(APPS_DIR.path('static')),
-# ]
+STATICFILES_DIRS = [
+    str(APPS_DIR.path('static')),
+]
 
 # See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles-finders
 STATICFILES_FINDERS = [
@@ -217,17 +220,11 @@ STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 ]
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.11/howto/static-files/
 
-# STATIC_URL = '/static/'
-# static root needs to be defined in order to use collectstatic
-# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
-STATICFILES_DIRS = (
-  os.path.join(SITE_ROOT, 'static/'),
-)
+# SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
+# STATICFILES_DIRS = (
+#   os.path.join(SITE_ROOT, 'static/'),
+# )
 
 # MEDIA_ROOT is where media uploads are stored.
 # We set this to a directory to host file attachments created
