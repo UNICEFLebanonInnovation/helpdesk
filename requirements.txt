@@ -3,6 +3,7 @@ django-bootstrap-form>=3.3,<4
 email-reply-parser
 django-markdown-deux
 beautifulsoup4
+django-environ==0.4.3
 lxml
 simplejson
 pytz
