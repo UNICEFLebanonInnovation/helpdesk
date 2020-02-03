@@ -1,5 +1,5 @@
 """
-Django settings for django-helpdesk helpdesk project.
+Django settings for django-helpdesk demodesk project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.11/topics/settings/
@@ -9,10 +9,6 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
-import environ
-
-ROOT_DIR = environ.Path(__file__) - 3
-APPS_DIR = ROOT_DIR.path('helpdesk')
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -40,10 +36,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
-    'django.contrib.redirects',
     'django.contrib.humanize',
-    'markdown_deux',
-    'bootstrapform',
+    'bootstrap4form',
     'helpdesk'
 ]
 
@@ -55,7 +49,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.contrib.redirects.middleware.RedirectFallbackMiddleware'
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -112,7 +105,6 @@ HELPDESK_SHOW_CHANGE_PASSWORD = True
 HELPDESK_REDIRECT_TO_LOGIN_BY_DEFAULT = False
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/login/'
-
 
 # Database
 # - by default, we use SQLite3 for the demo, but you can also
@@ -198,24 +190,13 @@ USE_L10N = True
 
 USE_TZ = True
 
-# STATIC FILE CONFIGURATION
-# ------------------------------------------------------------------------------
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#static-url
-STATIC_ROOT = str(ROOT_DIR('staticfiles'))
 
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#static-url
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.11/howto/static-files/
+
 STATIC_URL = '/static/'
-
-# See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
-STATICFILES_DIRS = [
-    str(APPS_DIR.path('static')),
-]
-
-# See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles-finders
-STATICFILES_FINDERS = [
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-]
+# static root needs to be defined in order to use collectstatic
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # MEDIA_ROOT is where media uploads are stored.
 # We set this to a directory to host file attachments created
