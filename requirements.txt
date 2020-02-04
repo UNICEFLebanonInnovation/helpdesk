@@ -14,3 +14,4 @@ djangorestframework
 django-model-utils
 gevent
 gunicorn
+whitenoise
