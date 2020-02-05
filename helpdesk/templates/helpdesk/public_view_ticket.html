@@ -1,6 +1,6 @@
 {% extends "helpdesk/public_base.html" %}{% load i18n humanize %}
 {% load static from staticfiles %}
-{% block helpdesk_title %}{% trans "View a Ticket" %}{% endblock %}
+{% block helpdesk_title %}{% trans "View a Report" %}{% endblock %}
 
 {% block helpdesk_body %}
 
@@ -88,9 +88,9 @@
 
         <dt><label for='commentBox'>{% trans "Comment / Resolution" %}</label></dt>
         <dd><textarea rows='8' cols='70' name='comment' id='commentBox'></textarea></dd>
-        <dd class='form_help_text'>{% trans "You can insert ticket and queue details in your message. For more information, see the <a href='../../help/context/'>context help page</a>." %}</dd>
+        <dd class='form_help_text'>{% trans "You can insert report and queue details in your message. For more information, see the <a href='../../help/context/'>context help page</a>." %}</dd>
 
-        {% if not ticket.can_be_resolved %}<dd>{% trans "This ticket cannot be resolved or closed until the tickets it depends on are resolved." %}</dd>{% endif %}
+        {% if not ticket.can_be_resolved %}<dd>{% trans "This report cannot be resolved or closed until the reports it depends on are resolved." %}</dd>{% endif %}
         {% ifequal ticket.status 1 %}
         <input type="hidden" name="new_status" value="{{ ticket.status }}" />
         {% endifequal %}
@@ -144,7 +144,7 @@
 
 </fieldset>
 
-<button class="btn btn-primary btn-lg" type='submit'>{% trans "Update This Ticket" %}</button>
+<button class="btn btn-primary btn-lg" type='submit'>{% trans "Update This Report" %}</button>
 
 {% csrf_token %}</form>
 

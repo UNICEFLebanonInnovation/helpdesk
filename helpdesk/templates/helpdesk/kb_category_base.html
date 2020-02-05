@@ -24,7 +24,7 @@
                 {% endif %}
                 {% if staff %}
                 <a href='{% url 'helpdesk:list' %}?kbitem={{item.id}}' class="col-sm">
-                    <button type="button" class="btn btn-success btn-circle btn-xl float-right"><i class="fa fa-search fa-lg"></i> {{item.num_open_tickets}} {% trans 'open tickets' %}</button>
+                    <button type="button" class="btn btn-success btn-circle btn-xl float-right"><i class="fa fa-search fa-lg"></i> {{item.num_open_tickets}} {% trans 'open reports' %}</button>
                 </a>
 
                 {% endif %}

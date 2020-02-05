@@ -457,11 +457,9 @@ class Ticket(models.Model):
     )
 
     PRIORITY_CHOICES = (
-        (1, _('1. Critical')),
-        (2, _('2. High')),
-        (3, _('3. Normal')),
-        (4, _('4. Low')),
-        (5, _('5. Very Low')),
+        (1, _('High')),
+        (2, _('Medium')),
+        (3, _('Low')),
     )
 
     title = models.CharField(
@@ -536,7 +534,7 @@ class Ticket(models.Model):
         choices=PRIORITY_CHOICES,
         default=3,
         blank=3,
-        help_text=_('1 = Highest Priority, 5 = Low Priority'),
+        # help_text=_('1 = Highest Priority, 5 = Low Priority'),
     )
 
     due_date = models.DateTimeField(

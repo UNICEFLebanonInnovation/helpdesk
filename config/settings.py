@@ -10,6 +10,10 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 
 import os
 
+# import environ
+#
+# env = environ.Env()
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -118,6 +122,12 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+# DATABASES = {
+    # Raises ImproperlyConfigured exception if DATABASE_URL not in os.environ
+    # 'default': env.db('DATABASE_URL', default='postgres:///postgres'),
+# }
+# DATABASES['default']['ATOMIC_REQUESTS'] = True
 
 
 # Sites

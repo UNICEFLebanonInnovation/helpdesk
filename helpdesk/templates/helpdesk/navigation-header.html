@@ -12,7 +12,7 @@
       <!-- Navbar Search -->
       <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0" id='searchform' method='get' action="{% url 'helpdesk:list' %}">
         <div class="input-group">
-          <input type="text" class="form-control" name='q' size='15' placeholder='{% trans "Search..." %}' id='search_query' title='{% trans "Enter a keyword, or a ticket number to jump straight to that ticket." %}' aria-label="Search" aria-describedby="basic-addon2">
+          <input type="text" class="form-control" name='q' size='15' placeholder='{% trans "Search..." %}' id='search_query' title='{% trans "Enter a keyword, or a report number to jump straight to that report." %}' aria-label="Search" aria-describedby="basic-addon2">
           <input type='hidden' name='status' value='1' /><input type='hidden' name='status' value='2' /><input type='hidden' name='status' value='3' /><input type='hidden' name='search_type' value='header' />
           <div class="input-group-append">
             <button class="btn btn-primary" type="submit">
@@ -68,7 +68,7 @@
             </li>
             <li class="nav-item dropdown no-arrow">
                 <a class="nav-link dropdown-toggle" href="{% url 'helpdesk:submit' %}" id="userDropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-user-circle fa-fw"></i> {% trans "Submit a Ticket" %}
+                    <i class="fas fa-user-circle fa-fw"></i> {% trans "Submit a Report" %}
                 </a>
             </li>
         {% endif %}

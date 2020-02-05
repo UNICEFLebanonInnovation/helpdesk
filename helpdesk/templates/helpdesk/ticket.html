@@ -4,7 +4,7 @@
 
 
 
-{% block helpdesk_title %}{{ ticket.queue.slug }}-{{ ticket.id }} : {% trans "View Ticket Details" %}{% endblock %}
+{% block helpdesk_title %}{{ ticket.queue.slug }}-{{ ticket.id }} : {% trans "View Report Details" %}{% endblock %}
 
 {% block helpdesk_head %}
 {% endblock %}
@@ -13,7 +13,7 @@
 
 {% block helpdesk_breadcrumb %}
 <li class="breadcrumb-item">
-    <a href="{% url 'helpdesk:list' %}">{% trans "Tickets" %}</a>
+    <a href="{% url 'helpdesk:list' %}">{% trans "Reports" %}</a>
 </li>
 <li class="breadcrumb-item active">
     {{ ticket.queue.slug }}-{{ ticket.id }}
@@ -23,7 +23,7 @@
 {% block helpdesk_body %}
 {% if helpdesk_settings.HELPDESK_TRANSLATE_TICKET_COMMENTS %}
 {% comment %}
-<div id='translate_dropdown'>{% trans "Translate ticket comments into" %} </div>
+<div id='translate_dropdown'>{% trans "Translate report comments into" %} </div>
 <div id='translate_block'>
 {% endcomment %}
 <div id="google_translate_element"></div>
@@ -92,7 +92,7 @@
 {% endif %}
 
 <div class="card mb-3">
-    <div class="card-header">{% trans "Respond to this ticket" %}</div>
+    <div class="card-header">{% trans "Respond to this report" %}</div>
     <div class="card-body">
 
 <form method='post' action='update/' enctype='multipart/form-data'>
@@ -107,10 +107,10 @@
 
         <dt><label for='commentBox'>{% trans "Comment / Resolution" %}</label></dt>
         <dd><textarea rows='8' cols='70' name='comment' id='commentBox'></textarea></dd>
-        <dd class='form_help_text'>{% trans "You can insert ticket and queue details in your message. For more information, see the <a href='../../help/context/'>context help page</a>." %}</dd>
+        <dd class='form_help_text'>{% trans "You can insert report and queue details in your message. For more information, see the <a href='../../help/context/'>context help page</a>." %}</dd>
 
         <dt><label>{% trans "New Status" %}</label></dt>
-        {% if not ticket.can_be_resolved %}<dd>{% trans "This ticket cannot be resolved or closed until the tickets it depends on are resolved." %}</dd>{% endif %}
+        {% if not ticket.can_be_resolved %}<dd>{% trans "This report cannot be resolved or closed until the reports it depends on are resolved." %}</dd>{% endif %}
         {% ifequal ticket.status 1 %}
         <dd><div class="form-group">
             <label for='st_open' class='active radio-inline'><input type='radio' name='new_status' value='1' id='st_open' checked='checked'>{% trans "Open" %} &raquo;</label>
@@ -205,7 +205,7 @@
 
 </fieldset>
 
-<button class="btn btn-primary float-right" type='submit'>{% trans "Update This Ticket" %}</button>
+<button class="btn btn-primary float-right" type='submit'>{% trans "Update This Report" %}</button>
 
 {% csrf_token %}</form>
 

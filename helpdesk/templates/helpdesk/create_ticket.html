@@ -1,12 +1,12 @@
 {% extends "helpdesk/base.html" %}{% load i18n bootstrap4form %}
 
-{% block helpdesk_title %}{% trans "Create Ticket" %}{% endblock %}
+{% block helpdesk_title %}{% trans "Create Report" %}{% endblock %}
 
 {% block helpdesk_breadcrumb %}
 <li class="breadcrumb-item">
-    <a href="#">{% trans "Tickets" %}</a>
+    <a href="#">{% trans "Reports" %}</a>
 </li>
-<li class="breadcrumb-item active">{% trans "Create Ticket" %}</li>
+<li class="breadcrumb-item active">{% trans "Create Report" %}</li>
 {% endblock %}
 
 {% block helpdesk_head %}
@@ -16,7 +16,7 @@
 
     <div class="container">
       <div class="card card-register mx-auto mt-5">
-        <div class="card-header">{% trans "Submit a Ticket" %}</div>
+        <div class="card-header">{% trans "Submit a Report" %}</div>
         <div class="card-body">
           <p>{% trans "Unless otherwise stated, all fields are required." %} {% trans "Please provide as descriptive a title and description as possible." %}</p>
           <form method='post' action='./' enctype='multipart/form-data'>
@@ -37,7 +37,7 @@
                 </div>
               {% endif %}
             {% endfor %}
-            <button type="submit" class="btn btn-primary btn-lg btn-block"><i class="fa fa-send"></i>&nbsp;{% trans "Submit Ticket" %}</button>
+            <button type="submit" class="btn btn-primary btn-lg btn-block"><i class="fa fa-send"></i>&nbsp;{% trans "Submit Report" %}</button>
           {% csrf_token %}</form>
         </div>
       </div>

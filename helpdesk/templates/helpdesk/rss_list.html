@@ -5,7 +5,7 @@
 
 {% block helpdesk_breadcrumb %}
 <li class="breadcrumb-item">
-    <a href="{% url 'helpdesk:list' %}">{% trans "Tickets" %}</a>
+    <a href="{% url 'helpdesk:list' %}">{% trans "Reports" %}</a>
 </li>
 <li class="breadcrumb-item active">
     RSS Feeds
@@ -18,17 +18,17 @@
 <p>{% trans "The following RSS feeds are available for you to monitor using your preferred RSS software. With the exception of the 'Latest Activity' feed, all feeds provide information only on Open and Reopened cases. This ensures your RSS reader isn't full of information about closed or historical tasks." %}</p>
 
 <dl>
-    <dt><a href='{% url 'helpdesk:rss_user' user.get_username %}'><i class="fa fa-rss-square fa-fw"></i>{% trans "My Open Tickets" %}</a></dt>
-    <dd>{% trans "A summary of your open tickets - useful for getting alerted to new tickets opened for you" %}</dd>
+    <dt><a href='{% url 'helpdesk:rss_user' user.get_username %}'><i class="fa fa-rss-square fa-fw"></i>{% trans "My Open Reports" %}</a></dt>
+    <dd>{% trans "A summary of your open reports - useful for getting alerted to new reports opened for you" %}</dd>
 
     <dt><a href='{% url 'helpdesk:rss_activity' %}'><i class="fa fa-rss-square fa-fw"></i>{% trans "Latest Activity" %}</a></dt>
     <dd>{% trans "A summary of all helpdesk activity - including comments, emails, attachments, and more" %}</dd>
 
-    <dt><a href='{% url 'helpdesk:rss_unassigned' %}'><i class="fa fa-rss-square fa-fw"></i>{% trans "Unassigned Tickets" %}</a></dt>
-    <dd>{% trans "All unassigned tickets - useful for being alerted to new tickets opened by the public via the web or via e-mail" %}</dd>
+    <dt><a href='{% url 'helpdesk:rss_unassigned' %}'><i class="fa fa-rss-square fa-fw"></i>{% trans "Unassigned Reports" %}</a></dt>
+    <dd>{% trans "All unassigned reports - useful for being alerted to new reports opened by the public via the web or via e-mail" %}</dd>
 </dl>
 
-<p>{% trans "These RSS feeds allow you to view a summary of either your own tickets, or all tickets, for each of the queues in your helpdesk. For example, if you manage the staff who utilise a particular queue, this may be used to view new tickets coming into that queue." %}</p>
+<p>{% trans "These RSS feeds allow you to view a summary of either your own reports, or all reports, for each of the queues in your helpdesk. For example, if you manage the staff who utilise a particular queue, this may be used to view new reports coming into that queue." %}</p>
 
             <div class="row">
                 <div class="col-lg-12">
@@ -43,8 +43,8 @@
                                     <thead>
                                         <tr>
                                             <th>{% trans "Queue" %}</th>
-                                            <th align='center'>{% trans "All Open Tickets" %}</th>
-                                            <th align='center'>{% trans "My Open Tickets" %}</th>
+                                            <th align='center'>{% trans "All Open Reports" %}</th>
+                                            <th align='center'>{% trans "My Open Reports" %}</th>
                                         </tr>
                                     </thead>
                                     <tbody>

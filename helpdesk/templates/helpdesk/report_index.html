@@ -13,24 +13,24 @@
 <h2>{% trans "Reports &amp; Statistics" %}</h2>
 
 {% if number_tickets == 0 %}
-<p>{% trans "You haven't created any tickets yet, so you cannot run any reports." %}</p>
+<p>{% trans "You haven't created any reports yet, so you cannot run any reports." %}</p>
 {% else %}
 
 <div class="card mb-3">
     <div class="card-header">
         <i class="fas fa-info-circle"></i>
-        {% trans "Current Ticket Stats" %}
+        {% trans "Current Report Stats" %}
     </div>
     <div class="card-body">
         <div class="table-responsive">
             <table class="table table-striped table-bordered table-hover">
                 <tbody>
                     <tr>
-                        <td>{% trans "Average number of days until ticket is closed (all tickets): " %}</td>
+                        <td>{% trans "Average number of days until report is closed (all reports): " %}</td>
                         <td><strong style="color: red;">{{ basic_ticket_stats.average_nbr_days_until_ticket_closed }}</strong>.</td>
                     </tr>
                     <tr>
-                        <td>{% trans "Average number of days until ticket is closed (tickets opened in last 60 days): " %}</td>
+                        <td>{% trans "Average number of days until report is closed (reports opened in last 60 days): " %}</td>
                         <td><strong style="color: red;">{{ basic_ticket_stats.average_nbr_days_until_ticket_closed_last_60_days }}</strong>. {% trans "Click" %} <strong><a href="{% url 'helpdesk:report_index' %}daysuntilticketclosedbymonth">here</a></strong> {% trans "for detailed average by month." %} </td>
                     </tr>
                 </tbody>
@@ -58,7 +58,7 @@
                         <td>{{ queue.time_spent }}{% if queue.dedicated_time %} / {{ queue.dedicated_time }}{% endif %}</td>
                     </tr>
                     {% empty %}
-                    <tr><td colspan='6'>{% trans "There are no unassigned tickets." %}</td></tr>
+                    <tr><td colspan='6'>{% trans "There are no unassigned reports." %}</td></tr>
                     {% endfor %}
                 </tbody>
             </table>
@@ -89,7 +89,7 @@
                     <li><a href='queuepriority/{% if saved_query %}?saved_query={{ saved_query }}{% endif %}'>{% trans "by Priority" %}</a></li>
                     <li><a href='queuestatus/{% if saved_query %}?saved_query={{ saved_query }}{% endif %}'>{% trans "by Status" %}</a></li>
                     <li><a href='queuemonth/{% if saved_query %}?saved_query={{ saved_query }}{% endif %}'>{% trans "by Month" %}</a></li>
-                    <li><a href='daysuntilticketclosedbymonth/{% if saved_query %}?saved_query={{ saved_query }}{% endif %}'>{% trans "Days until ticket closed by Month" %}</a></li>
+                    <li><a href='daysuntilticketclosedbymonth/{% if saved_query %}?saved_query={{ saved_query }}{% endif %}'>{% trans "Days until report closed by Month" %}</a></li>
                 </ul>
             </li>
         </ul>

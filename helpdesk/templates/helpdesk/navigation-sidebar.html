@@ -12,7 +12,7 @@
         <li class="nav-item">
           <a class="nav-link" href="{% url 'helpdesk:list' %}">
             <i class="fas fa-fw fa-tasks"></i>
-            <span>{% trans "All Tickets" %}</span>
+            <span>{% trans "All Reports" %}</span>
           </a>
         </li>
         <li class="nav-item dropdown">
@@ -30,14 +30,14 @@
             </a>
             {% endfor %}
             {% else %}
-            <p class="dropdown-item small text-wrap">{% trans "No saved queries currently available. You can create one in the All Tickets page." %}</p>
+            <p class="dropdown-item small text-wrap">{% trans "No saved queries currently available. You can create one in the All Reports page." %}</p>
             {% endif %}
           </div>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'helpdesk:submit' %}">
             <i class="fas fa-fw fa-plus-circle"></i>
-            <span>{% trans "New Ticket" %}</span>
+            <span>{% trans "New Report" %}</span>
           </a>
         </li>
         <li class="nav-item">
@@ -65,7 +65,7 @@
         <li class="nav-item">
           <a class="nav-link" href="{% url 'helpdesk:submit' %}">
             <i class="fas fa-fw fa-plus-circle"></i>
-            <span>{% trans "New Ticket" %}</span>
+            <span>{% trans "New Report" %}</span>
           </a>
         </li>
         {% if helpdesk_settings.HELPDESK_KB_ENABLED %}

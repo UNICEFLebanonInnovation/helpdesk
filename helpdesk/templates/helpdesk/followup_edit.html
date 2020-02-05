@@ -11,7 +11,7 @@
 
 {% block helpdesk_breadcrumb %}
 <li class="breadcrumb-item">
-    <a href="{% url 'helpdesk:list' %}">{% trans "Tickets" %}</a>
+    <a href="{% url 'helpdesk:list' %}">{% trans "Reports" %}</a>
 </li>
 <li class="breadcrumb-item">
     <a href="{{ ticket.get_absolute_url }}">{{ ticket.queue.slug }}-{{ ticket.id }}</a>
@@ -34,7 +34,7 @@
             {{ form.non_field_errors }}
             <fieldset>
             <dl>
-                <dt><label for='id_ticket'>{% trans "Reassign ticket:" %}</label></dt>
+                <dt><label for='id_ticket'>{% trans "Reassign report:" %}</label></dt>
                 <dd>{{ form.ticket }}</dd>
                 <dt><label for="id_title">{% trans "Title:" %}</label></dt>
                 <dd>{{ form.title }}</dd>
@@ -42,7 +42,7 @@
                 <dd>{{ form.comment }}</dd>
                 <dt><label for="id_public">Public:</label></dt>
                 <dd>{{ form.public }}</dd>
-                    <p>Public tickets are viewable by the submitter and all staff, but non-public tickets can only be seen by staff.</p>
+                    <p>Public reports are viewable by the submitter and all staff, but non-public reports can only be seen by staff.</p>
                 <dt><label for="id_new_status">New Status:</label></dt>
                 <dd>{{ form.new_status }}</dd>
                     <p>If the status was changed, what was it changed to?</p>

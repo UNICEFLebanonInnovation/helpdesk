@@ -135,7 +135,7 @@ class AbstractTicketForm(CustomFieldMixin, forms.Form):
     """
     queue = forms.ChoiceField(
         widget=forms.Select(attrs={'class': 'form-control'}),
-        label=_('Queue'),
+        label=_('Type of report '),
         required=True,
         choices=()
     )
@@ -164,8 +164,8 @@ class AbstractTicketForm(CustomFieldMixin, forms.Form):
     )
 
     due_date = forms.DateTimeField(
-        widget=forms.TextInput(attrs={'class': 'form-control'}),
-        required=False,
+        widget=forms.TextInput(attrs={'class': 'form-control', 'autocomplete': 'off'}),
+        required=True,
         input_formats=['%d/%m/%Y', '%m/%d/%Y', "%d.%m.%Y", ],
         label=_('Due on'),
     )
@@ -274,7 +274,7 @@ class TicketForm(AbstractTicketForm):
     Ticket Form creation for registered users.
     """
     submitter_email = forms.EmailField(
-        required=False,
+        required=True,
         label=_('Submitter E-Mail Address'),
         widget=forms.TextInput(attrs={'class': 'form-control', 'type': 'email'}),
         help_text=_('This e-mail address will receive copies of all public '

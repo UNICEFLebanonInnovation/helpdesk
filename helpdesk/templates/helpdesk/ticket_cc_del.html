@@ -1,10 +1,10 @@
 {% extends "helpdesk/base.html" %}{% load i18n %}
 
-{% block helpdesk_title %}{% trans "Delete Ticket CC" %}{% endblock %}
+{% block helpdesk_title %}{% trans "Delete Report CC" %}{% endblock %}
 
 {% block helpdesk_breadcrumb %}
 <li class="breadcrumb-item">
-    <a href="{% url 'helpdesk:list' %}">{% trans "Tickets" %}</a>
+    <a href="{% url 'helpdesk:list' %}">{% trans "Reports" %}</a>
 </li>
 <li class="breadcrumb-item">
     <a href="{% url 'helpdesk:list' %}{{ ticket.id }}/">{{ ticket.queue.slug }}-{{ ticket.id }}</a>
@@ -16,9 +16,9 @@
 {% endblock %}
 
 {% block helpdesk_body %}{% blocktrans with cc.email_address as email_address %}
-<h2>Delete Ticket CC</h2>
+<h2>Delete Report CC</h2>
 
-<p>Are you sure you wish to delete this email address (<em>{{ email_address }}</em>) from the CC list for this ticket? They will stop receiving updates.</p>
+<p>Are you sure you wish to delete this email address (<em>{{ email_address }}</em>) from the CC list for this report? They will stop receiving updates.</p>
 {% endblocktrans %}
 
 

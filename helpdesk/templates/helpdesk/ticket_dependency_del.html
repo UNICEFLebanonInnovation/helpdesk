@@ -1,21 +1,21 @@
 {% extends "helpdesk/base.html" %}{% load i18n %}
 
-{% block helpdesk_title %}{% trans "Delete Ticket Dependency" %}{% endblock %}
+{% block helpdesk_title %}{% trans "Delete Report Dependency" %}{% endblock %}
 
 {% block helpdesk_breadcrumb %}
 <li class="breadcrumb-item">
-    <a href="{% url 'helpdesk:list' %}">{% trans "Tickets" %}</a>
+    <a href="{% url 'helpdesk:list' %}">{% trans "Reports" %}</a>
 </li>
 <li class="breadcrumb-item">
     <a href="{% url 'helpdesk:list' %}{{ ticket.id }}/">{{ ticket.queue.slug }}-{{ ticket.id }}</a>
 </li>
-<li class="breadcrumb-item active">{% trans "Delete Ticket Dependency" %}</li>
+<li class="breadcrumb-item active">{% trans "Delete Report Dependency" %}</li>
 {% endblock %}
 
 {% block helpdesk_body %}{% blocktrans %}
-<h2>Delete Ticket Dependency</h2>
+<h2>Delete Report Dependency</h2>
 
-<p>Are you sure you wish to remove the dependency on this ticket?</p>
+<p>Are you sure you wish to remove the dependency on this report?</p>
 {% endblocktrans %}
 
 <p><a href='../../'><button class="btn btn-primary btn-lg">{% trans "Don't Delete" %}</button></a></p>
