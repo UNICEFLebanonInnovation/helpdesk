@@ -123,13 +123,24 @@ LOGIN_REDIRECT_URL = '/login/'
 #     }
 # }
 
-DATABASES = {
+# DATABASES = {
     # Raises ImproperlyConfigured exception if DATABASE_URL not in os.environ
     # 'default': env.db('DATABASE_URL', default='postgres:///postgres'),
-    'default': 'postgres://fgbacohzpjuxxx:a6d3df7ed4e15cd122aa317df727be7a297db557019c269be507eb6996730622@ec2-54-217-225-16.eu-west-1.compute.amazonaws.com:5432/d610a40e1q2d8j',
-}
+    # 'default': 'postgres://fgbacohzpjuxxx:a6d3df7ed4e15cd122aa317df727be7a297db557019c269be507eb6996730622@ec2-54-217-225-16.eu-west-1.compute.amazonaws.com:5432/d610a40e1q2d8j',
+# }
 # DATABASES['default']['ATOMIC_REQUESTS'] = True
 
+
+DATABASES = {
+     'default': {
+         'ENGINE': 'django.contrib.gis.db.backends.postgis',
+         'NAME': 'd610a40e1q2d8j',
+         'USER': 'fgbacohzpjuxxx',
+         'PASSWORD': 'a6d3df7ed4e15cd122aa317df727be7a297db557019c269be507eb6996730622',
+         'HOST': 'ec2-54-217-225-16.eu-west-1.compute.amazonaws.com',
+         'PORT': '5432',
+     }
+}
 
 # Sites
 # - this allows hosting of more than one site from a single server,
