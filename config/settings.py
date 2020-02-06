@@ -133,7 +133,7 @@ LOGIN_REDIRECT_URL = '/login/'
 
 DATABASES = {
      'default': {
-         'ENGINE': 'django.contrib.gis.db.backends.postgis',
+         'ENGINE': 'django.db.backends.postgresql',
          'NAME': 'd610a40e1q2d8j',
          'USER': 'fgbacohzpjuxxx',
          'PASSWORD': 'a6d3df7ed4e15cd122aa317df727be7a297db557019c269be507eb6996730622',
