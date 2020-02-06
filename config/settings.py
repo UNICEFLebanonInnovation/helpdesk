@@ -10,9 +10,9 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 
 import os
 
-import environ
-
-env = environ.Env()
+# import environ
+#
+# env = environ.Env()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -125,7 +125,8 @@ LOGIN_REDIRECT_URL = '/login/'
 
 DATABASES = {
     # Raises ImproperlyConfigured exception if DATABASE_URL not in os.environ
-    'default': env.db('DATABASE_URL', default='postgres:///postgres'),
+    # 'default': env.db('DATABASE_URL', default='postgres:///postgres'),
+    'default': 'postgres://fgbacohzpjuxxx:a6d3df7ed4e15cd122aa317df727be7a297db557019c269be507eb6996730622@ec2-54-217-225-16.eu-west-1.compute.amazonaws.com:5432/d610a40e1q2d8j',
 }
 DATABASES['default']['ATOMIC_REQUESTS'] = True
 
