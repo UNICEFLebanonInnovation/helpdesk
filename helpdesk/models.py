@@ -77,7 +77,7 @@ class Queue(models.Model):
 
     title = models.CharField(
         _('Title'),
-        max_length=100,
+        max_length=500,
     )
 
     slug = models.SlugField(
@@ -456,6 +456,25 @@ class Ticket(models.Model):
         (DUPLICATE_STATUS, _('Duplicate')),
     )
 
+    REPORT_TYPE = [
+        ("Complaint on the vaccine storage, provision and disposal", "Complaint on the vaccine storage, provision and disposal"),
+        ("Complaint on the vaccinator's skills and visibility (ID/ brand – logo of the campaign should be visible)", "Complaint on the vaccinator's skills and visibility (ID/ brand – logo of the campaign should be visible)"),
+        ("Complaint on proper and timely preparation of the community before vaccination", "Complaint on proper and timely preparation of the community before vaccination"),
+        ('Report on Refusal of vaccination by a community or an institution (please specify reasons n the narrative as per the following):', (
+                ('Medical reasons ', 'Medical reasons '),
+                ('No trust in the vaccine provided ', 'No trust in the vaccine provided '),
+                ('No trust in the team providing the vaccines', 'No trust in the team providing the vaccines'),
+                ('Child already vaccinated', 'Child already vaccinated'),
+                ('Based on the recommendation of the pediatric/ physician', 'Based on the recommendation of the pediatric/ physician'),
+                ('Religious reasons', 'Religious reasons'),
+                ('Anti- vaccination movement ', 'Anti- vaccination movement '),
+                ('Other/ specify', 'Other/ specify'),
+            )
+        ),
+        ('Misconceptions and rumors', 'Misconceptions and rumors'),
+        ('Other challenges or complaints / please specify', 'Other challenges or complaints / please specify'),
+    ]
+
     PRIORITY_CHOICES = (
         (1, _('High')),
         (2, _('Medium')),
@@ -471,6 +490,14 @@ class Ticket(models.Model):
         Queue,
         on_delete=models.CASCADE,
         verbose_name=_('Queue'),
+    )
+
+    report_type = models.CharField(
+        _('Report Type'),
+        max_length=1500,
+        blank=True,
+        null=True,
+        choices=REPORT_TYPE,
     )
 
     created = models.DateTimeField(

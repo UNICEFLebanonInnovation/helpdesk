@@ -135,10 +135,17 @@ class AbstractTicketForm(CustomFieldMixin, forms.Form):
     """
     queue = forms.ChoiceField(
         widget=forms.Select(attrs={'class': 'form-control'}),
-        label=_('Type of report '),
+        label=_('Report Type'),
         required=True,
         choices=()
     )
+
+    # report_type = forms.ChoiceField(
+    #     widget=forms.Select(attrs={'class': 'form-control'}),
+    #     choices=Ticket.REPORT_TYPE,
+    #     required=True,
+    #     label=_('Report Type'),
+    # )
 
     title = forms.CharField(
         max_length=100,

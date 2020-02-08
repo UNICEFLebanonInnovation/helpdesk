@@ -107,7 +107,7 @@ HELPDESK_SHOW_CHANGE_PASSWORD = True
 
 # Instead of showing the public web portal first,
 # we can instead redirect users straight to the login page.
-HELPDESK_REDIRECT_TO_LOGIN_BY_DEFAULT = False
+HELPDESK_REDIRECT_TO_LOGIN_BY_DEFAULT = True
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/login/'
 
@@ -130,6 +130,16 @@ LOGIN_REDIRECT_URL = '/login/'
 # }
 # DATABASES['default']['ATOMIC_REQUESTS'] = True
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'helpdesk',
+#         'USER': 'postgres',
+#         'PASSWORD': '',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
 
 DATABASES = {
      'default': {
@@ -187,14 +197,26 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # This demo uses the console backend, which simply prints emails to the console
 # rather than actually sending them out.
-DEFAULT_FROM_EMAIL = 'helpdesk@example.com'
-SERVER_EMAIL = 'helpdesk@example.com'
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+DEFAULT_FROM_EMAIL = 'helpdesk@unicef.com'
+SERVER_EMAIL = 'helpdesk@unicef.org'
+
+# Anymail with Mailgun
+# INSTALLED_APPS += ['anymail', ]
+ANYMAIL = {
+    'MAILGUN_API_KEY': os.environ.get('MAILGUN_API_KEY', default='NO KEY'),
+    'MAILGUN_DOMAIN': os.environ.get('MAILGUN_DOMAIN', default='NO_DOMAIN'),
+    'MAILGUN_SENDER_DOMAIN': os.environ.get('MAILGUN_SENDER_DOMAIN', default='NO_SENDER_DOMAIN')
+}
+# EMAIL_BACKEND = 'anymail.backends.mailgun.MailgunBackend'
+MAILGUN_API_KEY = os.environ.get('MAILGUN_API_KEY', default='NO KEY')
+MAILGUN_DOMAIN = os.environ.get('MAILGUN_DOMAIN', default='NO DOMAIN')
+
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # If you want to test sending real emails, uncomment and modify the following:
-#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-#EMAIL_HOST = 'smtp.example.com'
-#EMAIL_PORT = '25'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = os.environ.get('MAILGUN_SMTP_SERVER', default='smtp.example.com')
+EMAIL_PORT = os.environ.get('MAILGUN_SMTP_PORT', default=25)
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
@@ -221,7 +243,7 @@ USE_TZ = True
 # static root needs to be defined in order to use collectstatic
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
