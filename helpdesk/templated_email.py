@@ -1,6 +1,7 @@
 import os
 import mimetypes
 import logging
+import requests
 from smtplib import SMTPException
 
 from django.utils.safestring import mark_safe
@@ -50,6 +51,7 @@ def send_templated_mail(template_name,
     from_string = engines['django'].from_string
 
     from helpdesk.models import EmailTemplate
+    from django.conf import settings
     from helpdesk.settings import HELPDESK_EMAIL_SUBJECT_TEMPLATE, \
         HELPDESK_EMAIL_FALLBACK_LOCALE
 
@@ -93,23 +95,43 @@ def send_templated_mail(template_name,
     elif type(recipients) != list:
         recipients = [recipients]
 
-    msg = EmailMultiAlternatives(subject_part, text_part,
-                                 sender or settings.DEFAULT_FROM_EMAIL,
-                                 recipients, bcc=bcc)
-    msg.attach_alternative(html_part, "text/html")
-
-    if files:
-        for filename, filefield in files:
-            filefield.open('rb')
-            content = filefield.read()
-            msg.attach(filename, content)
-            filefield.close()
-    logger.debug('Sending email to: {!r}'.format(recipients))
-
+    api_url = 'https://api.mailgun.net/v3/{}/messages'.format(settings.MAILGUN_DOMAIN)
     try:
-        return msg.send()
-    except SMTPException as e:
+        result = requests.post(
+            api_url,
+            auth=("api", settings.MAILGUN_API_KEY),
+            # files=[("attachment", ("test.jpg", open("files/test.jpg","rb").read())),
+            #        ("attachment", ("test.txt", open("files/test.txt","rb").read()))],
+            data={"from": settings.DEFAULT_FROM_EMAIL,
+                  "to": recipients,
+                  # "cc": "baz@example.com",
+                  # "bcc": "bar@example.com",
+                  "subject": subject_part,
+                  "text": text_part,
+                  "html": html_part})
+        logger.debug('Sending email to: {!r}'.format(recipients))
+    except Exception as e:
         logger.exception('SMTPException raised while sending email to {}'.format(recipients))
-        if not fail_silently:
-            raise e
         return 0
+
+    # msg = EmailMultiAlternatives(subject_part, text_part,
+    #                              sender or settings.DEFAULT_FROM_EMAIL,
+    #                              recipients, bcc=bcc)
+    #
+    # msg.attach_alternative(html_part, "text/html")
+    #
+    # if files:
+    #     for filename, filefield in files:
+    #         filefield.open('rb')
+    #         content = filefield.read()
+    #         msg.attach(filename, content)
+    #         filefield.close()
+    # logger.debug('Sending email to: {!r}'.format(recipients))
+    #
+    # try:
+    #     return msg.send()
+    # except SMTPException as e:
+    #     logger.exception('SMTPException raised while sending email to {}'.format(recipients))
+    #     if not fail_silently:
+    #         raise e
+    #     return 0
