@@ -197,8 +197,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # This demo uses the console backend, which simply prints emails to the console
 # rather than actually sending them out.
-DEFAULT_FROM_EMAIL = 'helpdesk@unicef.com'
-SERVER_EMAIL = 'helpdesk@unicef.org'
+DEFAULT_FROM_EMAIL = 'brad@sandbox0253ea7b8ba44ff49d19b054fdb26e39.mailgun.org'
+SERVER_EMAIL = 'brad@sandbox0253ea7b8ba44ff49d19b054fdb26e39.mailgun.org'
 
 # Anymail with Mailgun
 # INSTALLED_APPS += ['anymail', ]
