@@ -96,20 +96,23 @@ def send_templated_mail(template_name,
         recipients = [recipients]
 
     api_url = 'https://api.mailgun.net/v3/{}/messages'.format(settings.MAILGUN_DOMAIN)
+
     try:
         result = requests.post(
             api_url,
             auth=("api", settings.MAILGUN_API_KEY),
             # files=[("attachment", ("test.jpg", open("files/test.jpg","rb").read())),
             #        ("attachment", ("test.txt", open("files/test.txt","rb").read()))],
-            data={"from": settings.DEFAULT_FROM_EMAIL,
+            data={"from": "Excited User <{}>".format(settings.DEFAULT_FROM_EMAIL),
                   "to": recipients,
                   # "cc": "baz@example.com",
                   # "bcc": "bar@example.com",
                   "subject": subject_part,
                   "text": text_part,
                   "html": html_part})
+        print(result)
         logger.debug('Sending email to: {!r}'.format(recipients))
+        return result
     except Exception as e:
         logger.exception('SMTPException raised while sending email to {}'.format(recipients))
         return 0
