@@ -17,3 +17,4 @@ gunicorn
 whitenoise
 #environ
 psycopg2
+django-anymail

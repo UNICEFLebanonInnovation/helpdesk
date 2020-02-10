@@ -95,49 +95,50 @@ def send_templated_mail(template_name,
     elif type(recipients) != list:
         recipients = [recipients]
 
-    api_url = 'https://api.mailgun.net/v3/{}/messages'.format(settings.MAILGUN_DOMAIN)
-    print(api_url)
-
-    try:
-        result = requests.post(
-            api_url,
-            auth=("api", settings.MAILGUN_API_KEY),
-            # files=[("attachment", ("test.jpg", open("files/test.jpg","rb").read())),
-            #        ("attachment", ("test.txt", open("files/test.txt","rb").read()))],
-            data={"from": "Excited User <{}>".format(settings.DEFAULT_FROM_EMAIL),
-                  "to": recipients,
-                  # "cc": "baz@example.com",
-                  # "bcc": "bar@example.com",
-                  "subject": subject_part,
-                  "text": text_part,
-                  "html": html_part})
-        print(result)
-        logger.debug('Sending email to: {!r}'.format(recipients))
-        return result
-    except Exception as e:
-        print('Exception')
-        print(e.message)
-        logger.exception('SMTPException raised while sending email to {}'.format(recipients))
-        return 0
-
-    # msg = EmailMultiAlternatives(subject_part, text_part,
-    #                              sender or settings.DEFAULT_FROM_EMAIL,
-    #                              recipients, bcc=bcc)
-    #
-    # msg.attach_alternative(html_part, "text/html")
-    #
-    # if files:
-    #     for filename, filefield in files:
-    #         filefield.open('rb')
-    #         content = filefield.read()
-    #         msg.attach(filename, content)
-    #         filefield.close()
-    # logger.debug('Sending email to: {!r}'.format(recipients))
+    # api_url = 'https://api.mailgun.net/v3/{}/messages'.format(settings.MAILGUN_DOMAIN)
+    # print(api_url)
     #
     # try:
-    #     return msg.send()
-    # except SMTPException as e:
+    #     result = requests.post(
+    #         api_url,
+    #         auth=("api", settings.MAILGUN_API_KEY),
+    #         files=[("attachment", ("test.jpg", open("files/test.jpg","rb").read())),
+    #                ("attachment", ("test.txt", open("files/test.txt","rb").read()))],
+            # data={"from": "Excited User <{}>".format(settings.DEFAULT_FROM_EMAIL),
+            #       "to": recipients,
+            #       "cc": "baz@example.com",
+            #       "bcc": "bar@example.com",
+                  # "subject": subject_part,
+                  # "text": text_part,
+                  # "html": html_part})
+        # print(result)
+        # logger.debug('Sending email to: {!r}'.format(recipients))
+        # return result
+    # except Exception as e:
+    #     print('Exception')
+    #     print(e.message)
     #     logger.exception('SMTPException raised while sending email to {}'.format(recipients))
-    #     if not fail_silently:
-    #         raise e
     #     return 0
+    #
+
+    msg = EmailMultiAlternatives(subject_part, text_part,
+                                 sender or settings.DEFAULT_FROM_EMAIL,
+                                 recipients, bcc=bcc)
+
+    msg.attach_alternative(html_part, "text/html")
+
+    if files:
+        for filename, filefield in files:
+            filefield.open('rb')
+            content = filefield.read()
+            msg.attach(filename, content)
+            filefield.close()
+    logger.debug('Sending email to: {!r}'.format(recipients))
+
+    try:
+        return msg.send()
+    except SMTPException as e:
+        logger.exception('SMTPException raised while sending email to {}'.format(recipients))
+        if not fail_silently:
+            raise e
+        return 0

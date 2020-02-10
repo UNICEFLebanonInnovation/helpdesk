@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.humanize',
     'bootstrap4form',
-    'helpdesk'
+    'helpdesk',
+    'anymail',
 ]
 
 MIDDLEWARE = [
