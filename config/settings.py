@@ -220,9 +220,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # EMAIL_PORT = os.environ.get('MAILGUN_SMTP_PORT', default=25)
 
 
-SENDGRID_PASSWORD = 'ajghzre45903'
-SENDGRID_USERNAME = 'app160739789@heroku.com'
-SENDGRID_API_KEY = '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'
+SENDGRID_PASSWORD = os.environ.get('SENDGRID_PASSWORD', default='NO_PASSWORD')
+SENDGRID_USERNAME = os.environ.get('SENDGRID_USERNAME', default='NO_USERNAME')
+SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY', default='NO_API_KEY')
 
 
 # Internationalization
