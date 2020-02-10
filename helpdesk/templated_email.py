@@ -5,9 +5,8 @@ import requests
 from smtplib import SMTPException
 
 from django.utils.safestring import mark_safe
-import sendgrid
-import os
-from sendgrid.helpers.mail import Email, Content, Mail
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
 
 logger = logging.getLogger('helpdesk')
 
@@ -98,16 +97,16 @@ def send_templated_mail(template_name,
     elif type(recipients) != list:
         recipients = [recipients]
 
-    sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
-    from_email = Email("test@example.com")
-    subject = "Hello World from the SendGrid Python Library!"
-    to_email = Email("achamseddine@unicef.org")
-    content = Content("text/plain", "Hello, Email!")
-    mail = Mail(from_email, subject, to_email, content)
-    response = sg.client.mail.send.post(request_body=mail.get())
-    print(response.status_code)
-    print(response.body)
-    print(response.headers)
+    message = Mail(
+        from_email='noreply@unicef.com',
+        to_emails=recipients,
+        subject=subject_part,
+        html_content=html_part)
+    try:
+        sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
+        response = sg.send(message)
+    except Exception as e:
+        print(str(e))
     return True
 
     # api_url = 'https://api.mailgun.net/v3/{}/messages'.format(settings.MAILGUN_DOMAIN)

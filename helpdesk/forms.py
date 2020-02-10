@@ -140,6 +140,12 @@ class AbstractTicketForm(CustomFieldMixin, forms.Form):
         choices=()
     )
 
+    other_type = forms.CharField(
+        label=_('Please specify if other'),
+        widget=forms.TextInput(attrs={'class': 'form-control'}),
+        required=False
+    )
+
     # report_type = forms.ChoiceField(
     #     widget=forms.Select(attrs={'class': 'form-control'}),
     #     choices=Ticket.REPORT_TYPE,

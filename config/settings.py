@@ -199,25 +199,31 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # This demo uses the console backend, which simply prints emails to the console
 # rather than actually sending them out.
-DEFAULT_FROM_EMAIL = 'postmaster@sandbox0253ea7b8ba44ff49d19b054fdb26e39.mailgun.org'
-SERVER_EMAIL = 'postmaster@sandbox0253ea7b8ba44ff49d19b054fdb26e39.mailgun.org'
+# DEFAULT_FROM_EMAIL = 'postmaster@sandbox0253ea7b8ba44ff49d19b054fdb26e39.mailgun.org'
+# SERVER_EMAIL = 'postmaster@sandbox0253ea7b8ba44ff49d19b054fdb26e39.mailgun.org'
 
 # Anymail with Mailgun
-ANYMAIL = {
-    'MAILGUN_API_KEY': os.environ.get('MAILGUN_API_KEY', default='NO KEY'),
-    'MAILGUN_DOMAIN': os.environ.get('MAILGUN_DOMAIN', default='NO_DOMAIN'),
-    'MAILGUN_SENDER_DOMAIN': os.environ.get('MAILGUN_SENDER_DOMAIN', default='NO_SENDER_DOMAIN')
-}
+# ANYMAIL = {
+#     'MAILGUN_API_KEY': os.environ.get('MAILGUN_API_KEY', default='NO KEY'),
+#     'MAILGUN_DOMAIN': os.environ.get('MAILGUN_DOMAIN', default='NO_DOMAIN'),
+#     'MAILGUN_SENDER_DOMAIN': os.environ.get('MAILGUN_SENDER_DOMAIN', default='NO_SENDER_DOMAIN')
+# }
 # EMAIL_BACKEND = 'anymail.backends.mailgun.MailgunBackend'
-MAILGUN_API_KEY = os.environ.get('MAILGUN_API_KEY', default='NO KEY')
-MAILGUN_DOMAIN = os.environ.get('MAILGUN_DOMAIN', default='NO DOMAIN')
+# MAILGUN_API_KEY = os.environ.get('MAILGUN_API_KEY', default='NO KEY')
+# MAILGUN_DOMAIN = os.environ.get('MAILGUN_DOMAIN', default='NO DOMAIN')
 
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # If you want to test sending real emails, uncomment and modify the following:
-EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
-EMAIL_HOST = os.environ.get('MAILGUN_SMTP_SERVER', default='smtp.example.com')
-EMAIL_PORT = os.environ.get('MAILGUN_SMTP_PORT', default=25)
+# EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
+# EMAIL_HOST = os.environ.get('MAILGUN_SMTP_SERVER', default='smtp.example.com')
+# EMAIL_PORT = os.environ.get('MAILGUN_SMTP_PORT', default=25)
+
+
+SENDGRID_PASSWORD = 'ajghzre45903'
+SENDGRID_USERNAME = 'app160739789@heroku.com'
+SENDGRID_API_KEY = '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'
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/

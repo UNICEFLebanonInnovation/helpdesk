@@ -500,6 +500,13 @@ class Ticket(models.Model):
         choices=REPORT_TYPE,
     )
 
+    other_type = models.CharField(
+        _('Please specify if other'),
+        max_length=1500,
+        blank=True,
+        null=True,
+    )
+
     created = models.DateTimeField(
         _('Created'),
         blank=True,
