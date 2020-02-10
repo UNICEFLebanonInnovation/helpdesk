@@ -198,11 +198,10 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # This demo uses the console backend, which simply prints emails to the console
 # rather than actually sending them out.
-DEFAULT_FROM_EMAIL = 'brad@sandbox0253ea7b8ba44ff49d19b054fdb26e39.mailgun.org'
-SERVER_EMAIL = 'brad@sandbox0253ea7b8ba44ff49d19b054fdb26e39.mailgun.org'
+DEFAULT_FROM_EMAIL = 'postmaster@sandbox0253ea7b8ba44ff49d19b054fdb26e39.mailgun.org'
+SERVER_EMAIL = 'postmaster@sandbox0253ea7b8ba44ff49d19b054fdb26e39.mailgun.org'
 
 # Anymail with Mailgun
-# INSTALLED_APPS += ['anymail', ]
 ANYMAIL = {
     'MAILGUN_API_KEY': os.environ.get('MAILGUN_API_KEY', default='NO KEY'),
     'MAILGUN_DOMAIN': os.environ.get('MAILGUN_DOMAIN', default='NO_DOMAIN'),
@@ -215,7 +214,7 @@ MAILGUN_DOMAIN = os.environ.get('MAILGUN_DOMAIN', default='NO DOMAIN')
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # If you want to test sending real emails, uncomment and modify the following:
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
 EMAIL_HOST = os.environ.get('MAILGUN_SMTP_SERVER', default='smtp.example.com')
 EMAIL_PORT = os.environ.get('MAILGUN_SMTP_PORT', default=25)
 
