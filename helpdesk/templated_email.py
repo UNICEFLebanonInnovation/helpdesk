@@ -15,6 +15,7 @@ def send_templated_mail(template_name,
                         context,
                         recipients,
                         sender=None,
+                        submitter=None,
                         bcc=None,
                         fail_silently=False,
                         files=None,
@@ -98,7 +99,7 @@ def send_templated_mail(template_name,
         recipients = [recipients]
 
     message = Mail(
-        from_email='noreply@unicef.com',
+        from_email=submitter,
         to_emails=recipients,
         subject=subject_part,
         html_content=html_part)

@@ -650,19 +650,19 @@ class Ticket(models.Model):
         def should_receive(email):
             return email and email not in recipients
 
-        def send(role, recipient):
+        def send(role, recipient, submitter):
             if recipient and recipient not in recipients and role in roles:
                 template, context = roles[role]
-                send_templated_mail(template, context, recipient, sender=self.queue.from_address, **kwargs)
+                send_templated_mail(template, context, recipient, submitter=submitter, sender=self.queue.from_address, **kwargs)
                 recipients.add(recipient)
-        send('submitter', self.submitter_email)
-        send('ticket_cc', self.queue.updated_ticket_cc)
-        send('new_ticket_cc', self.queue.new_ticket_cc)
+        send('submitter', self.submitter_email, self.submitter_email)
+        send('ticket_cc', self.queue.updated_ticket_cc, self.submitter_email)
+        send('new_ticket_cc', self.queue.new_ticket_cc, self.submitter_email)
         if self.assigned_to:
-            send('assigned_to', self.assigned_to.email)
+            send('assigned_to', self.assigned_to.email, self.submitter_email)
         if self.queue.enable_notifications_on_email_events:
             for cc in self.ticketcc_set.all():
-                send('ticket_cc', cc.email_address)
+                send('ticket_cc', cc.email_address, self.submitter_email)
         return recipients
 
     def _get_assigned_to(self):
