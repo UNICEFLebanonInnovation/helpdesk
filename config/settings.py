@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'bootstrap4form',
     'helpdesk',
     'anymail',
+    'sendgrid',
 ]
 
 MIDDLEWARE = [

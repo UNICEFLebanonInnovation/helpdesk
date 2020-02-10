@@ -5,6 +5,9 @@ import requests
 from smtplib import SMTPException
 
 from django.utils.safestring import mark_safe
+import sendgrid
+import os
+from sendgrid.helpers.mail import Email, Content, Mail
 
 logger = logging.getLogger('helpdesk')
 
@@ -95,6 +98,18 @@ def send_templated_mail(template_name,
     elif type(recipients) != list:
         recipients = [recipients]
 
+    sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
+    from_email = Email("test@example.com")
+    subject = "Hello World from the SendGrid Python Library!"
+    to_email = Email("achamseddine@unicef.org")
+    content = Content("text/plain", "Hello, Email!")
+    mail = Mail(from_email, subject, to_email, content)
+    response = sg.client.mail.send.post(request_body=mail.get())
+    print(response.status_code)
+    print(response.body)
+    print(response.headers)
+    return True
+
     # api_url = 'https://api.mailgun.net/v3/{}/messages'.format(settings.MAILGUN_DOMAIN)
     # print(api_url)
     #
@@ -121,24 +136,24 @@ def send_templated_mail(template_name,
     #     return 0
     #
 
-    msg = EmailMultiAlternatives(subject_part, text_part,
-                                 sender or settings.DEFAULT_FROM_EMAIL,
-                                 recipients, bcc=bcc)
-
-    msg.attach_alternative(html_part, "text/html")
-
-    if files:
-        for filename, filefield in files:
-            filefield.open('rb')
-            content = filefield.read()
-            msg.attach(filename, content)
-            filefield.close()
-    logger.debug('Sending email to: {!r}'.format(recipients))
-
-    try:
-        return msg.send()
-    except SMTPException as e:
-        logger.exception('SMTPException raised while sending email to {}'.format(recipients))
-        if not fail_silently:
-            raise e
-        return 0
+    # msg = EmailMultiAlternatives(subject_part, text_part,
+    #                              sender or settings.DEFAULT_FROM_EMAIL,
+    #                              recipients, bcc=bcc)
+    #
+    # msg.attach_alternative(html_part, "text/html")
+    #
+    # if files:
+    #     for filename, filefield in files:
+    #         filefield.open('rb')
+    #         content = filefield.read()
+    #         msg.attach(filename, content)
+    #         filefield.close()
+    # logger.debug('Sending email to: {!r}'.format(recipients))
+    #
+    # try:
+    #     return msg.send()
+    # except SMTPException as e:
+    #     logger.exception('SMTPException raised while sending email to {}'.format(recipients))
+    #     if not fail_silently:
+    #         raise e
+    #     return 0
