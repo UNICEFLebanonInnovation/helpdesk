@@ -96,6 +96,7 @@ def send_templated_mail(template_name,
         recipients = [recipients]
 
     api_url = 'https://api.mailgun.net/v3/{}/messages'.format(settings.MAILGUN_DOMAIN)
+    print(api_url)
 
     try:
         result = requests.post(
@@ -114,6 +115,8 @@ def send_templated_mail(template_name,
         logger.debug('Sending email to: {!r}'.format(recipients))
         return result
     except Exception as e:
+        print('Exception')
+        print(e.message)
         logger.exception('SMTPException raised while sending email to {}'.format(recipients))
         return 0
 
