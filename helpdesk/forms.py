@@ -140,18 +140,18 @@ class AbstractTicketForm(CustomFieldMixin, forms.Form):
         choices=()
     )
 
+    sub_report_type = forms.ChoiceField(
+        widget=forms.Select(attrs={'class': 'form-control'}),
+        choices=Ticket.SUB_REPORT_TYPE,
+        required=False,
+        label=_('Please specify reasons n the narrative as per the following'),
+    )
+
     other_type = forms.CharField(
-        label=_('Please specify if other'),
+        label=_('Please specify'),
         widget=forms.TextInput(attrs={'class': 'form-control'}),
         required=False
     )
-
-    # report_type = forms.ChoiceField(
-    #     widget=forms.Select(attrs={'class': 'form-control'}),
-    #     choices=Ticket.REPORT_TYPE,
-    #     required=True,
-    #     label=_('Report Type'),
-    # )
 
     title = forms.CharField(
         max_length=100,
@@ -302,6 +302,27 @@ class TicketForm(AbstractTicketForm):
 
         choices=()
     )
+
+    # assigned_to_unicef = forms.ChoiceField(
+    #     widget=forms.Select(attrs={'class': 'form-control'}) if not helpdesk_settings.HELPDESK_CREATE_TICKET_HIDE_ASSIGNED_TO else forms.HiddenInput(),
+    #     required=False,
+    #     label=_('Assign to UNICEF'),
+    #     choices=()
+    # )
+    #
+    # assigned_to_moph = forms.ChoiceField(
+    #     widget=forms.Select(attrs={'class': 'form-control'}) if not helpdesk_settings.HELPDESK_CREATE_TICKET_HIDE_ASSIGNED_TO else forms.HiddenInput(),
+    #     required=False,
+    #     label=_('Assign to MoPH'),
+    #     choices=()
+    # )
+    #
+    # assigned_to_who = forms.ChoiceField(
+    #     widget=forms.Select(attrs={'class': 'form-control'}) if not helpdesk_settings.HELPDESK_CREATE_TICKET_HIDE_ASSIGNED_TO else forms.HiddenInput(),
+    #     required=False,
+    #     label=_('Assign to WHO'),
+    #     choices=()
+    # )
 
     def __init__(self, *args, **kwargs):
         """

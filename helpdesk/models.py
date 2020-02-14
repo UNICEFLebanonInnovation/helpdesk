@@ -326,7 +326,7 @@ class Queue(models.Model):
         return "%s" % self.title
 
     class Meta:
-        ordering = ('title',)
+        ordering = ('pk',)
         verbose_name = _('Queue')
         verbose_name_plural = _('Queues')
 
@@ -475,6 +475,25 @@ class Ticket(models.Model):
         ('Other challenges or complaints / please specify', 'Other challenges or complaints / please specify'),
     ]
 
+    SUB_REPORT_TYPE = [
+        ('', '---------'),
+        ('Medical reasons ', 'Medical reasons '),
+        ('No trust in the vaccine provided ', 'No trust in the vaccine provided '),
+        ('No trust in the team providing the vaccines', 'No trust in the team providing the vaccines'),
+        ('Child already vaccinated', 'Child already vaccinated'),
+        ('Based on the recommendation of the pediatric/ physician', 'Based on the recommendation of the pediatric/ physician'),
+        ('Religious reasons', 'Religious reasons'),
+        ('Anti- vaccination movement ', 'Anti- vaccination movement '),
+        ('Other/ specify', 'Other/ specify'),
+    ]
+
+    ASSIGN_TYPE = [
+        ('', '---------'),
+        ('UNICEF', 'UNICEF'),
+        ('MoPH', 'MoPH'),
+        ('WHO', 'WHO')
+    ]
+
     PRIORITY_CHOICES = (
         (1, _('High')),
         (2, _('Medium')),
@@ -500,8 +519,16 @@ class Ticket(models.Model):
         choices=REPORT_TYPE,
     )
 
+    sub_report_type = models.CharField(
+        _('Please specify reasons n the narrative as per the following'),
+        max_length=1500,
+        blank=True,
+        null=True,
+        choices=SUB_REPORT_TYPE,
+    )
+
     other_type = models.CharField(
-        _('Please specify if other'),
+        _('Please specify'),
         max_length=1500,
         blank=True,
         null=True,
@@ -527,10 +554,45 @@ class Ticket(models.Model):
                     'follow-ups left for this task.'),
     )
 
+    assigned_to_type = models.CharField(
+        _('Assign to'),
+        max_length=50,
+        blank=True,
+        null=True,
+        choices=ASSIGN_TYPE,
+    )
+
     assigned_to = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         related_name='assigned_to',
+        blank=True,
+        null=True,
+        verbose_name=_('Case owner'),
+    )
+
+    assigned_to_unicef = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='assigned_to_unicef',
+        blank=True,
+        null=True,
+        verbose_name=_('Assigned to'),
+    )
+
+    assigned_to_mohp = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='assigned_to_moph',
+        blank=True,
+        null=True,
+        verbose_name=_('Assigned to'),
+    )
+
+    assigned_to_who = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='assigned_to_who',
         blank=True,
         null=True,
         verbose_name=_('Assigned to'),

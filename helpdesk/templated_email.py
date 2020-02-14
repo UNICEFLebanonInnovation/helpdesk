@@ -1,4 +1,5 @@
 import os
+import sendgrid
 import mimetypes
 import logging
 import requests
@@ -98,17 +99,83 @@ def send_templated_mail(template_name,
     elif type(recipients) != list:
         recipients = [recipients]
 
-    message = Mail(
-        from_email=submitter,
-        to_emails=recipients,
-        subject=subject_part,
-        html_content=html_part)
-    try:
-        sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
-        response = sg.send(message)
-    except Exception as e:
-        print(str(e))
-    return True
+    # import smtplib
+    #
+    # gmail_user = 'innovation.leb@gmail.com'
+    # gmail_password = 'mehesupport'
+    #
+    # sent_from = gmail_user
+    # to = ['achamseddine@unicef.org', ]
+    # subject = 'OMG Super Important Message'
+    # body = 'Hey, what'
+    #
+    # try:
+    #     server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
+    #     server.ehlo()
+    #     server.login(gmail_user, gmail_password)
+    #     server.sendmail(sent_from, to, body)
+    #     server.close()
+    #
+    #     print('Email sent!')
+    # except Exception as e:
+    #     print(e)
+
+
+    # using SendGrid's Python Library
+    # https://github.com/sendgrid/sendgrid-python
+
+    # from urllib2 import Request, urlopen
+    # import json
+    # response = requests.post("https://mailtrap.io/api/v1/inboxes.json?api_token=323c490f21adfed53062c76c1805b846")
+    # response_body = response
+    # print(response_body)
+    # credentials = json.loads(response_body)[0]
+    # print(credentials)
+    # 
+    # EMAIL_HOST = credentials['domain']
+    # EMAIL_HOST_USER = credentials['username']
+    # EMAIL_HOST_PASSWORD = credentials['password']
+    # EMAIL_PORT = credentials['smtp_ports'][0]
+    # EMAIL_USE_TLS = True
+    # 
+    # 
+    # 
+    # message = Mail(
+    #     from_email='achamseddine@unicef.org',
+    #     to_emails='ali.chamseddine21@gmail.com',
+    #     subject='Sending with Twilio SendGrid is Fun',
+    #     html_content='<strong>and easy to do anywhere, even with Python</strong>')
+    # try:
+    #     sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
+    #     response = sg.send(message)
+    #     print(response.status_code)
+    #     print(response.body)
+    #     print(response.headers)
+    # except Exception as e:
+    #     print(e)
+
+    # result = requests.post(
+    #     "https://api.mailgun.net/v3/sandbox0253ea7b8ba44ff49d19b054fdb26e39.mailgun.org/messages",
+    #     auth=("api", "bb4ee24feb21e6a6bc3cffcf127542d4-f8faf5ef-e3599cc2"),
+    #     data={"from": "Excited User <app160739789@heroku.com>",
+    #           "to": ["ali.chamseddine21@gmail.com", "achamseddine@unicef.org"],
+    #           "subject": "Hello",
+    #           "text": "Testing some Mailgun awesomness!"})
+    #
+    # print(result)
+    # return True
+
+    # message = Mail(
+    #     from_email=submitter,
+    #     to_emails=recipients,
+    #     subject=subject_part,
+    #     html_content=html_part)
+    # try:
+    #     sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
+    #     response = sg.send(message)
+    # except Exception as e:
+    #     print(str(e))
+    # return True
 
     # api_url = 'https://api.mailgun.net/v3/{}/messages'.format(settings.MAILGUN_DOMAIN)
     # print(api_url)
@@ -157,3 +224,31 @@ def send_templated_mail(template_name,
     #     if not fail_silently:
     #         raise e
     #     return 0
+
+
+    # sg = sendgrid.SendGridAPIClient(os.environ.get('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'))
+    # data = {
+    #   "personalizations": [
+    #     {
+    #       "to": [
+    #         {
+    #           "email": "achamseddine@unicef.org"
+    #         }
+    #       ],
+    #       "subject": "Hello World from the SendGrid Python Library!"
+    #     }
+    #   ],
+    #   "from": {
+    #     "email": "achamseddine@unicef.org"
+    #   },
+    #   "content": [
+    #     {
+    #       "type": "text/plain",
+    #       "value": "Hello, Email!"
+    #     }
+    #   ]
+    # }
+    # response = sg.client.mail.send.post(request_body=data)
+    # print(response.status_code)
+    # print(response.body)
+    # print(response.headers)
