@@ -19,3 +19,5 @@ whitenoise
 psycopg2
 django-anymail
 sendgrid
+azure-storage
+django-storages

@@ -101,8 +101,8 @@ def send_templated_mail(template_name,
 
     # import smtplib
     #
-    # gmail_user = 'innovation.leb@gmail.com'
-    # gmail_password = 'mehesupport'
+    # gmail_user = ''
+    # gmail_password = ''
     #
     # sent_from = gmail_user
     # to = ['achamseddine@unicef.org', ]
@@ -126,7 +126,7 @@ def send_templated_mail(template_name,
 
     # from urllib2 import Request, urlopen
     # import json
-    # response = requests.post("https://mailtrap.io/api/v1/inboxes.json?api_token=323c490f21adfed53062c76c1805b846")
+    # response = requests.post("https://mailtrap.io/api/v1/inboxes.json?api_token=")
     # response_body = response
     # print(response_body)
     # credentials = json.loads(response_body)[0]
@@ -155,9 +155,9 @@ def send_templated_mail(template_name,
     #     print(e)
 
     # result = requests.post(
-    #     "https://api.mailgun.net/v3/sandbox0253ea7b8ba44ff49d19b054fdb26e39.mailgun.org/messages",
-    #     auth=("api", "bb4ee24feb21e6a6bc3cffcf127542d4-f8faf5ef-e3599cc2"),
-    #     data={"from": "Excited User <app160739789@heroku.com>",
+    #     "https://api.mailgun.net/v3//messages",
+    #     auth=("api", ""),
+    #     data={"from": "Excited User <@heroku.com>",
     #           "to": ["ali.chamseddine21@gmail.com", "achamseddine@unicef.org"],
     #           "subject": "Hello",
     #           "text": "Testing some Mailgun awesomness!"})
@@ -226,7 +226,7 @@ def send_templated_mail(template_name,
     #     return 0
 
 
-    # sg = sendgrid.SendGridAPIClient(os.environ.get('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'))
+    # sg = sendgrid.SendGridAPIClient(os.environ.get(''))
     # data = {
     #   "personalizations": [
     #     {

@@ -554,6 +554,26 @@ class Ticket(models.Model):
                     'follow-ups left for this task.'),
     )
 
+    national_focal_person = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='national_person',
+        blank=True,
+        null=True,
+        verbose_name=_('National focal person'),
+        help_text=_('Action Points needed at national level '),
+    )
+
+    field_focal_person = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='field_person',
+        blank=True,
+        null=True,
+        verbose_name=_('Field focal person'),
+        help_text=_('Action Points needed at field level '),
+    )
+
     assigned_to_type = models.CharField(
         _('Assign to'),
         max_length=50,

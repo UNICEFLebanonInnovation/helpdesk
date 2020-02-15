@@ -293,6 +293,32 @@ class TicketForm(AbstractTicketForm):
         help_text=_('This e-mail address will receive copies of all public '
                     'updates to this ticket.'),
     )
+
+    national_focal_person = forms.ChoiceField(
+        widget=forms.Select(attrs={
+            'class': 'form-control'}) if not helpdesk_settings.HELPDESK_CREATE_TICKET_HIDE_ASSIGNED_TO else forms.HiddenInput(),
+        required=False,
+        label=_('National focal person'),
+        help_text=_('Action Points needed at national level '),
+        choices=()
+    )
+
+    field_focal_person = forms.ChoiceField(
+        widget=forms.Select(attrs={
+            'class': 'form-control'}) if not helpdesk_settings.HELPDESK_CREATE_TICKET_HIDE_ASSIGNED_TO else forms.HiddenInput(),
+        required=False,
+        label=_('Field focal person'),
+        help_text=_('Action Points needed at field level '),
+        choices=()
+    )
+
+    assigned_to_type = forms.ChoiceField(
+        widget=forms.Select(attrs={'class': 'form-control'}),
+        label=_('Assign to'),
+        required=False,
+        choices=Ticket.ASSIGN_TYPE,
+    )
+
     assigned_to = forms.ChoiceField(
         widget=forms.Select(attrs={'class': 'form-control'}) if not helpdesk_settings.HELPDESK_CREATE_TICKET_HIDE_ASSIGNED_TO else forms.HiddenInput(),
         required=False,
@@ -337,7 +363,9 @@ class TicketForm(AbstractTicketForm):
             assignable_users = User.objects.filter(is_active=True, is_staff=True).order_by(User.USERNAME_FIELD)
         else:
             assignable_users = User.objects.filter(is_active=True).order_by(User.USERNAME_FIELD)
-        self.fields['assigned_to'].choices = [('', '--------')] + [(u.id, u.get_username()) for u in assignable_users]
+        self.fields['national_focal_person'].choices = [('', '--------')] + [(u.id, '{} {}'.format(u.first_name, u.last_name)) for u in assignable_users]
+        self.fields['field_focal_person'].choices = [('', '--------')] + [(u.id, '{} {}'.format(u.first_name, u.last_name)) for u in assignable_users]
+        self.fields['assigned_to'].choices = [('', '--------')] + [(u.id, '{} {}'.format(u.first_name, u.last_name)) for u in assignable_users]
         self._add_form_custom_fields()
 
     def save(self, user=None):

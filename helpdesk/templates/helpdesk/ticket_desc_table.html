@@ -9,8 +9,10 @@
         <div class="table-responsive">
             <table class="table table-sm table-border">
                 <thead class="thead-light">
-                    <tr class=''><th colspan='4'><h3>{{ ticket.queue.slug }}-{{ ticket.id }}. {{ ticket.title }} [{{ ticket.get_status }}]</h3> 
-                            {% blocktrans with ticket.queue as queue %}Queue: {{ queue }}{% endblocktrans %}
+                    <tr class=''><th colspan='4'><h3>#{{ ticket.id }} - {{ ticket.queue }} [{{ ticket.get_status }}]</h3>
+                        {% if ticket.sub_report_type %}Sub report type: {{ ticket.sub_report_type }}<br> {% endif %}
+                        {% if ticket.other_type %}Other: {{ ticket.other_type }}<br> {% endif %}
+                        Summary : {{ ticket.title }}
                             <span class='ticket_toolbar float-right'>
                         <a href="{% url 'helpdesk:edit' ticket.id %}" class="ticket-edit"><button class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i> {% trans "Edit" %}</button></a>
                     | <a href="{% url 'helpdesk:delete' ticket.id %}" class="ticket-delete"><button class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i> {% trans "Delete" %}</button></a>
@@ -31,8 +33,16 @@
                         <td>{{ ticket.created|date:"d. E Y" }} ({{ ticket.created|naturaltime }})</td>
                     </tr>
                     <tr>
+                        <th class="table-active">{% trans "National focal person" %}</th>
+                        <td>{% if ticket.national_focal_person %}{{ ticket.national_focal_person }} {% endif %}
+                        </td>
+                        <th class="table-active">{% trans "Field focal person" %}</th>
+                        <td>{% if ticket.field_focal_person %}{{ ticket.field_focal_person }} {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
                         <th class="table-active">{% trans "Assigned To" %}</th>
-                        <td>{{ ticket.get_assigned_to }}{% ifequal ticket.get_assigned_to _('Unassigned') %} <strong>
+                        <td>{{ ticket.get_assigned_to }} [{{ ticket.assigned_to_type }}] {% ifequal ticket.get_assigned_to _('Unassigned') %} <strong>
                                 <a href='?take'><button type="button" class="btn btn-primary btn-sm float-right"><i class="fas fa-hand-paper"></i></button></a>
                         </strong>{% endifequal %}
                         </td>
