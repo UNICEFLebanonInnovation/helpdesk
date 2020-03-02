@@ -41,7 +41,7 @@
             <table class="table table-striped table-bordered table-hover">
                 <thead>
                     <tr>
-                        <th>{% trans "Queue" %}</th>
+                        <th>{% trans "Report type" %}</th>
                         <th>{% trans "Open" %}</th>
                         <th>{% trans "Resolved" %}</th>
                         <th>{% trans "Closed" %}</th>
@@ -79,7 +79,7 @@
             <li>{% trans "Reports By User" %}
                 <ul>
                     <li><a href='userpriority/{% if saved_query %}?saved_query={{ saved_query }}{% endif %}'>{% trans "by Priority" %}</a></li>
-                    <li><a href='userqueue/{% if saved_query %}?saved_query={{ saved_query }}{% endif %}'>{% trans "by Queue" %}</a></li>
+                    <li><a href='userqueue/{% if saved_query %}?saved_query={{ saved_query }}{% endif %}'>{% trans "by Report type" %}</a></li>
                     <li><a href='userstatus/{% if saved_query %}?saved_query={{ saved_query }}{% endif %}'>{% trans "by Status" %}</a></li>
                     <li><a href='usermonth/{% if saved_query %}?saved_query={{ saved_query }}{% endif %}'>{% trans "by Month" %}</a></li>
                 </ul>

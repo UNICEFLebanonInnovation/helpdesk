@@ -208,4 +208,4 @@ def change_language(request):
     if 'return_to' in request.GET:
         return_to = request.GET['return_to']
 
-    return render(request, 'helpdesk/public_change_language.html', {'next': return_to})
+    return render(request, 'helpdesk/public_change_language.html', {'next': return_to, 'available_languages': ['en', 'ar-ar', 'fr']})
