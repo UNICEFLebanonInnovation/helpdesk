@@ -8,6 +8,15 @@
     $(".sidebar").toggleClass("toggled");
   });
 
+  $("#id_queue").change(function(e) {
+    $("#id_sub_report_type").val('');
+    reArrangeFields();
+  });
+
+  $("#id_sub_report_type").change(function(e) {
+    reArrangeFields();
+  });
+
   // Prevent the content wrapper from scrolling when the fixed side navigation hovered over
   $('body.fixed-nav .sidebar').on('mousewheel DOMMouseScroll wheel', function(e) {
     if ($window.width() > 768) {
@@ -37,4 +46,27 @@
     event.preventDefault();
   });
 
+  reArrangeFields();
+
 })(jQuery); // End of use strict
+
+
+function reArrangeFields()
+{
+    var id_queue = $("#id_queue").val();
+    var id_sub_report_type = $("#id_sub_report_type").val();
+
+    $("#id_sub_report_type").parent().hide();
+    $("#id_other_type").parent().hide();
+
+    if(id_queue == '4') {
+        $("#id_sub_report_type").parent().show();
+    }else if(id_queue == '5' || id_queue == '6') {
+        $("#id_other_type").parent().show();
+    }
+
+    if(id_sub_report_type == 'Other/ specify') {
+        $("#id_other_type").parent().show();
+    }
+
+}
