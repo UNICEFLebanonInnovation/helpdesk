@@ -18,7 +18,7 @@
       <div class="card card-register mx-auto mt-5">
         <div class="card-header">{% trans "Submit a Report" %}</div>
         <div class="card-body">
-          <p>{% trans "Unless otherwise stated, all fields are required." %} {% trans "Please provide as descriptive a title and description as possible." %}</p>
+          <p>{% trans "All fields are required, unless otherwise stated." %} {% trans "Please insert title and a clear description." %}</p>
           <form method='post' action='./' enctype='multipart/form-data'>
             {% for field in form %}
               {% if field.is_hidden %}

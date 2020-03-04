@@ -3,7 +3,7 @@
 {% with request|load_helpdesk_settings as helpdesk_settings %}
 
 {% if helpdesk_settings.HELPDESK_SUBMIT_A_TICKET_PUBLIC %}
-<p>{% trans "Unless otherwise stated, all fields are required." %} {% trans "Please provide as descriptive a title and description as possible." %}</p>
+<p>{% trans "All fields are required, unless otherwise stated." %} {% trans "Please insert title and a clear description." %}</p>
 <form method='post' enctype='multipart/form-data'>
     {{ form|bootstrap4form }}
     <button type="submit" class="btn btn-primary btn-lg btn-block"><i class="fa fa-send"></i>&nbsp;{% trans "Submit Report" %}</button>

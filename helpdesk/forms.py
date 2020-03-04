@@ -77,7 +77,27 @@ class EditTicketForm(CustomFieldMixin, forms.ModelForm):
 
     class Meta:
         model = Ticket
-        exclude = ('created', 'modified', 'status', 'on_hold', 'resolution', 'last_escalation', 'assigned_to')
+        exclude = (
+            'other_type',
+            'sub_report_type',
+            'created',
+            'modified',
+            'status',
+            'on_hold',
+            'resolution',
+            'last_escalation',
+            'title',
+            'queue',
+            'description',
+            'report_type',
+            'assigned_to_who',
+            'assigned_to_mohp',
+            'assigned_to_unicef',
+            'kbitem',
+            'secret_key',
+            'submitter_email',
+            'due_date',
+        )
 
     def __init__(self, *args, **kwargs):
         """
@@ -162,7 +182,7 @@ class AbstractTicketForm(CustomFieldMixin, forms.Form):
 
     body = forms.CharField(
         widget=forms.Textarea(attrs={'class': 'form-control'}),
-        label=_('Description of your issue'),
+        label=_('Please provide a detailed description of your issue'),
         required=True,
         help_text=_('Please be as descriptive as possible and include all details'),
     )
@@ -173,7 +193,7 @@ class AbstractTicketForm(CustomFieldMixin, forms.Form):
         required=True,
         initial='3',
         label=_('Priority'),
-        help_text=_("Please select a priority carefully. If unsure, leave it as '3'."),
+        help_text=_("Please select the priority level that best match your complaint . If unsure, leave it as '3'."),
     )
 
     due_date = forms.DateTimeField(
@@ -294,40 +314,40 @@ class TicketForm(AbstractTicketForm):
                     'updates to this ticket.'),
     )
 
-    national_focal_person = forms.ChoiceField(
-        widget=forms.Select(attrs={
-            'class': 'form-control'}) if not helpdesk_settings.HELPDESK_CREATE_TICKET_HIDE_ASSIGNED_TO else forms.HiddenInput(),
-        required=False,
-        label=_('National focal person'),
-        help_text=_('Action Points needed at national level '),
-        choices=()
-    )
-
-    field_focal_person = forms.ChoiceField(
-        widget=forms.Select(attrs={
-            'class': 'form-control'}) if not helpdesk_settings.HELPDESK_CREATE_TICKET_HIDE_ASSIGNED_TO else forms.HiddenInput(),
-        required=False,
-        label=_('Field focal person'),
-        help_text=_('Action Points needed at field level '),
-        choices=()
-    )
-
-    assigned_to_type = forms.ChoiceField(
-        widget=forms.Select(attrs={'class': 'form-control'}),
-        label=_('Assign to'),
-        required=False,
-        choices=Ticket.ASSIGN_TYPE,
-    )
-
-    assigned_to = forms.ChoiceField(
-        widget=forms.Select(attrs={'class': 'form-control'}) if not helpdesk_settings.HELPDESK_CREATE_TICKET_HIDE_ASSIGNED_TO else forms.HiddenInput(),
-        required=False,
-        label=_('Case owner'),
-        help_text=_('If you select an owner other than yourself, they\'ll be '
-                    'e-mailed details of this ticket immediately.'),
-
-        choices=()
-    )
+    # national_focal_person = forms.ChoiceField(
+    #     widget=forms.Select(attrs={
+    #         'class': 'form-control'}) if not helpdesk_settings.HELPDESK_CREATE_TICKET_HIDE_ASSIGNED_TO else forms.HiddenInput(),
+    #     required=False,
+    #     label=_('National focal person'),
+    #     help_text=_('Action Points needed at national level '),
+    #     choices=()
+    # )
+    #
+    # field_focal_person = forms.ChoiceField(
+    #     widget=forms.Select(attrs={
+    #         'class': 'form-control'}) if not helpdesk_settings.HELPDESK_CREATE_TICKET_HIDE_ASSIGNED_TO else forms.HiddenInput(),
+    #     required=False,
+    #     label=_('Field focal person'),
+    #     help_text=_('Action Points needed at field level '),
+    #     choices=()
+    # )
+    #
+    # assigned_to_type = forms.ChoiceField(
+    #     widget=forms.Select(attrs={'class': 'form-control'}),
+    #     label=_('Assign to'),
+    #     required=False,
+    #     choices=Ticket.ASSIGN_TYPE,
+    # )
+    #
+    # assigned_to = forms.ChoiceField(
+    #     widget=forms.Select(attrs={'class': 'form-control'}) if not helpdesk_settings.HELPDESK_CREATE_TICKET_HIDE_ASSIGNED_TO else forms.HiddenInput(),
+    #     required=False,
+    #     label=_('Case owner'),
+    #     help_text=_('If you select an owner other than yourself, they\'ll be '
+    #                 'e-mailed details of this ticket immediately.'),
+    #
+    #     choices=()
+    # )
 
     # assigned_to_unicef = forms.ChoiceField(
     #     widget=forms.Select(attrs={'class': 'form-control'}) if not helpdesk_settings.HELPDESK_CREATE_TICKET_HIDE_ASSIGNED_TO else forms.HiddenInput(),
@@ -363,9 +383,9 @@ class TicketForm(AbstractTicketForm):
             assignable_users = User.objects.filter(is_active=True, is_staff=True).order_by(User.USERNAME_FIELD)
         else:
             assignable_users = User.objects.filter(is_active=True).order_by(User.USERNAME_FIELD)
-        self.fields['national_focal_person'].choices = [('', '--------')] + [(u.id, '{} {}'.format(u.first_name, u.last_name)) for u in assignable_users]
-        self.fields['field_focal_person'].choices = [('', '--------')] + [(u.id, '{} {}'.format(u.first_name, u.last_name)) for u in assignable_users]
-        self.fields['assigned_to'].choices = [('', '--------')] + [(u.id, '{} {}'.format(u.first_name, u.last_name)) for u in assignable_users]
+        # self.fields['national_focal_person'].choices = [('', '--------')] + [(u.id, '{} {}'.format(u.first_name, u.last_name)) for u in assignable_users]
+        # self.fields['field_focal_person'].choices = [('', '--------')] + [(u.id, '{} {}'.format(u.first_name, u.last_name)) for u in assignable_users]
+        # self.fields['assigned_to'].choices = [('', '--------')] + [(u.id, '{} {}'.format(u.first_name, u.last_name)) for u in assignable_users]
         self._add_form_custom_fields()
 
     def save(self, user=None):
@@ -374,7 +394,7 @@ class TicketForm(AbstractTicketForm):
         """
 
         ticket, queue = self._create_ticket()
-        if self.cleaned_data['assigned_to']:
+        if 'assigned_to' in self.cleaned_data and self.cleaned_data['assigned_to']:
             try:
                 u = User.objects.get(id=self.cleaned_data['assigned_to'])
                 ticket.assigned_to = u
@@ -384,7 +404,7 @@ class TicketForm(AbstractTicketForm):
 
         self._create_custom_fields(ticket)
 
-        if self.cleaned_data['assigned_to']:
+        if 'assigned_to' in self.cleaned_data and self.cleaned_data['assigned_to']:
             title = _('Ticket Opened & Assigned to %(name)s') % {
                 'name': ticket.get_assigned_to or _("<invalid user>")
             }
