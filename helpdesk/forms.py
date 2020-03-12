@@ -160,11 +160,18 @@ class AbstractTicketForm(CustomFieldMixin, forms.Form):
         choices=()
     )
 
+    report_type = forms.ChoiceField(
+        widget=forms.Select(attrs={'class': 'form-control'}),
+        choices=Ticket.REPORT_TYPE,
+        required=False,
+        label=_('Report sub type'),
+    )
+
     sub_report_type = forms.ChoiceField(
         widget=forms.Select(attrs={'class': 'form-control'}),
         choices=Ticket.SUB_REPORT_TYPE,
         required=False,
-        label=_('Please specify reasons n the narrative as per the following'),
+        label=_('Please specify reasons and the narrative as per the following'),
     )
 
     other_type = forms.CharField(
@@ -250,6 +257,9 @@ class AbstractTicketForm(CustomFieldMixin, forms.Form):
                         created=timezone.now(),
                         status=Ticket.OPEN_STATUS,
                         queue=queue,
+                        report_type=self.cleaned_data['report_type'],
+                        sub_report_type=self.cleaned_data['sub_report_type'],
+                        other_type=self.cleaned_data['other_type'],
                         description=self.cleaned_data['body'],
                         priority=self.cleaned_data['priority'],
                         due_date=self.cleaned_data['due_date'],

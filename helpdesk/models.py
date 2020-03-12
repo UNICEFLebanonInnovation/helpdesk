@@ -457,22 +457,13 @@ class Ticket(models.Model):
     )
 
     REPORT_TYPE = [
-        ("Complaint on the vaccine storage, provision and disposal", "Complaint on the vaccine storage, provision and disposal"),
-        ("Complaint on the vaccinator's skills and visibility (ID/ brand – logo of the campaign should be visible)", "Complaint on the vaccinator's skills and visibility (ID/ brand – logo of the campaign should be visible)"),
+        ('', '---------'),
+        ("Complaint on vaccine storage, provision and disposal", "Complaint on vaccine storage, provision and disposal"),
+        ("Complaint on vaccinator's skills and visibility (ID/ brand – logo of the campaign should be visible)", "Complaint on vaccinator's skills and visibility (ID/ brand – logo of the campaign should be visible)"),
         ("Complaint on proper and timely preparation of the community before vaccination", "Complaint on proper and timely preparation of the community before vaccination"),
-        ('Report on Refusal of vaccination by a community or an institution (please specify reasons n the narrative as per the following):', (
-                ('Medical reasons ', 'Medical reasons '),
-                ('No trust in the vaccine provided ', 'No trust in the vaccine provided '),
-                ('No trust in the team providing the vaccines', 'No trust in the team providing the vaccines'),
-                ('Child already vaccinated', 'Child already vaccinated'),
-                ('Based on the recommendation of the pediatric/ physician', 'Based on the recommendation of the pediatric/ physician'),
-                ('Religious reasons', 'Religious reasons'),
-                ('Anti- vaccination movement ', 'Anti- vaccination movement '),
-                ('Other/ specify', 'Other/ specify'),
-            )
-        ),
-        ('Misconceptions and rumors', 'Misconceptions and rumors'),
-        ('Other challenges or complaints / please specify', 'Other challenges or complaints / please specify'),
+        ("Report on Refusal of vaccination by a community or an institution", "Report on Refusal of vaccination by a community or an institution"),
+        ("Misconceptions and rumors", "Misconceptions and rumors"),
+        ("Other challenges or complaints", "Other challenges or complaints")
     ]
 
     SUB_REPORT_TYPE = [

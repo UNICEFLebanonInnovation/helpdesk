@@ -10,6 +10,7 @@
             <table class="table table-sm table-border">
                 <thead class="thead-light">
                     <tr class=''><th colspan='4'><h3>#{{ ticket.id }} - {{ ticket.queue }} [{{ ticket.get_status }}]</h3>
+                        {% if ticket.report_type %} {{ ticket.report_type }} <br> {% endif %}
                         {% if ticket.sub_report_type %}Sub report type: {{ ticket.sub_report_type }}<br> {% endif %}
                         {% if ticket.other_type %}Other: {{ ticket.other_type }}<br> {% endif %}
                         Summary : {{ ticket.title }}

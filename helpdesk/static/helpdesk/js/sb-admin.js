@@ -9,6 +9,12 @@
   });
 
   $("#id_queue").change(function(e) {
+    $("#id_report_type").val('');
+    $("#id_sub_report_type").val('');
+    reArrangeFields();
+  });
+
+  $("#id_report_type").change(function(e) {
     $("#id_sub_report_type").val('');
     reArrangeFields();
   });
@@ -54,15 +60,26 @@
 function reArrangeFields()
 {
     var id_queue = $("#id_queue").val();
+    var id_report_type = $("#id_report_type").val();
     var id_sub_report_type = $("#id_sub_report_type").val();
 
+    console.log(id_queue);
+    console.log(id_report_type);
+
+    $("#id_report_type").parent().hide();
     $("#id_sub_report_type").parent().hide();
     $("#id_other_type").parent().hide();
 
-    if(id_queue == '4') {
+    if(id_queue == '1') {
+        $("#id_report_type").parent().show();
+    }else {
+        $("#id_report_type").parent().hide();
+    }
+
+    if(id_report_type == 'Report on Refusal of vaccination by a community or an institution') {
         $("#id_sub_report_type").parent().show();
-    }else if(id_queue == '5' || id_queue == '6') {
-        $("#id_other_type").parent().show();
+    }else if(id_report_type == 'Misconceptions and rumors' || id_report_type == 'Other challenges or complaints') {
+        $("#id_sub_report_type").parent().hide();
     }
 
     if(id_sub_report_type == 'Other/ specify') {
