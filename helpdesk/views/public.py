@@ -15,8 +15,10 @@ from django.utils.translation import ugettext as _
 from django.conf import settings
 from django.views.decorators.clickjacking import xframe_options_exempt
 from django.views.decorators.csrf import csrf_exempt
+from django.views.generic import RedirectView
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import FormView
+from django.utils import translation
 
 from helpdesk import settings as helpdesk_settings
 from helpdesk.decorators import protect_view, is_helpdesk_staff
@@ -209,3 +211,36 @@ def change_language(request):
         return_to = request.GET['return_to']
 
     return render(request, 'helpdesk/public_change_language.html', {'next': return_to, 'available_languages': ['en', 'ar-ar', 'fr']})
+
+
+class ChangeLanguageRedirectView(RedirectView):
+
+    permanent = False
+    query_string = True
+
+    def get_redirect_url(self, *args, **kwargs):
+
+        user_language = self.request.GET.get('language')
+        print(user_language)
+        translation.activate(user_language)
+        # translation.activate('ar-Ar')
+        self.request.session[translation.LANGUAGE_SESSION_KEY] = user_language
+        # self.request.session[translation.LANGUAGE_SESSION_KEY] = 'ar-Ar'
+        self.request.session['default_language'] = user_language
+        # self.request.session['default_language'] = 'ar-Ar'
+
+        next_url = '/tickets/'
+
+        response = HttpResponseRedirect(next_url) if next_url else HttpResponse(status=204)
+
+        response.set_cookie(
+            settings.LANGUAGE_COOKIE_NAME, user_language,
+            max_age=settings.LANGUAGE_COOKIE_AGE,
+            path=settings.LANGUAGE_COOKIE_PATH,
+            domain=settings.LANGUAGE_COOKIE_DOMAIN,
+            secure=settings.LANGUAGE_COOKIE_SECURE,
+            httponly=settings.LANGUAGE_COOKIE_HTTPONLY,
+            samesite=settings.LANGUAGE_COOKIE_SAMESITE,
+        )
+
+        return reverse('helpdesk:list')

@@ -166,7 +166,7 @@ SITE_ID = 1
 # Sessions
 # https://docs.djangoproject.com/en/1.11/topics/http/sessions
 
-SESSION_COOKIE_AGE = 86400 # = 1 day
+SESSION_COOKIE_AGE = 86400  # = 1 day
 
 # For better default security, set these cookie flags, but
 # these are likely to cause problems when testing locally
@@ -250,14 +250,30 @@ SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY', default='NO_API_KEY')
 # The most complete translations are: es-MX, ru, zh-Hans
 # Contribute to our translations via Transifex if you can!
 # See CONTRIBUTING.rst for more info.
-LANGUAGE_CODE = 'en-US'
 
-TIME_ZONE = 'UTC'
+LANGUAGE_COOKIE_NAME = 'default_language'
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#language-code
+LANGUAGE_CODE = 'ar-ar'
 
+LANGUAGES = (
+    ('ar-ar', 'arabic'),
+    ('en-us', 'english'),
+    # ('fr-fr', 'french'),
+)
+
+LANGUAGES_BIDI = ["ar-ar"]
+
+LANGUAGE_COOKIE_SECURE = False
+LANGUAGE_COOKIE_HTTPONLY = False
+LANGUAGE_COOKIE_SAMESITE = None
+
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#use-i18n
 USE_I18N = True
 
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#use-l10n
 USE_L10N = True
 
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#use-tz
 USE_TZ = True
 
 
@@ -293,6 +309,13 @@ STATICFILES_FINDERS = [
 # with tickets.
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Location of root django.contrib.admin URL, use {% url 'admin:index' %}
+# ADMIN_URL = r'^admin/'
+
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'helpdesk/locale'),
+]
 
 # Fixtures
 # https://docs.djangoproject.com/en/1.11/ref/settings/#std:setting-FIXTURE_DIRS

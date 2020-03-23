@@ -57,6 +57,8 @@
             <div class="dropdown-divider"></div>
             {% endif %}
             <a class="dropdown-item" href="{% url 'helpdesk:logout' %}"><i class="fas fa-fw fa-sign-out-alt"></i> {% trans "Logout" %}</a>
+            <a class="dropdown-item" href="/change-language/?language=ar-ar"><i class="fas fa-fw fa-sign-out-alt"></i> {% trans "Switch to Arabic" %}</a>
+            <a class="dropdown-item" href="/change-language/?language=en-us"><i class="fas fa-fw fa-sign-out-alt"></i> {% trans "Switch to English" %}</a>
           </div>
         </li>
       {% else %}
