@@ -458,24 +458,26 @@ class Ticket(models.Model):
 
     REPORT_TYPE = [
         ('', '---------'),
-        ("Complaint on vaccine storage, provision and disposal", "Complaint on vaccine storage, provision and disposal"),
-        ("Complaint on vaccinator's skills and visibility (ID/ brand – logo of the campaign should be visible)", "Complaint on vaccinator's skills and visibility (ID/ brand – logo of the campaign should be visible)"),
-        ("Complaint on proper and timely preparation of the community before vaccination", "Complaint on proper and timely preparation of the community before vaccination"),
-        ("Report on Refusal of vaccination by a community or an institution", "Report on Refusal of vaccination by a community or an institution"),
-        ("Misconceptions and rumors", "Misconceptions and rumors"),
-        ("Other challenges or complaints", "Other challenges or complaints")
+        ("Complaint on vaccine storage, provision and disposal", _("Complaint on vaccine storage, provision and disposal")),
+        ("Complaint on vaccinator s skills and visibility (ID/ brand - logo of the campaign should be visible)",
+         _("Complaint on vaccinator's skills and visibility (ID/ brand – logo of the campaign should be visible)")),
+        ("Complaint on proper and timely preparation of the community before vaccination",
+         _("Complaint on proper and timely preparation of the community before vaccination")),
+        ("Report on Refusal of vaccination by a community or an institution", _("Report on Refusal of vaccination by a community or an institution")),
+        ("Misconceptions and rumors", _("Misconceptions and rumors")),
+        ("Other challenges or complaints", _("Other challenges or complaints"))
     ]
 
     SUB_REPORT_TYPE = [
         ('', '---------'),
-        ('Medical reasons ', 'Medical reasons '),
-        ('No trust in the vaccine provided ', 'No trust in the vaccine provided '),
-        ('No trust in the team providing the vaccines', 'No trust in the team providing the vaccines'),
-        ('Child already vaccinated', 'Child already vaccinated'),
-        ('Based on the recommendation of the pediatric/ physician', 'Based on the recommendation of the pediatric/ physician'),
-        ('Religious reasons', 'Religious reasons'),
-        ('Anti- vaccination movement ', 'Anti- vaccination movement '),
-        ('Other/ specify', 'Other/ specify'),
+        ('Medical reasons ', _('Medical reasons')),
+        ('No trust in the vaccine provided ', _('No trust in the vaccine provided')),
+        ('No trust in the team providing the vaccines', _('No trust in the team providing the vaccines')),
+        ('Child already vaccinated', _('Child already vaccinated')),
+        ('Based on the recommendation of the pediatric/ physician', _('Based on the recommendation of the pediatric/ physician')),
+        ('Religious reasons', _('Religious reasons')),
+        ('Anti- vaccination movement ', _('Anti- vaccination movement')),
+        ('Other/ specify', _('Other/ specify')),
     ]
 
     ASSIGN_TYPE = [
