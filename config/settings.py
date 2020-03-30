@@ -97,12 +97,12 @@ HELPDESK_DEFAULT_SETTINGS = {
 }
 
 # Should the public web portal be enabled?
-HELPDESK_PUBLIC_ENABLED = True
-HELPDESK_VIEW_A_TICKET_PUBLIC = True
-HELPDESK_SUBMIT_A_TICKET_PUBLIC = True
+HELPDESK_PUBLIC_ENABLED = False
+HELPDESK_VIEW_A_TICKET_PUBLIC = False
+HELPDESK_SUBMIT_A_TICKET_PUBLIC = False
 
 # Should the Knowledgebase be enabled?
-HELPDESK_KB_ENABLED = True
+HELPDESK_KB_ENABLED = False
 
 # Allow users to change their passwords
 HELPDESK_SHOW_CHANGE_PASSWORD = True

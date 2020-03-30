@@ -15,25 +15,25 @@
             <span>{% trans "All Reports" %}</span>
           </a>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="ticketsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-fw fa-search"></i>
-            <span>{% trans "Saved Queries" %}</span>
-          </a>
-          <div class="dropdown-menu" aria-labelledby="ticketsDropdown">
-            {% if user_saved_queries_ %}
-            {% for q in user_saved_queries_ %}
-            <a class="dropdown-item small" href="{% url 'helpdesk:list' %}?saved_query={{ q.id }}">{{ q.title }}
-                {% if q.shared %}
-                (Shared{% ifnotequal user q.user %} by {{ q.user.get_username }}{% endifnotequal %})
-                {% endif %}
-            </a>
-            {% endfor %}
-            {% else %}
-            <p class="dropdown-item small text-wrap">{% trans "No saved queries currently available. You can create one in the All Reports page." %}</p>
-            {% endif %}
-          </div>
-        </li>
+        <!--<li class="nav-item dropdown">-->
+          <!--<a class="nav-link dropdown-toggle" href="#" id="ticketsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+            <!--<i class="fas fa-fw fa-search"></i>-->
+            <!--<span>{% trans "Saved Queries" %}</span>-->
+          <!--</a>-->
+          <!--<div class="dropdown-menu" aria-labelledby="ticketsDropdown">-->
+            <!--{% if user_saved_queries_ %}-->
+            <!--{% for q in user_saved_queries_ %}-->
+            <!--<a class="dropdown-item small" href="{% url 'helpdesk:list' %}?saved_query={{ q.id }}">{{ q.title }}-->
+                <!--{% if q.shared %}-->
+                <!--(Shared{% ifnotequal user q.user %} by {{ q.user.get_username }}{% endifnotequal %})-->
+                <!--{% endif %}-->
+            <!--</a>-->
+            <!--{% endfor %}-->
+            <!--{% else %}-->
+            <!--<p class="dropdown-item small text-wrap">{% trans "No saved queries currently available. You can create one in the All Reports page." %}</p>-->
+            <!--{% endif %}-->
+          <!--</div>-->
+        <!--</li>-->
         <li class="nav-item">
           <a class="nav-link" href="{% url 'helpdesk:submit' %}">
             <i class="fas fa-fw fa-plus-circle"></i>

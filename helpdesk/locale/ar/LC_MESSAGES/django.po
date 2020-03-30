@@ -1391,7 +1391,7 @@ msgstr ""
 #: helpdesk/templates/helpdesk/create_ticket.html:9
 #: helpdesk/templates/helpdesk/public_create_ticket.html:4
 msgid "Create Report"
-msgstr ""
+msgstr "انشاء تقرير جديد"
 
 #: helpdesk/templates/helpdesk/create_ticket.html:7
 #: helpdesk/templates/helpdesk/delete_ticket.html:7
@@ -1409,30 +1409,30 @@ msgstr ""
 #: helpdesk/templates/helpdesk/ticket_list.html:5
 #: helpdesk/templates/helpdesk/ticket_list.html:19
 msgid "Reports"
-msgstr ""
+msgstr "التقارير"
 
 #: helpdesk/templates/helpdesk/create_ticket.html:19
 #: helpdesk/templates/helpdesk/navigation-header.html:73
 #: helpdesk/templates/helpdesk/public_create_ticket.html:16
 #: helpdesk/templates/helpdesk/public_homepage.html:38
 msgid "Submit a Report"
-msgstr ""
+msgstr "أرسل تقريرا"
 
 #: helpdesk/templates/helpdesk/create_ticket.html:21
 #: helpdesk/templates/helpdesk/edit_ticket.html:21
 #: helpdesk/templates/helpdesk/public_create_ticket_base.html:6
 msgid "All fields are required, unless otherwise stated."
-msgstr ""
+msgstr "جميع الحقول مطلوبة ،إذ لم يذكر خلاف ذلك"
 
 #: helpdesk/templates/helpdesk/create_ticket.html:21
 #: helpdesk/templates/helpdesk/edit_ticket.html:21
 #: helpdesk/templates/helpdesk/public_create_ticket_base.html:6
 msgid "Please insert title and a clear description."
-msgstr ""
+msgstr "يرجى إدخال عنوان ووصف واضح"
 
 #: helpdesk/templates/helpdesk/create_ticket.html:29
 msgid "Optional"
-msgstr ""
+msgstr "اختياري"
 
 #: helpdesk/templates/helpdesk/create_ticket.html:40
 #: helpdesk/templates/helpdesk/public_create_ticket_base.html:9
@@ -1453,10 +1453,10 @@ msgstr ""
 
 #: helpdesk/templates/helpdesk/dashboard.html:26
 msgid "All Reports submitted by you"
-msgstr ""
+msgstr "التقارير المرسلة اليك"
 
 #: helpdesk/templates/helpdesk/dashboard.html:30
-msgid "Open Reports assigned to you (you are working on this report)"
+msgid "Open Reports assigned to you"
 msgstr ""
 
 #: helpdesk/templates/helpdesk/dashboard.html:31
@@ -1484,11 +1484,11 @@ msgstr ""
 #: helpdesk/templates/helpdesk/edit_ticket.html:3
 #: helpdesk/templates/helpdesk/edit_ticket.html:12
 msgid "Edit Report"
-msgstr ""
+msgstr "تحديث التقرير"
 
 #: helpdesk/templates/helpdesk/edit_ticket.html:19
 msgid "Edit a Report"
-msgstr ""
+msgstr "تحديث التقرير"
 
 #: helpdesk/templates/helpdesk/edit_ticket.html:23
 msgid "Note"
@@ -1503,7 +1503,7 @@ msgstr ""
 
 #: helpdesk/templates/helpdesk/edit_ticket.html:43
 msgid "Save Changes"
-msgstr ""
+msgstr "حفظ"
 
 #: helpdesk/templates/helpdesk/email_ignore_add.html:3
 #: helpdesk/templates/helpdesk/email_ignore_add.html:9
@@ -1850,7 +1850,7 @@ msgstr ""
 
 #: helpdesk/templates/helpdesk/navigation-sidebar.html:15
 msgid "All Reports"
-msgstr ""
+msgstr "جميع التقارير"
 
 #: helpdesk/templates/helpdesk/navigation-sidebar.html:21
 #: helpdesk/templates/helpdesk/report_output.html:23
@@ -1870,13 +1870,13 @@ msgstr "تقرير جديد"
 
 #: helpdesk/templates/helpdesk/navigation-sidebar.html:62
 msgid "Homepage"
-msgstr ""
+msgstr "الصفحة الرئيسية"
 
 #: helpdesk/templates/helpdesk/public_change_language.html:2
 #: helpdesk/templates/helpdesk/public_view_form.html:4
 #: helpdesk/templates/helpdesk/public_view_ticket.html:3
 msgid "View a Report"
-msgstr ""
+msgstr "تصفح التقرير"
 
 #: helpdesk/templates/helpdesk/public_change_language.html:5
 msgid "Change the display language"
