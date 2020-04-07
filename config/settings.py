@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'bootstrap4form',
     'helpdesk',
+    'survey',
     'anymail',
     'sendgrid',
 ]
