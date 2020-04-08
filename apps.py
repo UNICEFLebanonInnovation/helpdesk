@@ -1,10 +1,5 @@
-from django.apps import AppConfig
 from suit.apps import DjangoSuitConfig
 from suit.menu import ParentItem, ChildItem
-
-
-class SurveyConfig(AppConfig):
-    name = 'survey'
 
 
 class SuitConfig(DjangoSuitConfig):

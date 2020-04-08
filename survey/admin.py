@@ -1,3 +1,12 @@
 from django.contrib import admin
+from survey.models import LASER
 
-# Register your models here.
+
+@admin.register(LASER)
+class LASERAdmin(admin.ModelAdmin):
+    list_display = ('laser_id', 'organization', 'title', 'status',
+                    'category', 'section')
+    date_hierarchy = 'created'
+    list_filter = ('organization', 'status', 'category', 'section')
+    suit_list_filter_horizontal = list_filter
+

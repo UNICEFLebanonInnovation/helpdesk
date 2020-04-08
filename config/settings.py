@@ -33,6 +33,7 @@ ALLOWED_HOSTS = ['unicef-helpdesk.herokuapp.com', '127.0.0.1', ]
 # Application definition
 
 INSTALLED_APPS = [
+    'survey.apps.SuitConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
