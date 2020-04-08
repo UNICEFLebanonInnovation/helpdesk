@@ -255,7 +255,8 @@ SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY', default='NO_API_KEY')
 
 LANGUAGE_COOKIE_NAME = 'default_language'
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#language-code
-LANGUAGE_CODE = 'ar-ar'
+LANGUAGE_CODE = 'en-us'
+# LANGUAGE_CODE = 'ar-ar'
 
 LANGUAGES = (
     ('ar-ar', 'arabic'),
@@ -263,7 +264,8 @@ LANGUAGES = (
     # ('fr-fr', 'french'),
 )
 
-LANGUAGES_BIDI = ["ar-ar"]
+LANGUAGES_BIDI = ["en-us"]
+# LANGUAGES_BIDI = ["ar-ar"]
 
 LANGUAGE_COOKIE_SECURE = False
 LANGUAGE_COOKIE_HTTPONLY = False
