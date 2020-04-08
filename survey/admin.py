@@ -8,5 +8,5 @@ class LASERAdmin(admin.ModelAdmin):
                     'category', 'section')
     date_hierarchy = 'created'
     list_filter = ('organization', 'status', 'category', 'section')
-    suit_list_filter_horizontal = list_filter
+    suit_list_filter_horizontal = ('organization', 'status', 'category', 'section')
 
