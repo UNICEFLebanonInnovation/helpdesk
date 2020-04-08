@@ -9,4 +9,5 @@ class LASERAdmin(admin.ModelAdmin):
     date_hierarchy = 'created'
     list_filter = ('organization', 'status', 'category', 'section')
     suit_list_filter_horizontal = ('organization', 'status', 'category', 'section')
+    list_select_related = True
 
