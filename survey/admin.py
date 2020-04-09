@@ -1,9 +1,11 @@
 from django.contrib import admin
+from suit.admin import RelatedFieldAdmin, get_related_field
+
 from survey.models import LASER
 
 
 @admin.register(LASER)
-class LASERAdmin(admin.ModelAdmin):
+class LASERAdmin(RelatedFieldAdmin):
     list_display = ('laser_id', 'organization', 'title', 'status',
                     'category', 'section')
     date_hierarchy = 'created'
