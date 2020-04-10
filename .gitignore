@@ -72,5 +72,4 @@ helpdesk/media/
 tests/.hitch
 
 
-/static/
 /staticfiles/
