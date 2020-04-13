@@ -27,7 +27,7 @@ SECRET_KEY = '_crkn1+fnzu5$vns_-d+^ayiq%z4k*s!!ag0!mfy36(y!vrazd'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['unicef-helpdesk.herokuapp.com', '127.0.0.1', ]
+ALLOWED_HOSTS = ['unicef-helpdesk.herokuapp.com', '127.0.0.1', 'interagency.herokuapp.com',]
 
 
 # Application definition
@@ -170,6 +170,17 @@ DATABASES = {
 #          'USER': 'fgbacohzpjuxxx',
 #          'PASSWORD': 'a6d3df7ed4e15cd122aa317df727be7a297db557019c269be507eb6996730622',
 #          'HOST': 'ec2-54-217-225-16.eu-west-1.compute.amazonaws.com',
+#          'PORT': '5432',
+#      }
+# }
+
+# DATABASES = {
+#      'default': {
+#          'ENGINE': 'django.db.backends.postgresql',
+#          'NAME': 'da8sho7d4fe3n2',
+#          'USER': 'odnfagjcyduvec',
+#          'PASSWORD': '5911f1cd1ca182c1e5c2e69d8d8fab4891648d5169948407bcf716b7f610b737',
+#          'HOST': 'ec2-46-137-84-173.eu-west-1.compute.amazonaws.com',
 #          'PORT': '5432',
 #      }
 # }

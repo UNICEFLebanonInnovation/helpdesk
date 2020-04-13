@@ -20,7 +20,7 @@ class SuitConfig(DjangoSuitConfig):
         menu = menu + (
             ParentItem('Survey', children=[
                 ChildItem('LASER', model='survey.laser'),
-            ], icon='fa fa-list')
+            ], icon='fa fa-list'),
         )
 
     if settings.MODULE_HELPDESK_ACTIVE:
