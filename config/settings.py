@@ -145,23 +145,23 @@ LOGIN_REDIRECT_URL = '/login/'
 #     }
 # }
 
-DATABASES = {
-    # Raises ImproperlyConfigured exception if DATABASE_URL not in os.environ
-    'default': os.environ.get('DATABASE_URL', default='postgres:///postgres'),
-    # 'default': 'postgres://fgbacohzpjuxxx:a6d3df7ed4e15cd122aa317df727be7a297db557019c269be507eb6996730622@ec2-54-217-225-16.eu-west-1.compute.amazonaws.com:5432/d610a40e1q2d8j',
-}
-DATABASES['default']['ATOMIC_REQUESTS'] = True
-
 # DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'helpdesk',
-#         'USER': 'postgres',
-#         'PASSWORD': '',
-#         'HOST': 'localhost',
-#         'PORT': '5432',
-#     }
+    # Raises ImproperlyConfigured exception if DATABASE_URL not in os.environ
+    # 'default': os.environ.get('DATABASE_URL', default='postgres:///postgres'),
+    # 'default': 'postgres://fgbacohzpjuxxx:a6d3df7ed4e15cd122aa317df727be7a297db557019c269be507eb6996730622@ec2-54-217-225-16.eu-west-1.compute.amazonaws.com:5432/d610a40e1q2d8j',
 # }
+# DATABASES['default']['ATOMIC_REQUESTS'] = True
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get('DATABASE_NAME'),
+        'USER': os.environ.get('DATABASE_USER'),
+        'PASSWORD': os.environ.get('DATABASE_PASSWORD'),
+        'HOST': os.environ.get('DATABASE_SERVER'),
+        'PORT': '5432',
+    }
+}
 
 # DATABASES = {
 #      'default': {
