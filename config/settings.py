@@ -346,6 +346,7 @@ LOCALE_PATHS = [
 FIXTURE_DIRS = [os.path.join(BASE_DIR, 'fixtures')]
 
 MODULE_HELPDESK_ACTIVE = os.environ.get('MODULE_HELPDESK_ACTIVE', default=False)
+MODULE_SURVEY_ACTIVE = os.environ.get('MODULE_SURVEY_ACTIVE', default=False)
 
 try:
     from .local_settings import *

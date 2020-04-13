@@ -10,22 +10,22 @@ class SurveyConfig(AppConfig):
 
 class SuitConfig(DjangoSuitConfig):
     menu = (
-        # ParentItem('Dashboard', url='/', icon='fa fa-list'),
-        ParentItem('Survey', children=[
-            ChildItem('LASER', model='survey.laser'),
-        ], icon='fa fa-list'),
         ParentItem('Users', children=[
             ChildItem('Users', model='auth.user'),
             ChildItem('Groups', 'auth.group'),
         ], icon='fa fa-users'),
-    #     ParentItem('Right Side Menu', children=[
-    #         ChildItem('Password change', url='admin:password_change'),
-    #
-    #     ], align_right=True, icon='fa fa-cog'),
     )
+
+    if settings.MODULE_SURVEY_ACTIVE:
+        menu = menu + (
+            ParentItem('Survey', children=[
+                ChildItem('LASER', model='survey.laser'),
+            ], icon='fa fa-list')
+        )
 
     if settings.MODULE_HELPDESK_ACTIVE:
         menu = menu + (
+            ParentItem('Dashboard', url='/', icon='fa fa-list'),
             ParentItem('Helpdesk', children=[
                 ChildItem('Queue', model='helpdesk.queue'),
                 ChildItem('Tickets', model='helpdesk.ticket'),
@@ -39,3 +39,4 @@ class SuitConfig(DjangoSuitConfig):
                 ChildItem('Pre-set replies', model='helpdesk.presetreply'),
             ], icon='fa fa-list'),
         )
+
