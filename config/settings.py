@@ -345,6 +345,8 @@ LOCALE_PATHS = [
 # your own projects unless you make your own fixtures
 FIXTURE_DIRS = [os.path.join(BASE_DIR, 'fixtures')]
 
+MODULE_HELPDESK_ACTIVE = os.environ.get('MODULE_HELPDESK_ACTIVE', default=False)
+
 try:
     from .local_settings import *
 except ImportError:

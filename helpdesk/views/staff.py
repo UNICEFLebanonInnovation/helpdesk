@@ -98,6 +98,10 @@ def _get_queue_choices(queues):
 
 @helpdesk_staff_member_required
 def dashboard(request):
+
+    if not settings.MODULE_HELPDESK_ACTIVE:
+        return HttpResponseRedirect(reverse('admin:index', args=[]))
+
     """
     A quick summary overview for users: A list of their own tickets, a table
     showing ticket counts by queue/status, and a list of unassigned tickets
@@ -268,6 +272,9 @@ followup_delete = staff_member_required(followup_delete)
 def view_ticket(request, ticket_id):
     ticket = get_object_or_404(Ticket, id=ticket_id)
     ticket_perm_check(request, ticket)
+
+    if not settings.MODULE_HELPDESK_ACTIVE:
+        return HttpResponseRedirect(reverse('admin:index', args=[]))
 
     if 'take' in request.GET:
         # Allow the user to assign the ticket to themselves whilst viewing it.
@@ -790,6 +797,10 @@ mass_update = staff_member_required(mass_update)
 
 @helpdesk_staff_member_required
 def ticket_list(request):
+
+    if not settings.MODULE_HELPDESK_ACTIVE:
+        return HttpResponseRedirect(reverse('admin:index', args=[]))
+
     context = {}
 
     huser = HelpdeskUser(request.user)
@@ -940,6 +951,10 @@ def load_saved_query(request, query_params=None):
     saved_query = None
 
     if request.GET.get('saved_query', None):
+
+        if not settings.MODULE_HELPDESK_ACTIVE:
+            return HttpResponseRedirect(reverse('admin:index', args=[]))
+
         try:
             saved_query = SavedSearch.objects.get(pk=request.GET.get('saved_query'))
         except SavedSearch.DoesNotExist:
@@ -984,6 +999,9 @@ def timeline_ticket_list(request, query):
 def edit_ticket(request, ticket_id):
     ticket = get_object_or_404(Ticket, id=ticket_id)
     ticket_perm_check(request, ticket)
+
+    if not settings.MODULE_HELPDESK_ACTIVE:
+        return HttpResponseRedirect(reverse('admin:index', args=[]))
 
     if request.method == 'POST':
         form = EditTicketForm(request.POST, instance=ticket)

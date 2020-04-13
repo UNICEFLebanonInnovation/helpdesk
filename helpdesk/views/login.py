@@ -2,6 +2,8 @@ from django.conf import settings
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.views import redirect_to_login
 from django.shortcuts import resolve_url
+from django.http import Http404, HttpResponseRedirect
+from django.urls import reverse
 
 
 default_login_view = auth_views.LoginView.as_view(
@@ -10,6 +12,10 @@ default_login_view = auth_views.LoginView.as_view(
 
 def login(request):
     login_url = settings.LOGIN_URL
+
+    if not settings.MODULE_HELPDESK_ACTIVE:
+        return HttpResponseRedirect(reverse('admin:index', args=[]))
+
     # Prevent redirect loop by checking that LOGIN_URL is not this view's name
     if login_url and (login_url != resolve_url(request.resolver_match.view_name) and (login_url != request.resolver_match.view_name)):
         if 'next' in request.GET:

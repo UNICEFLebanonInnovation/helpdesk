@@ -1,4 +1,5 @@
 from django.apps import AppConfig
+from django.conf import settings
 from suit.apps import DjangoSuitConfig
 from suit.menu import ParentItem, ChildItem
 
@@ -22,3 +23,19 @@ class SuitConfig(DjangoSuitConfig):
     #
     #     ], align_right=True, icon='fa fa-cog'),
     )
+
+    if settings.MODULE_HELPDESK_ACTIVE:
+        menu = menu + (
+            ParentItem('Helpdesk', children=[
+                ChildItem('Queue', model='helpdesk.queue'),
+                ChildItem('Tickets', model='helpdesk.ticket'),
+                ChildItem('Custom fields', model='helpdesk.customfield'),
+                ChildItem('E-mail templates', model='helpdesk.emailtemplate'),
+                ChildItem('Escalation exclusions', model='helpdesk.escalationexclusion'),
+                ChildItem('Follow-ups', model='helpdesk.followup'),
+                ChildItem('Ignored e-mail addresses', model='helpdesk.ignoredemail'),
+                ChildItem('Knowledge base categories', model='helpdesk.kbasecategory'),
+                ChildItem('Knowledge base items', model='helpdesk.kbitem'),
+                ChildItem('Pre-set replies', model='helpdesk.presetreply'),
+            ], icon='fa fa-list'),
+        )
