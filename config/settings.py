@@ -150,7 +150,7 @@ DATABASES = {
     # Raises ImproperlyConfigured exception if DATABASE_URL not in os.environ
     'default': os.environ.get('DATABASE_URL', default='postgres:///postgres'),
 }
-DATABASES['default']['ATOMIC_REQUESTS'] = True
+# DATABASES['default']['ATOMIC_REQUESTS'] = True
 
 # DATABASES = {
 #     'default': {
