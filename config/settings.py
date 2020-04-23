@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'anymail',
     'sendgrid',
     'reversion',
+    'import_export',
 ]
 
 MIDDLEWARE = [
@@ -145,23 +146,22 @@ LOGIN_REDIRECT_URL = '/login/'
 #     }
 # }
 
-# DATABASES = {
-    # Raises ImproperlyConfigured exception if DATABASE_URL not in os.environ
-    # 'default': os.environ.get('DATABASE_URL', default='postgres:///postgres'),
-    # 'default': 'postgres://fgbacohzpjuxxx:a6d3df7ed4e15cd122aa317df727be7a297db557019c269be507eb6996730622@ec2-54-217-225-16.eu-west-1.compute.amazonaws.com:5432/d610a40e1q2d8j',
-# }
-# DATABASES['default']['ATOMIC_REQUESTS'] = True
-
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('DATABASE_NAME'),
-        'USER': os.environ.get('DATABASE_USER'),
-        'PASSWORD': os.environ.get('DATABASE_PASSWORD'),
-        'HOST': os.environ.get('DATABASE_SERVER'),
-        'PORT': '5432',
-    }
+    # Raises ImproperlyConfigured exception if DATABASE_URL not in os.environ
+    'default': os.environ.get('DATABASE_URL', default='postgres:///postgres'),
 }
+DATABASES['default']['ATOMIC_REQUESTS'] = True
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': os.environ.get('DATABASE_NAME'),
+#         'USER': os.environ.get('DATABASE_USER'),
+#         'PASSWORD': os.environ.get('DATABASE_PASSWORD'),
+#         'HOST': os.environ.get('DATABASE_SERVER'),
+#         'PORT': '5432',
+#     }
+# }
 
 # DATABASES = {
 #      'default': {
@@ -177,10 +177,10 @@ DATABASES = {
 # DATABASES = {
 #      'default': {
 #          'ENGINE': 'django.db.backends.postgresql',
-#          'NAME': 'da8sho7d4fe3n2',
-#          'USER': 'odnfagjcyduvec',
-#          'PASSWORD': '5911f1cd1ca182c1e5c2e69d8d8fab4891648d5169948407bcf716b7f610b737',
-#          'HOST': 'ec2-46-137-84-173.eu-west-1.compute.amazonaws.com',
+#          'NAME': 'd67qehgg5a74iv',
+#          'USER': 'ftxkvbirafznct',
+#          'PASSWORD': 'e49962e569fb4d755b3d70c8c95719a65cedccc9327683afd24bf71496ea1248',
+#          'HOST': 'ec2-54-217-206-236.eu-west-1.compute.amazonaws.com',
 #          'PORT': '5432',
 #      }
 # }
@@ -357,7 +357,7 @@ LOCALE_PATHS = [
 FIXTURE_DIRS = [os.path.join(BASE_DIR, 'fixtures')]
 
 MODULE_HELPDESK_ACTIVE = os.environ.get('MODULE_HELPDESK_ACTIVE', default=False)
-MODULE_SURVEY_ACTIVE = os.environ.get('MODULE_SURVEY_ACTIVE', default=False)
+MODULE_SURVEY_ACTIVE = os.environ.get('MODULE_SURVEY_ACTIVE', default=True)
 
 try:
     from .local_settings import *

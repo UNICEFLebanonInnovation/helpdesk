@@ -29,7 +29,8 @@ class LASER(TimeStampedModel):
     laser_id = models.CharField(
         'LASER_ID',
         max_length=254,
-        unique=True,
+        blank=True,
+        null=True,
     )
 
     organization = models.CharField(
@@ -49,28 +50,34 @@ class LASER(TimeStampedModel):
     title = models.CharField(
         'Title',
         max_length=500,
+        blank=True,
+        null=True,
+        default='No Title'
     )
 
     description = models.TextField(
         'Brief description of objectives',
-        blank=True,
-        null=True,
+        blank=True, null=True,
     )
 
     status = models.CharField(
         'Status',
         max_length=1500,
         choices=STATUS_CHOICES,
+        blank=True, null=True,
+        default='Planned'
     )
 
     population_targeted = models.CharField(
         'Population Targeted',
         max_length=1500,
+        blank=True, null=True,
     )
 
     sectors_covered = models.CharField(
         'Sectors covered',
         max_length=1500,
+        blank=True, null=True,
     )
 
     report_link = models.URLField(
@@ -104,7 +111,8 @@ class LASER(TimeStampedModel):
     estimated_cost = models.FloatField(
         'Estimated cost',
         blank=True, null=True,
-        help_text='$'
+        help_text='$',
+        default=0.0
     )
 
     category = models.CharField(
