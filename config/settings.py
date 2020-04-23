@@ -153,7 +153,7 @@ LOGIN_REDIRECT_URL = '/login/'
 # DATABASES['default']['ATOMIC_REQUESTS'] = True
 
 DATABASES = {"default": os.environ.get("DATABASE_URL", "postgres:///postgres")}
-DATABASES["default"]["ATOMIC_REQUESTS"] = True
+# DATABASES["default"]["ATOMIC_REQUESTS"] = True
 
 # DATABASES = {
 #     'default': {
