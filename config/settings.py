@@ -155,12 +155,12 @@ LOGIN_REDIRECT_URL = '/login/'
 # DATABASES = {"default": os.environ.get("DATABASE_URL", "postgres:///postgres")}
 # DATABASES["default"]["ATOMIC_REQUESTS"] = True
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('DATABASE_URL', "postgres:///postgres"),
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': os.environ.get('DATABASE_URL', "postgres:///postgres"),
+#     }
+# }
 
 # DATABASES = {
 #      'default': {
@@ -173,16 +173,16 @@ DATABASES = {
 #      }
 # }
 
-# DATABASES = {
-#      'default': {
-#          'ENGINE': 'django.db.backends.postgresql',
-#          'NAME': 'd67qehgg5a74iv',
-#          'USER': 'ftxkvbirafznct',
-#          'PASSWORD': 'e49962e569fb4d755b3d70c8c95719a65cedccc9327683afd24bf71496ea1248',
-#          'HOST': 'ec2-54-217-206-236.eu-west-1.compute.amazonaws.com',
-#          'PORT': '5432',
-#      }
-# }
+DATABASES = {
+     'default': {
+         'ENGINE': 'django.db.backends.postgresql',
+         'NAME': 'd67qehgg5a74iv',
+         'USER': 'ftxkvbirafznct',
+         'PASSWORD': 'e49962e569fb4d755b3d70c8c95719a65cedccc9327683afd24bf71496ea1248',
+         'HOST': 'ec2-54-217-206-236.eu-west-1.compute.amazonaws.com',
+         'PORT': '5432',
+     }
+}
 
 # Sites
 # - this allows hosting of more than one site from a single server,
