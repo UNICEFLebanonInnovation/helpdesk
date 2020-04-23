@@ -152,19 +152,15 @@ LOGIN_REDIRECT_URL = '/login/'
 # }
 # DATABASES['default']['ATOMIC_REQUESTS'] = True
 
-DATABASES = {"default": os.environ.get("DATABASE_URL", "postgres:///postgres")}
+# DATABASES = {"default": os.environ.get("DATABASE_URL", "postgres:///postgres")}
 # DATABASES["default"]["ATOMIC_REQUESTS"] = True
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': os.environ.get('DATABASE_NAME'),
-#         'USER': os.environ.get('DATABASE_USER'),
-#         'PASSWORD': os.environ.get('DATABASE_PASSWORD'),
-#         'HOST': os.environ.get('DATABASE_SERVER'),
-#         'PORT': '5432',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get('DATABASE_URL', "postgres:///postgres"),
+    }
+}
 
 # DATABASES = {
 #      'default': {
