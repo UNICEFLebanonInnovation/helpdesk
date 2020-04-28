@@ -24,8 +24,8 @@ def get_dashboard_number(name):
     if name == 'national_focus':
         return LASER.objects.filter(geographical_focus='National').count()
     if name == 'planned_list':
-        return LASER.objects.filter(status='Planned').order_by('-created')
+        return LASER.objects.filter(status='Planned').exclude(organization__isnull=True).order_by('-created')
     if name == 'ongoing_list':
-        return LASER.objects.filter(status='Ongoing').order_by('-created')
+        return LASER.objects.filter(status='Ongoing').exclude(organization__isnull=True).order_by('-created')
 
     return 0
