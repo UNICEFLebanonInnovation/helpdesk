@@ -80,7 +80,7 @@ class LASER(TimeStampedModel):
         blank=True, null=True,
     )
 
-    report_link = models.URLField(
+    report_link = models.CharField(
         'Link to the report',
         blank=True,
         null=True,
@@ -94,22 +94,23 @@ class LASER(TimeStampedModel):
         max_length=1500,
     )
 
-    published_date = models.DateField(
+    published_date = models.CharField(
         'Published date/Date of last update',
         max_length=1500,
         blank=True,
         null=True,
     )
 
-    publication_date = models.DateField(
+    publication_date = models.CharField(
         'Date of publication (actual/expected)',
         max_length=1500,
         blank=True,
         null=True,
     )
 
-    estimated_cost = models.FloatField(
+    estimated_cost = models.CharField(
         'Estimated cost',
+        max_length=1500,
         blank=True, null=True,
         help_text='$',
         default=0.0
