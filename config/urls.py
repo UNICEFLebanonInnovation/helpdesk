@@ -27,8 +27,8 @@ from survey.views import IndexView
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 urlpatterns = [
+    url(r'^$', IndexView.as_view(), name='home'),
     url(r'^admin/', admin.site.urls),
-    url(r'^', IndexView.as_view(), name='home'),
     url(r'^helpdesk', include('helpdesk.urls', namespace='helpdesk')),
     url(r'^survey/', include('survey.urls', namespace='survey')),
     url('i18n/', include('django.conf.urls.i18n')),
