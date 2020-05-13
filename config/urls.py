@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 
+from survey.views import IndexView
 
 # The following uses the static() helper function,
 # which only works when in development mode (using DEBUG).
@@ -27,6 +28,8 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^', include('helpdesk.urls', namespace='helpdesk')),
+    url(r'^', IndexView.as_view(), name='home'),
+    url(r'^helpdesk', include('helpdesk.urls', namespace='helpdesk')),
+    url(r'^survey/', include('survey.urls', namespace='survey')),
     url('i18n/', include('django.conf.urls.i18n')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

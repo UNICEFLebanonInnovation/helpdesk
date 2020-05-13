@@ -14,7 +14,7 @@ def login(request):
     login_url = settings.LOGIN_URL
 
     if not settings.MODULE_HELPDESK_ACTIVE:
-        return HttpResponseRedirect(reverse('admin:index', args=[]))
+        return HttpResponseRedirect(reverse('survey:home', args=[]))
 
     # Prevent redirect loop by checking that LOGIN_URL is not this view's name
     if login_url and (login_url != resolve_url(request.resolver_match.view_name) and (login_url != request.resolver_match.view_name)):

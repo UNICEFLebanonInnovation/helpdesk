@@ -132,7 +132,7 @@ HELPDESK_SHOW_CHANGE_PASSWORD = True
 # we can instead redirect users straight to the login page.
 HELPDESK_REDIRECT_TO_LOGIN_BY_DEFAULT = True
 LOGIN_URL = '/login/'
-LOGIN_REDIRECT_URL = '/login/'
+LOGIN_REDIRECT_URL = '/'
 
 # Database
 # - by default, we use SQLite3 for the demo, but you can also
@@ -160,6 +160,17 @@ LOGIN_REDIRECT_URL = '/login/'
 #         'ENGINE': 'django.db.backends.postgresql',
 #         'NAME': os.environ.get('DATABASE_URL', "postgres:///postgres"),
 #     }
+# }
+
+# DATABASES = {
+#      'default': {
+#          'ENGINE': 'django.db.backends.postgresql',
+#          'NAME': 'survey',
+#          'USER': 'postgres',
+#          'PASSWORD': '',
+#          'HOST': 'localhost',
+#          'PORT': '5432',
+#      }
 # }
 
 # DATABASES = {
@@ -343,7 +354,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Location of root django.contrib.admin URL, use {% url 'admin:index' %}
-# ADMIN_URL = r'^admin/'
+ADMIN_URL = r'^admin/'
 
 LOCALE_PATHS = [
     os.path.join(BASE_DIR, 'helpdesk/locale'),
