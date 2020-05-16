@@ -20,6 +20,7 @@ class SuitConfig(DjangoSuitConfig):
         menu = menu + (
             ParentItem('Survey', children=[
                 ChildItem('LASER', model='survey.laser'),
+                ChildItem('Maps', model='survey.map'),
             ], icon='fa fa-list'),
         )
 

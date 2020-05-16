@@ -167,3 +167,26 @@ class LASER(TimeStampedModel):
 
     def __str__(self):
         return '%s %s' % (self.laser_id, self.title)
+
+
+class Map(TimeStampedModel):
+    name = models.CharField(max_length=500)
+    description = models.TextField(null=True, blank=True)
+    link = models.URLField(null=True, blank=True)
+    status = models.CharField(
+        'Status',
+        max_length=1500,
+        choices=(
+            ('Draft', 'Draft'),
+            ('In progress', 'In progress'),
+            ('Completed', 'Completed'),
+        ),
+        blank=True, null=True,
+        default='Draft'
+    )
+
+    class Meta:
+        ordering = ['name']
+
+    def __unicode__(self):
+            return self.name

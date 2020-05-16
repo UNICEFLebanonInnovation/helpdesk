@@ -5,7 +5,7 @@ from import_export import resources, fields
 from import_export import fields
 from import_export.admin import ImportExportModelAdmin
 
-from survey.models import LASER
+from survey.models import LASER, Map
 
 
 class LASERResource(resources.ModelResource):
@@ -46,3 +46,24 @@ class LASERAdmin(ImportExportModelAdmin):
     # suit_list_filter_horizontal = ('organization', 'status', 'category', 'section')
     # list_select_related = True
 
+
+class MapResource(resources.ModelResource):
+    class Meta:
+        model = Map
+        fields = (
+            'id',
+            'name',
+            'description',
+            'link',
+            'status',
+        )
+        export_order = fields
+
+
+@admin.register(Map)
+class MapAdmin(ImportExportModelAdmin):
+    resource_class = MapResource
+
+    list_display = ('name', 'description', 'status')
+    date_hierarchy = 'created'
+    list_filter = ('status', )
