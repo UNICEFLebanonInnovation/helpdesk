@@ -7,6 +7,7 @@ class SuitConfig(DjangoSuitConfig):
         ParentItem('Dashboard', url='/', icon='fa fa-list'),
         ParentItem('Survey', children=[
             ChildItem('LASER', model='survey.laser'),
+            ChildItem('Maps', model='survey.map'),
         ], icon='fa fa-list'),
         ParentItem('Users', children=[
             ChildItem('Users', model='users.user'),
