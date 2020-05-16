@@ -10,6 +10,7 @@ class SurveyConfig(AppConfig):
 
 class SuitConfig(DjangoSuitConfig):
     menu = (
+        ParentItem('Dashboard', url='/', icon='fa fa-list'),
         ParentItem('Users', children=[
             ChildItem('Users', model='auth.user'),
             ChildItem('Groups', 'auth.group'),
@@ -26,7 +27,6 @@ class SuitConfig(DjangoSuitConfig):
 
     if settings.MODULE_HELPDESK_ACTIVE:
         menu = menu + (
-            ParentItem('Dashboard', url='/', icon='fa fa-list'),
             ParentItem('Helpdesk', children=[
                 ChildItem('Queue', model='helpdesk.queue'),
                 ChildItem('Tickets', model='helpdesk.ticket'),
