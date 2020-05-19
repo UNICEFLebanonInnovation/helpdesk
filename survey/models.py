@@ -182,11 +182,11 @@ class Research(TimeStampedModel):
 
     SECTOR_CHOICES = (
         ('Child Protection', 'Child Protection'),
+        ('Health and Nutrition', 'Health and Nutrition'),
         ('Education', 'Education'),
         ('WASH', 'WASH'),
         ('Social Policy', 'Social Policy'),
         ('Cross-sectoral (Gender, Disability, Youth, etc.)', 'Cross-sectoral (Gender, Disability, Youth, etc.)'),
-        ('Health and Nutrition', 'Health and Nutrition'),
     )
 
     GEOGRAPHICAL_CHOICES = (
@@ -256,7 +256,7 @@ class Research(TimeStampedModel):
         max_length=500,
         blank=False,
         null=False,
-        choices=SECTOR_CHOICES,
+        choices=GEOGRAPHICAL_CHOICES,
     )
 
     description = models.TextField(

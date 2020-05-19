@@ -6,6 +6,20 @@
 {% block extrastyle %}
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
     <link href='{% static "suit/css/font-awesome.min.css" %}' rel='stylesheet' type='text/css'>
+<style>
+    body.suit_layout_horizontal #header {
+        background-color: #1cabe2 !important;
+    }
+    #header .demo-layout-switch { color: #ffffff !important; }
+    #header .welcome { color: #ffffff !important; }
+    #header .user-links a { color: #ffffff !important; }
+    #result_list thead > tr th, .tabular table thead > tr th, table#change-history thead > tr th {
+        background-color: #1cabe2 !important;
+    }
+    #changelist #changelist-filter h3 {
+        background-color: #1cabe2 !important;
+    }
+</style>
 {% endblock %}
 
 {% block bodyclass %}{{ block.super|suit_body_class:request }}{% endblock %}
@@ -14,7 +28,8 @@
 
 {% block branding %}
     <h1 id="site-name">
-        <a href="{% url 'admin:index' %}">Research & Maps platform</a>
+        <img src="{% static 'images/logo.png' %}" width="40px;" height="40px;"/>
+        <a href="{% url 'admin:index' %}">Survey platform</a>
     </h1>
 {% endblock %}
 
