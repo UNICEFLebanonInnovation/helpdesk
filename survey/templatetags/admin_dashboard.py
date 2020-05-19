@@ -2,7 +2,7 @@ import json
 import datetime
 from django import template
 from datetime import date
-from survey.models import LASER
+from survey.models import LASER, Research
 from django.db.models import Sum
 
 register = template.Library()
@@ -10,6 +10,21 @@ register = template.Library()
 
 @register.simple_tag
 def get_dashboard_number(name):
+
+    if name == 'total':
+        return Research.objects.all().count()
+    if name == 'link':
+        return Research.objects.filter(report_link__isnull=False).count()
+    if name == '2020':
+        return Research.objects.filter(publication_year='2020').count()
+    if name == 'National':
+        return Research.objects.filter(geographical_coverage='National').count()
+
+    return 0
+
+
+@register.simple_tag
+def get_dashboard_number_1(name):
 
     if name == 'total':
         return LASER.objects.all().count()

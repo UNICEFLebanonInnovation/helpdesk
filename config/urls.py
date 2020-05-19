@@ -32,4 +32,5 @@ urlpatterns = [
     url(r'^helpdesk', include('helpdesk.urls', namespace='helpdesk')),
     url(r'^survey/', include('survey.urls', namespace='survey')),
     url('i18n/', include('django.conf.urls.i18n')),
+    url('tinymce/', include('tinymce.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

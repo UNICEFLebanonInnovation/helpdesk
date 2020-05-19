@@ -22,6 +22,7 @@ class SuitConfig(DjangoSuitConfig):
             ParentItem('Survey', children=[
                 ChildItem('LASER', model='survey.laser'),
                 ChildItem('Maps', model='survey.map'),
+                ChildItem('Research Tracker', model='survey.research'),
             ], icon='fa fa-list'),
         )
 

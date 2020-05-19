@@ -1,5 +1,7 @@
+import datetime
 from django.db import models
 from model_utils.models import TimeStampedModel
+from tinymce.models import HTMLField
 
 
 class LASER(TimeStampedModel):
@@ -167,6 +169,147 @@ class LASER(TimeStampedModel):
 
     def __str__(self):
         return '%s %s' % (self.laser_id, self.title)
+
+
+class Research(TimeStampedModel):
+
+    TYPE_CHOICES = (
+        ('Qualitative', 'Qualitative'),
+        ('Quantitative', 'Quantitative'),
+        ('Mixed', 'Mixed'),
+        ('Desk Review', 'Desk Review'),
+    )
+
+    SECTOR_CHOICES = (
+        ('Child Protection', 'Child Protection'),
+        ('Education', 'Education'),
+        ('WASH', 'WASH'),
+        ('Social Policy', 'Social Policy'),
+        ('Cross-sectoral (Gender, Disability, Youth, etc.)', 'Cross-sectoral (Gender, Disability, Youth, etc.)'),
+        ('Health and Nutrition', 'Health and Nutrition'),
+    )
+
+    GEOGRAPHICAL_CHOICES = (
+        ('Governorate', 'Governorate'),
+        ('District', 'District'),
+        ('Neighborhood/Village', 'Neighborhood/Village'),
+        ('National', 'National'),
+    )
+
+    research_id = models.CharField(
+        'RESEARCH_ID',
+        max_length=254,
+        blank=True,
+        null=True,
+    )
+
+    title = models.CharField(
+        'Title',
+        max_length=500,
+        blank=False,
+        null=False,
+        help_text=u'The full title of the research'
+    )
+
+    publication_year = models.CharField(
+        'Year of publication',
+        max_length=1500,
+        blank=False,
+        null=False,
+        help_text=u'The year the research was published or made available for public use'
+    )
+
+    organizations = models.CharField(
+        'Organization(s)',
+        max_length=1500,
+        blank=False,
+        null=False,
+        help_text=u'The organization managing the research'
+    )
+
+    researchers = models.CharField(
+        'Researcher(s)',
+        max_length=1500,
+        blank=False,
+        null=False,
+        help_text=u'The company or consultant(s) conducting the research'
+    )
+
+    type = models.CharField(
+        'Type of research',
+        max_length=500,
+        blank=False,
+        null=False,
+        choices=TYPE_CHOICES,
+    )
+
+    main_sector = models.CharField(
+        'Main Sector',
+        max_length=500,
+        blank=False,
+        null=False,
+        choices=SECTOR_CHOICES,
+    )
+
+    geographical_coverage = models.CharField(
+        'Geographical Coverage',
+        max_length=500,
+        blank=False,
+        null=False,
+        choices=SECTOR_CHOICES,
+    )
+
+    description = models.TextField(
+        'Description/Abstract',
+        blank=True, null=True,
+        max_length=250,
+        help_text=u'A brief narative on the research objectives, methodology, and findings. 250 characters maximum'
+    )
+
+    report_link = models.URLField(
+        'Link to Report',
+        blank=True,
+        null=True,
+        max_length=2500,
+        help_text=u'URL link to access the report'
+    )
+
+    recommendations = HTMLField(
+        'Recommendations',
+        blank=True, null=True,
+        help_text=u'Copy and paste or summarize the recommendations that the research study found'
+    )
+
+    planned_actions = HTMLField(
+        'Planned Action',
+        blank=True, null=True,
+        help_text=u'Note down the planned action by either UNICEF or any other entity'
+    )
+
+    class Meta:
+        get_latest_by = "created"
+        ordering = ('research_id',)
+        verbose_name = 'Research'
+        verbose_name_plural = 'Research'
+
+    def __str__(self):
+        return '%s %s' % (self.research_id, self.title)
+
+    def save(self, **kwargs):
+        if not self.research_id:
+            year = datetime.date.today().year
+            month = '{0:02d}'.format(datetime.date.today().month)
+            objects = list(Research.objects.filter(
+                created__year=year,
+            ).order_by('created').values_list('id', flat=True))
+            sequence = '{0:02d}'.format(objects.index(self.id) + 1 if self.id in objects else len(objects) + 1)
+            self.research_id = '{}{}-{}'.format(
+                year,
+                month,
+                sequence
+            )
+
+        super(Research, self).save(**kwargs)
 
 
 class Map(TimeStampedModel):
