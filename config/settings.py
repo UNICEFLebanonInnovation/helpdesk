@@ -249,10 +249,10 @@ AZURE_ACCOUNT_NAME = os.environ.get('AZURE_ACCOUNT_NAME', default='NO_AZURE_ACCO
 AZURE_ACCOUNT_KEY = os.environ.get('AZURE_ACCOUNT_KEY', default='NO_AZURE_ACCOUNT_KEY')
 AZURE_CONTAINER = os.environ.get('AZURE_CONTAINER', default='NO_AZURE_CONTAINER')
 
-DEFAULT_FILE_STORAGE = 'storages.backends.azure_storage.AzureStorage'
-DEFAULT_FILE_FORMAT = 'xlsx'
-DEFAULT_FILE_CONTENT_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-DEFAULT_FILE_CONTENT_LANGUAGE = 'ar'
+# DEFAULT_FILE_STORAGE = 'storages.backends.azure_storage.AzureStorage'
+# DEFAULT_FILE_FORMAT = 'xlsx'
+# DEFAULT_FILE_CONTENT_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+# DEFAULT_FILE_CONTENT_LANGUAGE = 'ar'
 
 # Email
 # https://docs.djangoproject.com/en/1.11/topics/email/
