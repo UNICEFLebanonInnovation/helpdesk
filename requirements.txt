@@ -19,6 +19,7 @@ whitenoise
 psycopg2
 django-anymail
 sendgrid
+azure
 azure-storage
 django-storages
 django-reversion==3.0.7
