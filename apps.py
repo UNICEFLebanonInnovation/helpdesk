@@ -5,7 +5,7 @@ from suit.menu import ParentItem, ChildItem
 class SuitConfig(DjangoSuitConfig):
     menu = (
         ParentItem('Dashboard', url='/', icon='fa fa-list'),
-        ParentItem('Survey', children=[
+        ParentItem('Research & Maps', children=[
             ChildItem('LASER', model='survey.laser'),
             ChildItem('Maps', model='survey.map'),
             ChildItem('Research Tracker', model='survey.research'),

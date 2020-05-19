@@ -19,7 +19,7 @@ class SuitConfig(DjangoSuitConfig):
 
     if settings.MODULE_SURVEY_ACTIVE:
         menu = menu + (
-            ParentItem('Survey', children=[
+            ParentItem('Research & Maps', children=[
                 ChildItem('LASER', model='survey.laser'),
                 ChildItem('Maps', model='survey.map'),
                 ChildItem('Research Tracker', model='survey.research'),
