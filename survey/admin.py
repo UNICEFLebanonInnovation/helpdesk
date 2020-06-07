@@ -115,6 +115,11 @@ class ResearchAdmin(ImportExportModelAdmin, VersionAdmin):
             'fields': [
                 'planned_actions',
             ]
+        }),
+        ('', {
+            'fields': [
+                'taken_actions',
+            ]
         })
     ]
 

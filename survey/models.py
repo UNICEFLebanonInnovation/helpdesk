@@ -283,7 +283,13 @@ class Research(TimeStampedModel):
     planned_actions = HTMLField(
         'Planned Action',
         blank=True, null=True,
-        help_text=u'Note down the planned action by either UNICEF or any other entity'
+        help_text=u'Note down the planned actions by either UNICEF or any other entity'
+    )
+
+    taken_actions = HTMLField(
+        'Taken Action',
+        blank=True, null=True,
+        help_text=u'Note down the taken actions by either UNICEF or any other entity'
     )
 
     class Meta:

@@ -177,9 +177,15 @@
                             <ul class="vertical-nav-menu metismenu">
                                 <li class="app-sidebar__heading">Dashboards</li>
                                 <li>
-                                    <a href="index.html">
+                                    <a href="{% url 'dashboard_maps' %}">
                                         <i class="metismenu-icon pe-7s-map"></i>
                                         UNICEF Maps
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'dashboard_researches' %}">
+                                        <i class="metismenu-icon pe-7s-note2"></i>
+                                        Researches
                                     </a>
                                 </li>
                             </ul>
