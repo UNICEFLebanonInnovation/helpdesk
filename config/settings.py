@@ -27,7 +27,7 @@ SECRET_KEY = '_crkn1+fnzu5$vns_-d+^ayiq%z4k*s!!ag0!mfy36(y!vrazd'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['unicef-helpdesk.herokuapp.com', '127.0.0.1', 'interagency.herokuapp.com',]
+ALLOWED_HOSTS = ['unicef-helpdesk.herokuapp.com', '127.0.0.1', 'interagency.herokuapp.com', 'covax-info-tracker.herokuapp.com']
 
 
 # Application definition
