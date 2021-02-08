@@ -10,7 +10,10 @@ class SurveyConfig(AppConfig):
 
 class SuitConfig(DjangoSuitConfig):
     menu = (
-        ParentItem('Dashboard', url='/', icon='fa fa-list'),
+        # ParentItem('Dashboard', url='/', icon='fa fa-list'),
+        ParentItem('COVID-19 Vaccine', children=[
+            ChildItem('Info Tracker', model='survey.infotracker'),
+        ], icon='fa fa-list'),
         ParentItem('Users', children=[
             ChildItem('Users', model='auth.user'),
             ChildItem('Groups', 'auth.group'),

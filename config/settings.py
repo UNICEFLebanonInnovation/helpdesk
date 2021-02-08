@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'sendgrid',
     'reversion',
     'import_export',
-    'tinymce',
+    # 'tinymce',
 ]
 
 MIDDLEWARE = [
@@ -355,7 +355,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Location of root django.contrib.admin URL, use {% url 'admin:index' %}
-ADMIN_URL = r'^admin/'
+ADMIN_URL = r'^'
 
 LOCALE_PATHS = [
     os.path.join(BASE_DIR, 'helpdesk/locale'),

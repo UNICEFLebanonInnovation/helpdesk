@@ -7,6 +7,9 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
     <link href='{% static "suit/css/font-awesome.min.css" %}' rel='stylesheet' type='text/css'>
 <style>
+    body {
+        background-image: linear-gradient(135deg, #F1F4F6 70%, #1CABE2 100%) !important;
+    }
     body.suit_layout_horizontal #header {
         background-color: #1cabe2 !important;
     }
@@ -29,7 +32,7 @@
 {% block branding %}
     <h1 id="site-name">
         <img src="{% static 'images/logo.png' %}" width="40px;" height="40px;"/>
-        <a href="{% url 'admin:index' %}">Survey platform</a>
+        <a href="{% url 'admin:index' %}">Info Tracker</a>
     </h1>
 {% endblock %}
 

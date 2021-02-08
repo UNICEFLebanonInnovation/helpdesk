@@ -27,10 +27,10 @@ from survey.views import IndexView, MapsView, ResearchesView
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 urlpatterns = [
-    url(r'^$', IndexView.as_view(), name='home'),
-    url(r'^Dashboard/Maps/$', MapsView.as_view(), name='dashboard_maps'),
-    url(r'^Dashboard/Researches/$', ResearchesView.as_view(), name='dashboard_researches'),
-    url(r'^admin/', admin.site.urls),
+    # url(r'^$', IndexView.as_view(), name='home'),
+    # url(r'^Dashboard/Maps/$', MapsView.as_view(), name='dashboard_maps'),
+    # url(r'^Dashboard/Researches/$', ResearchesView.as_view(), name='dashboard_researches'),
+    url(r'^', admin.site.urls),
     url(r'^helpdesk', include('helpdesk.urls', namespace='helpdesk')),
     url(r'^survey/', include('survey.urls', namespace='survey')),
     url('i18n/', include('django.conf.urls.i18n')),

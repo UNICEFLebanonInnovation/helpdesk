@@ -2,7 +2,7 @@ import json
 import datetime
 from django import template
 from datetime import date
-from survey.models import LASER, Research
+from survey.models import LASER, InfoTracker
 from django.db.models import Sum
 
 register = template.Library()
@@ -12,13 +12,13 @@ register = template.Library()
 def get_dashboard_number(name):
 
     if name == 'total':
-        return Research.objects.all().count()
+        return InfoTracker.objects.all().count()
     if name == 'link':
-        return Research.objects.filter(report_link__isnull=False).count()
-    if name == '2020':
-        return Research.objects.filter(publication_year='2020').count()
-    if name == 'National':
-        return Research.objects.filter(geographical_coverage='National').count()
+        return InfoTracker.objects.filter(relevant_link__isnull=False).count()
+    if name == 'validated_by_moph':
+        return InfoTracker.objects.filter(validated_by_moph=True).count()
+    if name == 'validated_by_technical_committee':
+        return InfoTracker.objects.filter(validated_by_technical_committee=True).count()
 
     return 0
 

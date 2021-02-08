@@ -3,10 +3,11 @@ from reversion.admin import VersionAdmin
 from suit.admin import RelatedFieldAdmin, get_related_field
 from import_export import resources, fields
 from import_export import fields
-from import_export.admin import ImportExportModelAdmin
+from import_export.admin import ImportExportModelAdmin, ExportActionModelAdmin
 
-from survey.models import LASER, Map, Research
-from survey.forms import ResearchForm
+from survey.models import LASER, Map, Research, InfoTracker
+from survey.forms import ResearchForm, InfoTrackerForm
+from .utils import has_group
 
 
 class LASERResource(resources.ModelResource):
@@ -36,7 +37,7 @@ class LASERResource(resources.ModelResource):
         export_order = fields
 
 
-@admin.register(LASER)
+# @admin.register(LASER)
 class LASERAdmin(ImportExportModelAdmin):
     resource_class = LASERResource
 
@@ -68,7 +69,7 @@ class ResearchResource(resources.ModelResource):
         export_order = fields
 
 
-@admin.register(Research)
+# @admin.register(Research)
 class ResearchAdmin(ImportExportModelAdmin, VersionAdmin):
     resource_class = ResearchResource
     form = ResearchForm
@@ -137,10 +138,102 @@ class MapResource(resources.ModelResource):
         export_order = fields
 
 
-@admin.register(Map)
+# @admin.register(Map)
 class MapAdmin(ImportExportModelAdmin):
     resource_class = MapResource
 
     list_display = ('name', 'description', 'status')
     date_hierarchy = 'created'
     list_filter = ('status', )
+
+
+class InfoTrackerResource(resources.ModelResource):
+    class Meta:
+        model = InfoTracker
+        fields = (
+            'issue_number',
+            'issue_description',
+            'reported_by',
+            'answer',
+            'validated_by_technical_committee',
+            'validated_by_moph',
+            'dissemination_method',
+            'relevant_link',
+        )
+        export_order = fields
+
+
+@admin.register(InfoTracker)
+class InfoTrackerAdmin(ExportActionModelAdmin, VersionAdmin):
+    resource_class = InfoTracker
+    form = InfoTrackerForm
+    list_display = (
+            'issue_number',
+            'issue_description',
+            'reported_by',
+            'answer',
+            'validated_by_technical_committee',
+            'validated_by_moph',
+            'dissemination_method',
+            'relevant_link',
+        )
+    date_hierarchy = 'created'
+    list_filter = ('validated_by_technical_committee', 'validated_by_moph')
+    search_fields = (
+        'issue_description',
+        'reported_by',
+        'answer',
+        'dissemination_method'
+    )
+    readonly_fields = (
+        'issue_number',
+    )
+
+    fieldsets = [
+        ('Issue details', {
+            'fields': [
+                'issue_number',
+                'issue_description',
+                'reported_by'
+            ]
+        }),
+        ('Response', {
+            'fields': [
+                'answer',
+                'validated_by_technical_committee',
+                'validated_by_moph',
+                'dissemination_method',
+                'relevant_link',
+            ]
+        })
+    ]
+
+    def get_readonly_fields(self, request, obj=None):
+
+        fields = [
+            'issue_number',
+            'issue_description',
+            'reported_by',
+            'answer',
+            'validated_by_technical_committee',
+            'validated_by_moph',
+            'dissemination_method',
+            'relevant_link',
+        ]
+
+        if has_group(request.user, 'UNICEF'):
+            fields = [
+                'issue_number',
+            ]
+
+        if has_group(request.user, 'NON_UNICEF'):
+            fields = [
+                'issue_number',
+                'answer',
+                'validated_by_technical_committee',
+                'validated_by_moph',
+                'dissemination_method',
+                'relevant_link',
+            ]
+
+        return fields

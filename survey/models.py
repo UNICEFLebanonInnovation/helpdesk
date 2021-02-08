@@ -339,3 +339,40 @@ class Map(TimeStampedModel):
 
     def __unicode__(self):
             return self.name
+
+
+class InfoTracker(TimeStampedModel):
+    issue_number = models.CharField(
+        max_length=100,
+        null=True, blank=True,
+    )
+
+    issue_description = models.TextField('Issue description', null=True, blank=False)
+    reported_by = models.CharField('Reported by', max_length=500)
+
+    answer = models.TextField('Answer', null=True, blank=True)
+    validated_by_technical_committee = models.BooleanField('Validated by technical committee',
+                                                           blank=True, default=False)
+    validated_by_moph = models.BooleanField('Validated by MOPH', blank=True, default=False)
+    dissemination_method = models.TextField('Dissemination method', null=True, blank=True)
+    relevant_link = models.URLField('Relevant link', null=True, blank=True)
+
+    def save(self, **kwargs):
+        if not self.issue_number:
+            objects = list(InfoTracker.objects.all().order_by('created').values_list('id', flat=True))
+            sequence = '{0:03d}'.format(objects.index(self.id) + 1 if self.id in objects else len(objects) + 1)
+            self.issue_number = '{}-{}'.format(
+                'COVID',
+                sequence
+            )
+
+        super(InfoTracker, self).save(**kwargs)
+
+    class Meta:
+        ordering = ['issue_number']
+
+    def __unicode__(self):
+        return self.issue_number
+
+    def __str__(self):
+        return self.issue_number
