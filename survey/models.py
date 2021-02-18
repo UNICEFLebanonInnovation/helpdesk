@@ -1,7 +1,9 @@
 import datetime
 from django.db import models
+from django.conf import settings
 from model_utils.models import TimeStampedModel
 from tinymce.models import HTMLField
+from django.contrib.postgres.fields import ArrayField, JSONField
 
 
 class LASER(TimeStampedModel):
@@ -341,35 +343,124 @@ class Map(TimeStampedModel):
             return self.name
 
 
-class InfoTracker(TimeStampedModel):
+class KnowledgeTracker(TimeStampedModel):
     issue_number = models.CharField(
         max_length=100,
         null=True, blank=True,
     )
+    reported_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        blank=False, null=True,
+        related_name='+',
+        on_delete=models.DO_NOTHING,
+        verbose_name='Reported by'
+    )
+    issue_category = models.CharField(
+        'Issue Category',
+        max_length=50,
+        choices=(
+            ('Rumor', 'Rumor'),
+            ('Question', 'Question'),
+            ('Trust issue', 'Trust issue'),
+            ('Transparency', 'Transparency'),
+            ('General Concern', 'General Concern'),
+        ),
+        blank=False, null=True,
+    )
+    issue_description = models.TextField(
+        'Issue description',
+        null=True,
+        blank=False,
+        help_text='200 characters max'
+    )
+    frequency = models.IntegerField('Frequency', null=True, blank=True, default=0)
+    target_population = models.CharField(
+        'Target Population',
+        max_length=100,
+        choices=(
+            ('All', 'All'),
+            ('Lebanese', 'Lebanese'),
+            ('Foreigner', 'Foreigner'),
+            ('Refugee', 'Refugee'),
+            ('Elderly', 'Elderly'),
+            ('Pregnant', 'Pregnant'),
+            ('People with disabilities', 'People with disabilities'),
+            ('Under 18', 'Under 18'),
+        ),
+        blank=False, null=True,
+    )
+    source = models.CharField(
+        'Source',
+        max_length=100,
+        choices=(
+            ('All', 'All'),
+            ('Poll/Study', 'Poll/Study'),
+            ('Training', 'Training'),
+            ('Community Activity', 'Community Activity'),
+            ('Media', 'Media'),
+            ('Social Media', 'Social Media'),
+        ),
+        blank=False, null=True,
+    )
 
-    issue_description = models.TextField('Issue description', null=True, blank=False)
-    reported_by = models.CharField('Reported by', max_length=500)
+    answer = models.TextField(
+        'Answer/Clarification',
+        null=True, blank=True,
+        help_text='200 characters max'
+    )
 
-    answer = models.TextField('Answer', null=True, blank=True)
-    validated_by_technical_committee = models.BooleanField('Validated by technical committee',
+    validated_by_technical_committee = models.BooleanField('Validated by Technical Committee',
                                                            blank=True, default=False)
     validated_by_moph = models.BooleanField('Validated by MOPH', blank=True, default=False)
-    dissemination_method = models.TextField('Dissemination method', null=True, blank=True)
+    dissemination_method = ArrayField(
+        models.CharField(
+            choices=(
+                    ('Community Activity', 'Community Activity'),
+                    ('Social Media', 'Social Media'),
+                    ('Training', 'Training'),
+                    ('Official External Communication', 'Official External Communication'),
+                ),
+            max_length=100,
+            blank=False,
+            null=True,
+        ),
+        blank=True,
+        null=True,
+        verbose_name='Dissemination method',
+    )
+
     relevant_link = models.URLField('Relevant link', null=True, blank=True)
+
+    created_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        blank=False, null=True,
+        related_name='+',
+        on_delete=models.DO_NOTHING,
+        verbose_name='Created by'
+    )
+    modified_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        blank=True, null=True,
+        related_name='+',
+        on_delete=models.DO_NOTHING,
+        verbose_name='Modified by'
+    )
 
     def save(self, **kwargs):
         if not self.issue_number:
-            objects = list(InfoTracker.objects.all().order_by('created').values_list('id', flat=True))
+            objects = list(KnowledgeTracker.objects.all().order_by('created').values_list('id', flat=True))
             sequence = '{0:03d}'.format(objects.index(self.id) + 1 if self.id in objects else len(objects) + 1)
             self.issue_number = '{}-{}'.format(
                 'COVID',
                 sequence
             )
 
-        super(InfoTracker, self).save(**kwargs)
+        super(KnowledgeTracker, self).save(**kwargs)
 
     class Meta:
         ordering = ['issue_number']
+        verbose_name = 'Concern / Question'
+        verbose_name_plural = 'Concerns / Questions'
 
     def __unicode__(self):
         return self.issue_number

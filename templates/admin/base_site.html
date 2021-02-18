@@ -16,15 +16,6 @@
 {# Switch for demonstration purposes, not indended for production use #}
 {% block usertools %}
     {% with suit_layout='layout'|suit_conf:request %}
-        {% if suit_layout == 'horizontal' %}
-            <a href="{% url 'admin:index' %}?__suit_layout=vertical" class="demo-layout-switch">
-                Switch to vertical
-            </a>
-        {% else %}
-            <a href="{% url 'admin:index' %}?__suit_layout=horizontal" class="demo-layout-switch">
-                Switch to horizontal
-            </a>
-        {% endif %}
 
         {{ block.super }}
 

@@ -9,10 +9,13 @@ class SurveyConfig(AppConfig):
 
 
 class SuitConfig(DjangoSuitConfig):
+    menu_show_home = False
+
     menu = (
-        # ParentItem('Dashboard', url='/', icon='fa fa-list'),
-        ParentItem('COVID-19 Vaccine', children=[
-            ChildItem('Info Tracker', model='survey.infotracker'),
+        ParentItem('Summary', url='/', icon='fa fa-list'),
+        ParentItem('Dashboard', url='/Dashboard', icon='fa fa-list'),
+        ParentItem('COVID-19 - Vaccine', children=[
+            ChildItem('The Knowledge Tracker', model='survey.knowledgetracker'),
         ], icon='fa fa-list'),
         ParentItem('Users', children=[
             ChildItem('Users', model='auth.user'),

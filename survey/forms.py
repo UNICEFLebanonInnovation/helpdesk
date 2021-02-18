@@ -1,5 +1,6 @@
 import datetime
 from django import forms
+from .models import KnowledgeTracker
 
 BIRTH_YEAR_CHOICES = ['1980', '1981', '1982']
 CURRENT_YEAR = datetime.datetime.now().year
@@ -16,6 +17,33 @@ class ResearchForm(forms.ModelForm):
                                          initial=CURRENT_YEAR)
 
 
-class InfoTrackerForm(forms.ModelForm):
+class KnowledgeTrackerForm(forms.ModelForm):
     validated_by_technical_committee = forms.ChoiceField(widget=forms.RadioSelect, choices=YES_NO_CHOICE, initial=False)
     validated_by_moph = forms.ChoiceField(widget=forms.RadioSelect, choices=YES_NO_CHOICE, initial=False)
+    dissemination_method = forms.MultipleChoiceField(
+        label='Dissemination method',
+        choices=(
+                ('Community Activity', 'Community Activity'),
+                ('Social Media', 'Social Media'),
+                ('Training', 'Training'),
+                ('Official External Communication', 'Official External Communication'),
+            ),
+        widget=forms.CheckboxSelectMultiple,
+        required=True,
+    )
+
+    class Meta:
+        model = KnowledgeTracker
+        fields = '__all__'
+        widgets = {
+            'issue_description': forms.Textarea(attrs={
+                'rows': '2',
+                'cols': '90',
+                'maxlength': '200',
+            }),
+            'answer': forms.Textarea(attrs={
+                'rows': '2',
+                'cols': '90',
+                'maxlength': '200',
+            }),
+        }

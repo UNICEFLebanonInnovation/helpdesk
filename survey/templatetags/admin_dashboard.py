@@ -2,7 +2,7 @@ import json
 import datetime
 from django import template
 from datetime import date
-from survey.models import LASER, InfoTracker
+from survey.models import LASER, KnowledgeTracker
 from django.db.models import Sum
 
 register = template.Library()
@@ -10,15 +10,14 @@ register = template.Library()
 
 @register.simple_tag
 def get_dashboard_number(name):
-
     if name == 'total':
-        return InfoTracker.objects.all().count()
+        return KnowledgeTracker.objects.all().count()
     if name == 'link':
-        return InfoTracker.objects.filter(relevant_link__isnull=False).count()
+        return KnowledgeTracker.objects.filter(relevant_link__isnull=False).count()
     if name == 'validated_by_moph':
-        return InfoTracker.objects.filter(validated_by_moph=True).count()
+        return KnowledgeTracker.objects.filter(validated_by_moph=True).count()
     if name == 'validated_by_technical_committee':
-        return InfoTracker.objects.filter(validated_by_technical_committee=True).count()
+        return KnowledgeTracker.objects.filter(validated_by_technical_committee=True).count()
 
     return 0
 

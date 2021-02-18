@@ -5,8 +5,8 @@ from import_export import resources, fields
 from import_export import fields
 from import_export.admin import ImportExportModelAdmin, ExportActionModelAdmin
 
-from survey.models import LASER, Map, Research, InfoTracker
-from survey.forms import ResearchForm, InfoTrackerForm
+from survey.models import LASER, Map, Research, KnowledgeTracker
+from survey.forms import ResearchForm, KnowledgeTrackerForm
 from .utils import has_group
 
 
@@ -147,9 +147,9 @@ class MapAdmin(ImportExportModelAdmin):
     list_filter = ('status', )
 
 
-class InfoTrackerResource(resources.ModelResource):
+class KnowledgeTrackerResource(resources.ModelResource):
     class Meta:
-        model = InfoTracker
+        model = KnowledgeTracker
         fields = (
             'issue_number',
             'issue_description',
@@ -157,20 +157,24 @@ class InfoTrackerResource(resources.ModelResource):
             'answer',
             'validated_by_technical_committee',
             'validated_by_moph',
-            'dissemination_method',
+            # 'dissemination_method',
             'relevant_link',
         )
         export_order = fields
 
 
-@admin.register(InfoTracker)
-class InfoTrackerAdmin(ExportActionModelAdmin, VersionAdmin):
-    resource_class = InfoTracker
-    form = InfoTrackerForm
+@admin.register(KnowledgeTracker)
+class KnowledgeTrackerAdmin(ExportActionModelAdmin, VersionAdmin):
+    resource_class = KnowledgeTrackerResource
+    form = KnowledgeTrackerForm
     list_display = (
             'issue_number',
-            'issue_description',
             'reported_by',
+            'issue_category',
+            'issue_description',
+            'frequency',
+            'target_population',
+            'source',
             'answer',
             'validated_by_technical_committee',
             'validated_by_moph',
@@ -178,12 +182,27 @@ class InfoTrackerAdmin(ExportActionModelAdmin, VersionAdmin):
             'relevant_link',
         )
     date_hierarchy = 'created'
-    list_filter = ('validated_by_technical_committee', 'validated_by_moph')
+    list_filter = (
+        'reported_by',
+        'issue_category',
+        'target_population',
+        'source',
+        'validated_by_technical_committee',
+        'validated_by_moph',
+        'dissemination_method',
+    )
+    suit_list_filter_horizontal = (
+        'reported_by',
+        'issue_category',
+        'target_population',
+        'source',
+        'validated_by_technical_committee',
+        'validated_by_moph',
+        'dissemination_method',
+    )
     search_fields = (
         'issue_description',
-        'reported_by',
         'answer',
-        'dissemination_method'
     )
     readonly_fields = (
         'issue_number',
@@ -193,8 +212,12 @@ class InfoTrackerAdmin(ExportActionModelAdmin, VersionAdmin):
         ('Issue details', {
             'fields': [
                 'issue_number',
+                # 'reported_by',
+                'issue_category',
                 'issue_description',
-                'reported_by'
+                'frequency',
+                'target_population',
+                'source',
             ]
         }),
         ('Response', {
@@ -208,12 +231,21 @@ class InfoTrackerAdmin(ExportActionModelAdmin, VersionAdmin):
         })
     ]
 
+    def has_import_permission(self, request, obj=None):
+        if request.user.is_superuser:
+            return True
+        return False
+
     def get_readonly_fields(self, request, obj=None):
 
         fields = [
             'issue_number',
-            'issue_description',
             'reported_by',
+            'issue_category',
+            'issue_description',
+            'frequency',
+            'target_population',
+            'source',
             'answer',
             'validated_by_technical_committee',
             'validated_by_moph',
@@ -221,12 +253,12 @@ class InfoTrackerAdmin(ExportActionModelAdmin, VersionAdmin):
             'relevant_link',
         ]
 
-        if has_group(request.user, 'UNICEF'):
+        if has_group(request.user, 'ADMIN'):
             fields = [
                 'issue_number',
             ]
 
-        if has_group(request.user, 'NON_UNICEF'):
+        if has_group(request.user, 'EDITOR'):
             fields = [
                 'issue_number',
                 'answer',
@@ -237,3 +269,17 @@ class InfoTrackerAdmin(ExportActionModelAdmin, VersionAdmin):
             ]
 
         return fields
+
+    def save_model(self, request, obj, form, change):
+        if not change:
+            obj.created_by = request.user
+            obj.reported_by = request.user
+        else:
+            obj.modified_by = request.user
+
+        super(KnowledgeTrackerAdmin, self).save_model(request, obj, form, change)
+
+    def get_queryset(self, request):
+        if has_group(request.user, 'EDITOR'):
+            return KnowledgeTracker.objects.filter(created_by=request.user)
+        return KnowledgeTracker.objects.all()

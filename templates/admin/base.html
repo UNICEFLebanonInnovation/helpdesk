@@ -13,6 +13,7 @@
     body.suit_layout_horizontal #header {
         background-color: #1cabe2 !important;
     }
+    body.suit_layout_horizontal #header #branding { min-width: 600px; }
     #header .demo-layout-switch { color: #ffffff !important; }
     #header .welcome { color: #ffffff !important; }
     #header .user-links a { color: #ffffff !important; }
@@ -22,6 +23,50 @@
     #changelist #changelist-filter h3 {
         background-color: #1cabe2 !important;
     }
+    #result_list thead > tr th.column-issue_number {
+        background-color: #4F71BE !important;
+    }
+    #result_list thead > tr th.column-reported_by {
+        background-color: #4F71BE !important;
+    }
+    #result_list thead > tr th.column-reported_by {
+        background-color: #4F71BE !important;
+    }
+    #result_list thead > tr th.column-issue_category {
+        background-color: #4F71BE !important;
+    }
+
+    #result_list thead > tr th.column-issue_description {
+        background-color: #4F71BE !important;
+    }
+    #result_list thead > tr th.column-frequency {
+        background-color: #4F71BE !important;
+    }
+    #result_list thead > tr th.column-target_population {
+        background-color: #4F71BE !important;
+    }
+    #result_list thead > tr th.column-source {
+        background-color: #4F71BE !important;
+    }
+
+
+    #result_list thead > tr th.column-answer {
+        background-color: #32B051 !important;
+    }
+    #result_list thead > tr th.column-validated_by_technical_committee {
+        background-color: #32B051 !important;
+    }
+    #result_list thead > tr th.column-validated_by_moph {
+        background-color: #32B051 !important;
+    }
+    #result_list thead > tr th.column-dissemination_method {
+        background-color: #32B051 !important;
+    }
+    #result_list thead > tr th.column-relevant_link {
+        background-color: #32B051 !important;
+    }
+
+
 </style>
 {% endblock %}
 
@@ -32,7 +77,7 @@
 {% block branding %}
     <h1 id="site-name">
         <img src="{% static 'images/logo.png' %}" width="40px;" height="40px;"/>
-        <a href="{% url 'admin:index' %}">Info Tracker</a>
+        <a href="{% url 'admin:index' %}">COVID Vaccine – The Knowledge Tracker</a>
     </h1>
 {% endblock %}
 
