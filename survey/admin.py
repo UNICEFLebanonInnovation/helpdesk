@@ -10,6 +10,42 @@ from survey.forms import ResearchForm, KnowledgeTrackerForm
 from .utils import has_group
 
 
+class DisseminationMethodFilter(admin.SimpleListFilter):
+    # Human-readable title which will be displayed in the
+    # right admin sidebar just above the filter options.
+    title = 'Dissemination Method'
+
+    # Parameter for the filter that will be used in the URL query.
+    parameter_name = 'dissemination_method'
+
+    def lookups(self, request, model_admin):
+        """
+        Returns a list of tuples. The first element in each
+        tuple is the coded value for the option that will
+        appear in the URL query. The second element is the
+        human-readable name for the option that will appear
+        in the right sidebar.
+        """
+        return (
+                    ('Community Activity', 'Community Activity'),
+                    ('Social Media', 'Social Media'),
+                    ('Training', 'Training'),
+                    ('Official External Communication', 'Official External Communication'),
+                )
+
+    def queryset(self, request, queryset):
+        """
+        Returns the filtered queryset based on the value
+        provided in the query string and retrievable via
+        `self.value()`.
+        """
+        if self.value():
+            return queryset.filter(
+                dissemination_method__contains=self.value()
+            )
+        return queryset
+
+
 class LASERResource(resources.ModelResource):
     class Meta:
         model = LASER
@@ -189,7 +225,7 @@ class KnowledgeTrackerAdmin(ExportActionModelAdmin, VersionAdmin):
         'source',
         'validated_by_technical_committee',
         'validated_by_moph',
-        'dissemination_method',
+        # DisseminationMethodFilter
     )
     suit_list_filter_horizontal = (
         'reported_by',
@@ -198,7 +234,7 @@ class KnowledgeTrackerAdmin(ExportActionModelAdmin, VersionAdmin):
         'source',
         'validated_by_technical_committee',
         'validated_by_moph',
-        'dissemination_method',
+        # DisseminationMethodFilter
     )
     search_fields = (
         'issue_description',
