@@ -40,7 +40,7 @@
                   <p class="card-category"># of reported issues <br/><br/></p>
                   <h3 class="card-title">
                     {% get_dashboard_number 'total' as value %}
-                    <a href="/survey/infotracker/" style="color: #3C4858;">{{ value }}</a>
+                    <a href="/survey/knowledgetracker/" style="color: #3C4858;">{{ value }}</a>
                   </h3>
                 </div>
                 <div class="card-footer">
@@ -61,7 +61,7 @@
                   </div>
                   <p class="card-category"># of answers validated by the technical committee</p>
                   <h3 class="card-title">{% get_dashboard_number 'validated_by_technical_committee' as value %}
-                    <a href="/survey/infotracker/?validated_by_technical_committee__exact=1" style="color: #3C4858;">{{ value }}</a>
+                    <a href="/survey/knowledgetracker/?validated_by_technical_committee__exact=1" style="color: #3C4858;">{{ value }}</a>
                   </h3>
                 </div>
                 <div class="card-footer">
@@ -80,7 +80,7 @@
                   </div>
                   <p class="card-category"># of answers validated by MOPH</p>
                   <h3 class="card-title">{% get_dashboard_number 'validated_by_moph' as value %}
-                    <a href="/survey/infotracker/?validated_by_moph__exact=1" style="color: #3C4858;">{{ value }}</a>
+                    <a href="/survey/knowledgetracker/?validated_by_moph__exact=1" style="color: #3C4858;">{{ value }}</a>
                   </h3>
                 </div>
                 <div class="card-footer">
@@ -99,7 +99,7 @@
                   </div>
                   <p class="card-category"># of reported issues with link</p>
                   <h3 class="card-title">{% get_dashboard_number 'link' as value %}
-                    <a href="/survey/infotracker/relevant_link__isnull=0" style="color: #3C4858;">{{ value }}</a>
+                    <a href="/survey/knowledgetracker/relevant_link__isnull=0" style="color: #3C4858;">{{ value }}</a>
                   </h3>
                 </div>
                 <div class="card-footer">
