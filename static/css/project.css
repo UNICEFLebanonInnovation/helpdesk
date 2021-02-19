@@ -1,13 +1,26 @@
-/* These styles are generated from project.scss. */
 
-.alert-debug {
-  color: black;
-  background-color: white;
-  border-color: #d6e9c6;
+ul.ui-widget-content.ui-autocomplete {
+    top: -815px !important;
+    left: 260px !important;
+    width: 315px !important;
+    z-index: 9999 !important;
+    overflow: scroll !important;
+    height: 300px !important;
 }
 
-.alert-error {
-  color: #b94a48;
-  background-color: #f2dede;
-  border-color: #eed3d7;
+.table-responsive td {
+    position: relative;
+}
+
+.table-responsive td .badge {
+    position: absolute;
+    top: 5px;
+    right: 0px;
+    display: block;
+}
+
+.staff-profile .badge {
+    display: block;
+    float: right;
+    margin-left: 10px;
 }

@@ -49,6 +49,9 @@ INSTALLED_APPS = [
     'sendgrid',
     'reversion',
     'import_export',
+    'django_filters',
+    'django_tables2',
+    'bootstrap4',
     # 'tinymce',
 ]
 

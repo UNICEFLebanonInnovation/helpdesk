@@ -1,0 +1,98 @@
+/* Basic styling */
+/* Draw the lines */
+.jOrgChart .line {
+  height                : 20px;
+  width                 : 4px;
+}
+
+.jOrgChart .down {
+  background-color 		: #343a40;
+  margin 				: 0px auto;
+}
+
+.jOrgChart .top {
+  border-top          : 3px solid #343a40;
+}
+
+.jOrgChart .left {
+  border-right          : 2px solid #343a40;
+}
+
+.jOrgChart .right {
+  border-left           : 2px solid #343a40;
+}
+
+/* node cell */
+.jOrgChart td {
+  text-align            : center;
+  vertical-align        : top;
+  padding               : 0;
+}
+
+/* The node */
+.jOrgChart .node {
+    display               : inline-block;
+    width                 : 200px;
+    height                : 140px;
+    z-index 				: 10;
+    margin               : 0 2px;
+    font-size: 18px;
+    box-shadow: 0 0.46875rem 2.1875rem rgba(4,9,20,0.03), 0 0.9375rem 1.40625rem rgba(4,9,20,0.03), 0 0.25rem 0.53125rem rgba(4,9,20,0.05), 0 0.125rem 0.1875rem rgba(4,9,20,0.03);
+    border-width: 0;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(26,54,126,0.125);
+    border-radius: .25rem;
+    background: rgb(248 249 250);
+    color: #3f6ad8 !important;
+}
+.node-top {
+    padding: 8px;
+  /*white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;*/
+background-color: #3f6ad8 !important;
+color: white;
+height: 60px;
+text-align: left;
+}
+.node-middle {
+    padding: 8px;
+    font-size: 17px;
+}
+
+.node-bottom {
+    padding: 8px;
+}
+.node-top a {
+    display: block;
+    width: 30px;
+    height: 50px;
+    float: left;
+}
+.node-top a img {
+    border-radius: 15px;
+    border: 1px solid #3f6ad8 !important;
+    width: 30px;
+    height: 30px;
+}
+
+.node-top label {
+    display: block;
+    padding-left: 10px;
+    float: left;
+    width: 120px;
+    padding-top: 7px;
+}
+
+
+/* jQuery drag 'n drop */
+
+.drag-active {
+  border-style			: dotted !important;
+}
+
+.drop-hover {
+  border-style			: solid !important;
+  border-color 			: #E05E00 !important;
+}
