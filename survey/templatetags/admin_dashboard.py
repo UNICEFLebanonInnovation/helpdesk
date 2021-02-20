@@ -12,6 +12,8 @@ register = template.Library()
 def get_dashboard_number(name):
     if name == 'total':
         return KnowledgeTracker.objects.all().count()
+    if name == 'new':
+        return KnowledgeTracker.objects.filter(answer__isnull=True).count()
     if name == 'link':
         return KnowledgeTracker.objects.filter(relevant_link__isnull=False).count()
     if name == 'validated_by_moph':
