@@ -27,6 +27,7 @@ django-tinymce
 django-filter==2.4.0
 django-tables2==2.3.4
 django-bootstrap4==2.3.1
+django-json-tag==0.0.1
 
 git+https://github.com/darklow/django-suit.git
 

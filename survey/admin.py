@@ -205,7 +205,7 @@ class KnowledgeTrackerAdmin(ExportActionModelAdmin, VersionAdmin):
     form = KnowledgeTrackerForm
     list_display = (
             'issue_number',
-            'reported_by',
+            'reported_organization',
             'issue_category',
             'issue_description',
             'frequency',
@@ -237,8 +237,18 @@ class KnowledgeTrackerAdmin(ExportActionModelAdmin, VersionAdmin):
         # DisseminationMethodFilter
     )
     search_fields = (
+        'issue_number',
+        'reported_by',
+        'issue_category',
         'issue_description',
+        'frequency',
+        'target_population',
+        'source',
         'answer',
+        'validated_by_technical_committee',
+        'validated_by_moph',
+        'dissemination_method',
+        'relevant_link',
     )
     readonly_fields = (
         'issue_number',

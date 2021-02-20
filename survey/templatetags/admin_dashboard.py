@@ -18,6 +18,8 @@ def get_dashboard_number(name):
         return KnowledgeTracker.objects.filter(validated_by_moph=True).count()
     if name == 'validated_by_technical_committee':
         return KnowledgeTracker.objects.filter(validated_by_technical_committee=True).count()
+    if name == 'validated_by_both':
+        return KnowledgeTracker.objects.filter(validated_by_moph=True, validated_by_technical_committee=True).count()
 
     return 0
 

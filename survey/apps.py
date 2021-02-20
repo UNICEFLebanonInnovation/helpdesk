@@ -14,7 +14,7 @@ class SuitConfig(DjangoSuitConfig):
     menu = (
         ParentItem('Summary', url='/', icon='fa fa-list'),
         ParentItem('Dashboard', url='/Dashboard', icon='fa fa-list'),
-        ParentItem('COVID-19 - Vaccine', children=[
+        ParentItem('Tracker details', children=[
             ChildItem('The Knowledge Tracker', model='survey.knowledgetracker'),
         ], icon='fa fa-list'),
         ParentItem('Users', children=[

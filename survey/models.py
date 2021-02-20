@@ -373,7 +373,7 @@ class KnowledgeTracker(TimeStampedModel):
         blank=False,
         help_text='200 characters max'
     )
-    frequency = models.IntegerField('Frequency', null=True, blank=True, default=0)
+    frequency = models.IntegerField('Frequency', null=True, blank=True, default=1)
     target_population = models.CharField(
         'Target Population',
         max_length=100,
@@ -445,6 +445,10 @@ class KnowledgeTracker(TimeStampedModel):
         on_delete=models.DO_NOTHING,
         verbose_name='Modified by'
     )
+
+    @property
+    def reported_organization(self):
+        return self.reported_by.last_name
 
     def save(self, **kwargs):
         if not self.issue_number:

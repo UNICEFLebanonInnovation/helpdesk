@@ -1,0 +1,158 @@
+{% extends "base4.html" %}
+{% load static i18n %}
+{% load static %}
+{% load render_table from django_tables2 %}
+{% load bootstrap4 %}
+
+{% block content %}
+
+<style>
+    .form-filters .form-group {
+        padding-right: 10px;
+        padding-bottom: 5px;
+    }
+    .form-filters .btn {
+        margin-right: 10px;
+    }
+    .form-filters .form-control {
+        width: 200px;
+    }
+    .table-list .card-body .table-responsive {
+        padding-bottom: 15px;
+        max-height: 400px;
+        position: relative;
+    }
+    th {
+      background: white;
+      position: sticky;
+      top: 0; /* Don't forget this, required for the stickiness */
+      box-shadow: 0 1px 2px -1px rgba(63,106,216,0.5);
+      z-index: 999;
+      vertical-align: middle !important;
+    }
+    .table-list .card-body {
+        padding-top: 0px;
+    }
+</style>
+
+<div class="app-page-title"><div class="page-title-wrapper"><div class="page-title-heading"><div class="page-title-icon"><i class="icon pe-7s-graph icon-gradient bg-ripe-malin"></i></div><div>
+    The Knowledge Tracker - Dashboard
+    <div class="page-title-subheading">
+                                    </div>
+</div></div><div class="page-title-actions">
+<div class="widget-chart widget-chart2 text-left card-btm-border card-shadow-primary border-primary card">
+                                <div class="widget-chat-wrapper-outer">
+                                    <div class="widget-chart-content">
+                                        <div class="widget-title opacity-5 text-uppercase">Total Issues</div>
+                                        <div class="widget-numbers mt-2 fsize-4 mb-0 w-100">
+                                            <div class="widget-chart-flex align-items-center">
+                                                <div>
+                                                    <span class="opacity-10 text-success pr-2">
+
+                                                    </span>
+                                                    {{total}}
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+</div></div></div>
+
+<div class="row">
+                            <!--<div class="col-lg-6 col-xl-4">-->
+                                <!--<div class="card mb-3 widget-content">-->
+                                    <!--<div class="widget-content-wrapper">-->
+                                        <!--<div class="widget-content-left">-->
+                                            <!--<div class="widget-heading">Total Staff</div>-->
+                                            <!--<div class="widget-subheading">Includes Consultants, Interns and UNV</div>-->
+                                        <!--</div>-->
+                                        <!--<div class="widget-content-right">-->
+                                            <!--<div class="widget-numbers text-success"><span>{{number_of_employees}}</span></div>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <div class="col-lg-6 col-xl-4">
+                                <div class="card mb-3 widget-content">
+                                    <div class="widget-content-wrapper">
+                                        <div class="widget-content-left">
+                                            <div class="widget-heading">Total Reported Issues</div>
+                                            <div class="widget-subheading"></div>
+                                        </div>
+                                        <div class="widget-content-right">
+                                            <div class="widget-numbers text-warning"><span>{{total}}</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-xl-4">
+                                <div class="card mb-3 widget-content">
+                                    <div class="widget-content-wrapper">
+                                        <div class="widget-content-left">
+                                            <div class="widget-heading">Total of answers validated by the technical committee</div>
+                                            <div class="widget-subheading"></div>
+                                        </div>
+                                        <div class="widget-content-right">
+                                            <div class="widget-numbers text-warning"><span>{{total_validated_by_ttc}}</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-xl-4">
+                                <div class="card mb-3 widget-content">
+                                    <div class="widget-content-wrapper">
+                                        <div class="widget-content-left">
+                                            <div class="widget-heading">Total of answers validated by MOPH</div>
+                                            <div class="widget-subheading"></div>
+                                        </div>
+                                        <div class="widget-content-right">
+                                            <div class="widget-numbers text-warning"><span>{{total_validated_by_moph}}</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+<div class="row" style="padding-bottom: 30px;">
+
+    <div class="col-md-6 col-lg-4">
+        <div id="category_chart" style="height: 358px;"></div>
+    </div>
+
+    <div class="col-md-6 col-lg-4">
+        <div id="target_chart" style="height: 358px;"></div>
+    </div>
+
+    <div class="col-md-6 col-lg-4">
+        <div id="source_chart" style="height: 358px;"></div>
+    </div>
+
+</div>
+
+
+{% endblock %}
+
+{% block extra_js %}
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+<script src="{% static 'js/dashboard.js' %}"></script>
+
+<script type="application/javascript">
+
+    $(document).ready(function() {
+        category_chart({% autoescape off %}{{category_data}}{% endautoescape %});
+        target_chart({% autoescape off %}{{target_data}}{% endautoescape %});
+        source_chart({% autoescape off %}{{source_data}}){% endautoescape %};
+    });
+
+</script>
+
+{% endblock %}

@@ -1,40 +1,26 @@
-/* Project specific Javascript goes here. */
 
-// HR Dashboard
-
-function InitialiseHRDashboard(departmentData, genderData, typeData, dutyStationData,number_of_employees, employees_conpleted_bsafe_count )
-{
-    $( document ).ready(function() {
-        //InitialiseHRDepartmentChart(departmentData);
-        InitialiseGenderChart(genderData);
-        InitialiseTypeChart(typeData);
-        InitialiseDutyStationChart(dutyStationData);
-        // InitialiseBsafeChart(number_of_employees,employees_conpleted_bsafe_count);
-    });
-}
-
-function InitialiseHRDepartmentChart(departmentData)
+function category_chart(data)
 {
 
-    Highcharts.chart('employee_department', {
+    Highcharts.chart('category_chart', {
         chart: {
             type: 'column'
         },
         title: {
-            text: 'Staff per Section'
+            text: 'Issue per Category'
         },
         subtitle: {
             text: ''
         },
         xAxis: {
-            type: 'Section',
+            type: 'Category',
             labels: {
                 rotation: -45,
                 style: {
                     fontSize: '13px',
                     fontFamily: 'Verdana, sans-serif'
                 },
-                formatter: function() { return departmentData[this.value]['name'];},
+                formatter: function() { return data[this.value]['issue_category'];},
             }
         },
         yAxis: {
@@ -47,11 +33,11 @@ function InitialiseHRDepartmentChart(departmentData)
             enabled: false
         },
         tooltip: {
-            pointFormat: 'Staff: <b>{point.y:.1f}</b>'
+            pointFormat: 'Issue: <b>{point.y:.1f}</b>'
         },
         series: [{
-            name: 'Section',
-            data: departmentData,
+            name: 'category',
+            data: data,
             dataLabels: {
                 enabled: true,
 //                rotation: -90,
@@ -67,9 +53,10 @@ function InitialiseHRDepartmentChart(departmentData)
         }]
     });
 }
-function InitialiseGenderChart(genderData)
+
+function target_chart(data)
 {
-    Highcharts.chart('gender_count', {
+    Highcharts.chart('target_chart', {
         chart: {
             plotBackgroundColor: null,
             plotBorderWidth: null,
@@ -78,7 +65,7 @@ function InitialiseGenderChart(genderData)
 //            type: 'variablepie'
         },
         title: {
-            text: 'Distribution By Gender'
+            text: 'Issues per Target Population'
         },
         subtitle: {
             text: ''
@@ -102,12 +89,12 @@ function InitialiseGenderChart(genderData)
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
         },
         series: [{
-            name: 'Gender',
+            name: 'Target Population',
 //            colorByPoint: true,
 //            minPointSize: 10,
 //            innerSize: '20%',
 //            zMin: 0,
-            data: genderData,
+            data: data,
             dataLabels: {
                 enabled: true,
 //                rotation: -90,
@@ -125,9 +112,9 @@ function InitialiseGenderChart(genderData)
     });
 }
 
-function InitialiseTypeChart(typeData)
+function source_chart(typeData)
 {
-    Highcharts.chart('type_count', {
+    Highcharts.chart('source_chart', {
         chart: {
             plotBackgroundColor: null,
             plotBorderWidth: null,
@@ -135,7 +122,7 @@ function InitialiseTypeChart(typeData)
             type: 'pie'
         },
         title: {
-            text: 'International/National Distribution'
+            text: 'Issues per Source'
         },
         subtitle: {
             text: ''
@@ -159,7 +146,7 @@ function InitialiseTypeChart(typeData)
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
         },
         series: [{
-            name: 'Type',
+            name: 'Source',
             colorByPoint: true,
             data: typeData,
             dataLabels: {
