@@ -33,6 +33,6 @@ class KnowledgeTrackerTable(BootstrapTable):
             'answer',
             'validated_by_ttc_column',
             'validated_by_moph_column',
-            'dissemination_method',
+            'dissemination_method_list',
             'link_column',
         )

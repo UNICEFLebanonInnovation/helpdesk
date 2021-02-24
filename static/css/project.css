@@ -24,3 +24,9 @@ ul.ui-widget-content.ui-autocomplete {
     float: right;
     margin-left: 10px;
 }
+
+.app-page-title {
+    padding-bottom: 0 !important;
+    padding-top: 0 !important;
+}
+    

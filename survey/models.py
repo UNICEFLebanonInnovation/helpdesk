@@ -450,6 +450,11 @@ class KnowledgeTracker(TimeStampedModel):
     def reported_organization(self):
         return self.reported_by.last_name
 
+    def dissemination_method_list(self):
+        if self.dissemination_method:
+            return ", ".join(self.dissemination_method)
+        return ''
+
     def save(self, **kwargs):
         if not self.issue_number:
             objects = list(KnowledgeTracker.objects.all().order_by('created').values_list('id', flat=True))
