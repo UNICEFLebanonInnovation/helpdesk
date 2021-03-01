@@ -421,7 +421,7 @@ class KnowledgeTracker(TimeStampedModel):
                     ('Official External Communication', 'Official External Communication'),
                 ),
             max_length=100,
-            blank=False,
+            blank=True,
             null=True,
         ),
         blank=True,

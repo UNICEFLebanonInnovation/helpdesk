@@ -245,9 +245,9 @@ class KnowledgeTrackerAdmin(ExportActionModelAdmin, VersionAdmin):
         'target_population',
         'source',
         'answer',
-        'validated_by_technical_committee',
-        'validated_by_moph',
-        'dissemination_method',
+        # 'validated_by_technical_committee',
+        # 'validated_by_moph',
+        # 'dissemination_method',
         'relevant_link',
     )
     readonly_fields = (
