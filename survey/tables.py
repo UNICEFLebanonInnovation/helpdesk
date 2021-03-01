@@ -24,7 +24,7 @@ class KnowledgeTrackerTable(BootstrapTable):
         model = KnowledgeTracker
         fields = (
             'issue_number',
-            'reported_by',
+            'reported_by__last_name',
             'issue_category',
             'issue_description',
             'frequency',

@@ -81,7 +81,7 @@ class KnowledgeTrackerChartsView(TemplateView):
             .values('target_population') \
             .annotate(name=F('target_population'), y=Count('target_population')) \
             .order_by('target_population') \
-            .values('target_population', 'y')
+            .values('name', 'y')
 
         target_data = dumps(target_data)
 
@@ -89,7 +89,7 @@ class KnowledgeTrackerChartsView(TemplateView):
             .values('source') \
             .annotate(name=F('source'), y=Count('source')) \
             .order_by('source') \
-            .values('source', 'y')
+            .values('name', 'y')
 
         source_data = dumps(source_data)
 

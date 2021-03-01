@@ -1,3 +1,5 @@
 {% load static i18n %}
 
+{% if record.relevant_link %}
 <a href="{{ record.relevant_link }}" target="_blank">Link</a>
+{% endif %}
