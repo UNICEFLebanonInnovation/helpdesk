@@ -15,9 +15,10 @@
 
                 <!--<input type="submit" value="{% trans 'Search' %}"/>-->
                 {% if show_result_count %}
-                <button href="/survey/knowledgetracker/" class="bln btn-warning" style="padding: 0.10rem 1rem;
-    font-size: 1.143rem; margin: 5px;
-    border-radius: 0.3rem;">Cancel</button>
+                <a href="/survey/knowledgetracker/?" class="bln btn-warning" style="    padding: 0.40rem 1.5rem;
+    font-size: 1.143rem;
+    margin: 5px;
+    border-radius: 0.3rem;">Cancel</a>
                 {% endif %}
                 {% if show_result_count %}
                     <span class="small quiet">{% blocktrans count counter=cl.result_count %}{{ counter }} result
@@ -34,4 +35,15 @@
             </div>
         </form>
     </div>
+<script>
+
+$(document).ready(function(){
+
+    $('.search-filter').change(function(e){
+        $('#changelist-search').submit();
+    });
+
+});
+
+</script>
 {% endif %}

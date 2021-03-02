@@ -199,6 +199,15 @@ class KnowledgeTrackerResource(resources.ModelResource):
         export_order = fields
 
 
+def custom_titled_filter(title):
+    class Wrapper(admin.FieldListFilter):
+        def __new__(cls, *args, **kwargs):
+            instance = admin.FieldListFilter.create(*args, **kwargs)
+            instance.title = title
+            return instance
+    return Wrapper
+
+
 @admin.register(KnowledgeTracker)
 class KnowledgeTrackerAdmin(ExportActionModelAdmin, VersionAdmin):
     resource_class = KnowledgeTrackerResource
@@ -218,8 +227,9 @@ class KnowledgeTrackerAdmin(ExportActionModelAdmin, VersionAdmin):
             'relevant_link',
         )
     date_hierarchy = 'created'
+
     list_filter = (
-        'reported_by',
+        ('reported_by__last_name', custom_titled_filter('Reported By')),
         'issue_category',
         'target_population',
         'source',
@@ -228,7 +238,7 @@ class KnowledgeTrackerAdmin(ExportActionModelAdmin, VersionAdmin):
         # DisseminationMethodFilter
     )
     suit_list_filter_horizontal = (
-        'reported_by',
+        'reported_by__last_name',
         'issue_category',
         'target_population',
         'source',
@@ -238,16 +248,16 @@ class KnowledgeTrackerAdmin(ExportActionModelAdmin, VersionAdmin):
     )
     search_fields = (
         'issue_number',
-        'reported_by',
+        # 'reported_by',
         'issue_category',
         'issue_description',
-        'frequency',
+        # 'frequency',
         'target_population',
         'source',
         'answer',
         # 'validated_by_technical_committee',
         # 'validated_by_moph',
-        # 'dissemination_method',
+        'dissemination_method',
         'relevant_link',
     )
     readonly_fields = (
@@ -281,6 +291,18 @@ class KnowledgeTrackerAdmin(ExportActionModelAdmin, VersionAdmin):
         if request.user.is_superuser:
             return True
         return False
+
+    def has_delete_permission(self, request, obj=None):
+        if request.user.is_superuser:
+            return True
+        return False
+
+    def has_change_permission(self, request, obj=None):
+        if has_group(request.user, 'EDITOR'):
+            if obj and obj.created_by == request.user:
+                return True
+            return False
+        return True
 
     def get_readonly_fields(self, request, obj=None):
 
@@ -325,7 +347,7 @@ class KnowledgeTrackerAdmin(ExportActionModelAdmin, VersionAdmin):
 
         super(KnowledgeTrackerAdmin, self).save_model(request, obj, form, change)
 
-    def get_queryset(self, request):
-        if has_group(request.user, 'EDITOR'):
-            return KnowledgeTracker.objects.filter(created_by=request.user)
-        return KnowledgeTracker.objects.all()
+    # def get_queryset(self, request):
+    #     if has_group(request.user, 'EDITOR'):
+    #         return KnowledgeTracker.objects.filter(created_by=request.user)
+    #     return KnowledgeTracker.objects.all()

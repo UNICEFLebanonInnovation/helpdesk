@@ -35,7 +35,11 @@
     }
 </style>
 
-<div class="app-page-title"><div class="page-title-wrapper"><div class="page-title-heading"><div class="page-title-icon"><i class="icon pe-7s-graph icon-gradient bg-ripe-malin"></i></div><div>
+<div class="app-page-title"><div class="page-title-wrapper">
+    <div class="page-title-heading">
+        <!--<div class="page-title-icon"><i class="icon pe-7s-graph icon-gradient bg-ripe-malin"></i></div>-->
+    <img src="{% static 'images/logo.png' %}" style="width: 55px; height: 55px;margin-right: 10px;"/>
+    <div>
     The Knowledge Tracker - Dashboard
     <div class="page-title-subheading">
                                     </div>
@@ -63,18 +67,18 @@
 
 
 <div class="container">
-                            <ul class="tabs-animated-shadow tabs-animated nav nav-justified tabs-rounded-lg">
-                                <li class="nav-item">
-                                    <a role="tab" class="nav-link active show" href="{% url 'dashboard_kmtracker' %}" aria-selected="true">
-                                        <span>Charts</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a role="tab" class="nav-link" href="{% url 'list_kmtracker' %}" aria-selected="false">
-                                        <span>List</span>
-                                    </a>
-                                </li>
-                            </ul>
+                            <!--<ul class="tabs-animated-shadow tabs-animated nav nav-justified tabs-rounded-lg">-->
+                                <!--<li class="nav-item">-->
+                                    <!--<a role="tab" class="nav-link active show" href="{% url 'dashboard_kmtracker' %}" aria-selected="true">-->
+                                        <!--<span>Charts</span>-->
+                                    <!--</a>-->
+                                <!--</li>-->
+                                <!--<li class="nav-item">-->
+                                    <!--<a role="tab" class="nav-link" href="{% url 'list_kmtracker' %}" aria-selected="false">-->
+                                        <!--<span>List</span>-->
+                                    <!--</a>-->
+                                <!--</li>-->
+                            <!--</ul>-->
 </div>
 
 <div class="row">
