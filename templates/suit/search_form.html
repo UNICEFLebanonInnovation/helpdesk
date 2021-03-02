@@ -35,12 +35,70 @@
             </div>
         </form>
     </div>
+<style>
+
+.badge-dot-lg {
+    width: 10px;
+    height: 10px;
+}
+.badge-dot {
+    text-indent: -999em;
+    padding: 0;
+    border: transparent solid 1px;
+    border-radius: 30px;
+    min-width: 2px;
+}
+.badge-primary {
+    color: #fff;
+    background-color: #3f6ad8;
+}
+.mb-2, .my-2 {
+    margin-bottom: .5rem !important;
+}
+.mr-2, .mx-2 {
+    margin-right: .5rem !important;
+}
+.badge {
+    display: inline-block;
+    padding: .25em .4em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25rem;
+}
+td.field-frequency {
+    cursor: pointer;
+}
+
+</style>
 <script>
 
 $(document).ready(function(){
 
     $('.search-filter').change(function(e){
         $('#changelist-search').submit();
+    });
+
+    $('.field-frequency').each(function(i, val){
+        var item = $(this);
+        var input = item.find('input');
+        input.hide();
+        var frequency = parseInt(input.val());
+
+        for (i = 0; i < frequency; i++) {
+          item.append('<div class="mb-2 mr-2 badge badge-dot badge-dot-lg badge-primary">Primary</div>');
+        }
+    });
+
+    $('.field-frequency').dblclick(function(e){
+        var item = $(this);
+        item.append('<div class="mb-2 mr-2 badge badge-dot badge-dot-lg badge-primary">Primary</div>');
+        var input = item.find('input');
+        var frequency = parseInt(input.val());
+        input.val(frequency + 1);
     });
 
 });

@@ -264,6 +264,10 @@ class KnowledgeTrackerAdmin(ExportActionModelAdmin, VersionAdmin):
         'issue_number',
     )
 
+    list_editable = [
+        'frequency',
+    ]
+
     fieldsets = [
         ('Issue details', {
             'fields': [
