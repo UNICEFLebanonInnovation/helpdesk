@@ -97,6 +97,46 @@
 
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="{% static 'js/project.js' %}" type="text/javascript"></script>
+<style>
+
+.badge-dot-lg {
+    width: 10px;
+    height: 10px;
+}
+.badge-dot {
+    text-indent: -999em;
+    padding: 0;
+    border: transparent solid 1px;
+    border-radius: 30px;
+    min-width: 2px;
+}
+.badge-primary {
+    color: #fff;
+    background-color: #3f6ad8;
+}
+.mb-2, .my-2 {
+    margin-bottom: .5rem !important;
+}
+.mr-2, .mx-2 {
+    margin-right: .5rem !important;
+}
+.badge {
+    display: inline-block;
+    padding: .25em .4em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25rem;
+}
+td.field-frequency {
+    cursor: pointer;
+}
+
+</style>
 
 {% endblock %}
 
