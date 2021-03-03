@@ -100,7 +100,7 @@ function target_chart(data)
 //                rotation: -90,
                 color: '#FFFFFF',
                 align: 'right',
-                format: '{point.y}',
+                format: '{point.y} - <b>{point.percentage:.1f}%</b>',
 //                format: '{point.y:.1f}', // one decimal
 //                y: 10, // 10 pixels down from the top
                 style: {
@@ -154,7 +154,7 @@ function source_chart(typeData)
 //                rotation: -90,
                 color: '#FFFFFF',
                 align: 'right',
-                format: '{point.y}', // one decimal
+                format: '{point.y} - <b>{point.percentage:.1f}%</b>', // one decimal
 //                y: 10, // 10 pixels down from the top
                 style: {
                     fontSize: '13px',
