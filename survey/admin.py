@@ -301,12 +301,12 @@ class KnowledgeTrackerAdmin(ExportActionModelAdmin, VersionAdmin):
             return True
         return False
 
-    def has_change_permission(self, request, obj=None):
-        if has_group(request.user, 'EDITOR'):
-            if obj and obj.created_by == request.user:
-                return True
-            return False
-        return True
+    # def has_change_permission(self, request, obj=None):
+    #     if has_group(request.user, 'EDITOR'):
+    #         if obj and obj.created_by == request.user:
+    #             return True
+    #         return False
+    #     return True
 
     def get_readonly_fields(self, request, obj=None):
 
@@ -315,7 +315,6 @@ class KnowledgeTrackerAdmin(ExportActionModelAdmin, VersionAdmin):
             'reported_by',
             'issue_category',
             'issue_description',
-            'frequency',
             'target_population',
             'source',
             'answer',
@@ -331,14 +330,29 @@ class KnowledgeTrackerAdmin(ExportActionModelAdmin, VersionAdmin):
             ]
 
         if has_group(request.user, 'EDITOR'):
-            fields = [
-                'issue_number',
-                'answer',
-                'validated_by_technical_committee',
-                'validated_by_moph',
-                'dissemination_method',
-                'relevant_link',
-            ]
+            if obj and obj.created_by == request.user:
+                fields = [
+                    'issue_number',
+                    'answer',
+                    'validated_by_technical_committee',
+                    'validated_by_moph',
+                    'dissemination_method',
+                    'relevant_link',
+                ]
+            else:
+                fields = [
+                    'issue_number',
+                    'reported_by',
+                    'issue_category',
+                    'issue_description',
+                    'target_population',
+                    'source',
+                    'answer',
+                    'validated_by_technical_committee',
+                    'validated_by_moph',
+                    'dissemination_method',
+                    'relevant_link',
+                ]
 
         return fields
 
