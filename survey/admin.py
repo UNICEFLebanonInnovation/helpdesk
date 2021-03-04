@@ -330,23 +330,33 @@ class KnowledgeTrackerAdmin(ExportActionModelAdmin, VersionAdmin):
             ]
 
         if has_group(request.user, 'EDITOR'):
-            if obj and obj.created_by == request.user:
-                fields = [
-                    'issue_number',
-                    'answer',
-                    'validated_by_technical_committee',
-                    'validated_by_moph',
-                    'dissemination_method',
-                    'relevant_link',
-                ]
+            if obj:
+                if obj.created_by == request.user:
+                    fields = [
+                        'issue_number',
+                        'answer',
+                        'validated_by_technical_committee',
+                        'validated_by_moph',
+                        'dissemination_method',
+                        'relevant_link',
+                    ]
+                else:
+                    fields = [
+                        'issue_number',
+                        'reported_by',
+                        'issue_category',
+                        'issue_description',
+                        'target_population',
+                        'source',
+                        'answer',
+                        'validated_by_technical_committee',
+                        'validated_by_moph',
+                        'dissemination_method',
+                        'relevant_link',
+                    ]
             else:
                 fields = [
                     'issue_number',
-                    'reported_by',
-                    'issue_category',
-                    'issue_description',
-                    'target_population',
-                    'source',
                     'answer',
                     'validated_by_technical_committee',
                     'validated_by_moph',
