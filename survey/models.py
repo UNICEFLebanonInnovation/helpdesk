@@ -373,7 +373,7 @@ class KnowledgeTracker(TimeStampedModel):
         blank=False,
         help_text='200 characters max'
     )
-    frequency = models.IntegerField('Frequency', null=True, blank=True, default=1)
+    frequency = models.IntegerField('Frequency', null=True, blank=True, default=0)
     target_population = models.CharField(
         'Target Population',
         max_length=100,
