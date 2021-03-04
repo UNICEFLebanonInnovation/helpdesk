@@ -29,7 +29,7 @@ class KnowledgeTrackerForm(forms.ModelForm):
                 ('Official External Communication', 'Official External Communication'),
             ),
         widget=forms.CheckboxSelectMultiple,
-        required=True,
+        required=False,
     )
 
     class Meta:
