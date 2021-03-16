@@ -27,9 +27,11 @@ class KnowledgeTrackerTable(BootstrapTable):
             'reported_by__last_name',
             'issue_category',
             'issue_description',
+            'source',
+            'source_number_percentage',
             'frequency',
             'target_population',
-            'source',
+            'other_population_considerations'
             'answer',
             'validated_by_ttc_column',
             'validated_by_moph_column',

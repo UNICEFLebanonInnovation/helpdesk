@@ -364,6 +364,11 @@ class KnowledgeTracker(TimeStampedModel):
             ('Trust issue', 'Trust issue'),
             ('Transparency', 'Transparency'),
             ('General Concern', 'General Concern'),
+            ('Pre-registartion', 'Pre-registartion'),
+            ('Vaccine technical questions', 'Vaccine technical questions'),
+            ('Vaccien quality', 'Vaccien quality'),
+            ('Vaccine side effects', 'Vaccine side effects'),
+            ('Access/Service Provision', 'Access/Service Provision'),
         ),
         blank=False, null=True,
     )
@@ -371,8 +376,23 @@ class KnowledgeTracker(TimeStampedModel):
         'Issue description',
         null=True,
         blank=False,
-        help_text='200 characters max'
+        help_text='40 characters max'
     )
+    source = models.CharField(
+        'Source',
+        max_length=100,
+        choices=(
+            ('All', 'All'),
+            ('Poll/Study', 'Poll/Study'),
+            ('Training', 'Training'),
+            ('Community Activity', 'Community Activity'),
+            ('Media', 'Media'),
+            ('Social Media', 'Social Media'),
+        ),
+        blank=False, null=True,
+    )
+    source_number_percentage = models.IntegerField('Number Percentage', null=True, blank=True, default=0)
+
     frequency = models.IntegerField('Frequency', null=True, blank=True, default=0)
     target_population = models.CharField(
         'Target Population',
@@ -389,16 +409,24 @@ class KnowledgeTracker(TimeStampedModel):
         ),
         blank=False, null=True,
     )
-    source = models.CharField(
-        'Source',
+    other_population_considerations = models.CharField(
+        'Other Population Considerations',
         max_length=100,
         choices=(
             ('All', 'All'),
-            ('Poll/Study', 'Poll/Study'),
-            ('Training', 'Training'),
-            ('Community Activity', 'Community Activity'),
-            ('Media', 'Media'),
-            ('Social Media', 'Social Media'),
+            ('Elderly', 'Elderly'),
+            ('Pregnant Women', 'Pregnant Women'),
+            ('Breasfeeding Women', 'Breasfeeding Women'),
+            ('People with disabilities', 'People with disabilities'),
+            ('Under 18 ', 'Under 18'),
+            ('People with chronic deseases', 'People with chronic deseases'),
+            ('Social mobilizers: scouts, youth groups, women group, etc...', 'Social mobilizers: scouts, youth groups, women group, etc...'),
+            ('Municipal staff / Crisis cells', 'Municipal staff / Crisis cells'),
+            ('Religious Entities', 'Religious Entities'),
+            ('Frontline workers', 'Frontline workers'),
+            ('Teachers', 'Teachers'),
+            ('NGOs', 'NGOs'),
+            ('CBOs', 'CBOs'),
         ),
         blank=False, null=True,
     )
