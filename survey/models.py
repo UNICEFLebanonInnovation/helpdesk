@@ -395,20 +395,19 @@ class KnowledgeTracker(TimeStampedModel):
 
     frequency = models.IntegerField('Frequency', null=True, blank=True, default=0)
     target_population = models.CharField(
-        'Target Population',
+        'Population Nationality',
         max_length=100,
         choices=(
             ('All', 'All'),
             ('Lebanese', 'Lebanese'),
-            ('Foreigner', 'Foreigner'),
             ('Refugee', 'Refugee'),
-            ('Elderly', 'Elderly'),
-            ('Pregnant', 'Pregnant'),
-            ('People with disabilities', 'People with disabilities'),
-            ('Under 18', 'Under 18'),
+            ('Migrants workers', 'Migrants workers'),
+            ('Stateless population', 'Stateless population'),
+            ('Other Nationality', 'Other Nationality'),
         ),
         blank=False, null=True,
     )
+
     other_population_considerations = models.CharField(
         'Other Population Considerations',
         max_length=100,
@@ -428,13 +427,13 @@ class KnowledgeTracker(TimeStampedModel):
             ('NGOs', 'NGOs'),
             ('CBOs', 'CBOs'),
         ),
-        blank=False, null=True,
+        blank=True, null=True,
     )
 
     answer = models.TextField(
         'Answer/Clarification',
         null=True, blank=True,
-        help_text='200 characters max'
+        help_text='50 characters max'
     )
 
     validated_by_technical_committee = models.BooleanField('Validated by Technical Committee',
@@ -445,7 +444,7 @@ class KnowledgeTracker(TimeStampedModel):
             choices=(
                     ('Community Activity', 'Community Activity'),
                     ('Social Media', 'Social Media'),
-                    ('Training', 'Training'),
+                    # ('Training', 'Training'),
                     ('Official External Communication', 'Official External Communication'),
                 ),
             max_length=100,

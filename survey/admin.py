@@ -29,7 +29,7 @@ class DisseminationMethodFilter(admin.SimpleListFilter):
         return (
                     ('Community Activity', 'Community Activity'),
                     ('Social Media', 'Social Media'),
-                    ('Training', 'Training'),
+                    # ('Training', 'Training'),
                     ('Official External Communication', 'Official External Communication'),
                 )
 
@@ -373,6 +373,34 @@ class KnowledgeTrackerAdmin(ExportActionModelAdmin, VersionAdmin):
                 ]
 
         return fields
+        if has_group(request.user, 'UNICEF'):
+            if obj:
+                fields = [
+                    'issue_number',
+                    'reported_by',
+                    'issue_category',
+                    'issue_description',
+                    'source',
+                    'source_number_percentage',
+                    'target_population',
+                    'other_population_considerations' ,
+                    'answer',
+                    'validated_by_technical_committee',
+                    'validated_by_moph',
+                    'dissemination_method',
+                    'relevant_link',
+                ]
+            else:
+                fields = [
+                    'issue_number',
+                    'answer',
+                    'validated_by_technical_committee',
+                    'validated_by_moph',
+                    'dissemination_method',
+                    'relevant_link',
+                ]
+        return fields
+
 
     def save_model(self, request, obj, form, change):
         if not change:

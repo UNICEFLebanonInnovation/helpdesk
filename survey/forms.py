@@ -25,7 +25,7 @@ class KnowledgeTrackerForm(forms.ModelForm):
         choices=(
                 ('Community Activity', 'Community Activity'),
                 ('Social Media', 'Social Media'),
-                ('Training', 'Training'),
+                # ('Training', 'Training'),
                 ('Official External Communication', 'Official External Communication'),
             ),
         widget=forms.CheckboxSelectMultiple,
