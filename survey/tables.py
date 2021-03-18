@@ -20,6 +20,8 @@ class KnowledgeTrackerTable(BootstrapTable):
     validated_by_ttc_column = tables.TemplateColumn(verbose_name='Validated by Technical Committee', orderable=False,
                                                      template_name='django_tables2/validated_by_ttc_column.html')
 
+    template = 'django_tables2/bootstrap.html'
+
     class Meta:
         model = KnowledgeTracker
         fields = (
@@ -36,5 +38,5 @@ class KnowledgeTrackerTable(BootstrapTable):
             'validated_by_ttc_column',
             'validated_by_moph_column',
             'dissemination_method_list',
-            # 'link_column',
+            'link_column',
         )
