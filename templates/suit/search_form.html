@@ -2,9 +2,14 @@
 {% if cl.search_fields %}
     <div id="toolbar">
         <form id="changelist-search" method="get" class="form-inline">
-                <div style="padding-bottom: 10px;">
+                <div style="padding-bottom: 10px;height:50px;">
+                    <div style = "float:left">
                     <label for="searchbar"><img src="{% static "admin/img/search.svg" %}" alt="Search"/></label>
                     <input type="text" size="40" name="{{ search_var }}" value="{{ cl.query }}" id="searchbar" autofocus placeholder="Search by Keywords"/>
+
+                    </div>
+
+                    <div id = "addButtonDIV" style = "float:left;margin-left:200px">xx</div>
                 </div>
             <div><!-- DIV needed for valid HTML -->
                 {% if cl.has_filters %}

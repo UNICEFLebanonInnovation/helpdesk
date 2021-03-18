@@ -355,7 +355,7 @@ class KnowledgeTrackerAdmin(ExportActionModelAdmin, VersionAdmin):
                         'source',
                         'source_number_percentage',
                         'target_population',
-                        'other_population_considerations' ,
+                        'other_population_considerations',
                         'answer',
                         'validated_by_technical_committee',
                         'validated_by_moph',
@@ -372,8 +372,7 @@ class KnowledgeTrackerAdmin(ExportActionModelAdmin, VersionAdmin):
                     'relevant_link',
                 ]
 
-        return fields
-        if has_group(request.user, 'UNICEF'):
+        if has_group(request.user, 'VIEW'):
             if obj:
                 fields = [
                     'issue_number',
@@ -383,7 +382,7 @@ class KnowledgeTrackerAdmin(ExportActionModelAdmin, VersionAdmin):
                     'source',
                     'source_number_percentage',
                     'target_population',
-                    'other_population_considerations' ,
+                    'other_population_considerations',
                     'answer',
                     'validated_by_technical_committee',
                     'validated_by_moph',

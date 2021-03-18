@@ -53,6 +53,7 @@ class KnowledgeTrackerList(
     template_name = 'dashboard_kmtracker.html'
     table = KnowledgeTrackerTable(KnowledgeTracker.objects.all(), order_by='issue_number')
 
+    template_name = 'base_list.html'
     filterset_class = KnowledgeTrackerFilter
 
     def get_queryset(self):

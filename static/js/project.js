@@ -24,19 +24,19 @@ $(document).ready(function(){
     });
 
 
-    $('.field-relevant_link').each(function(i, val){
-        var item = $(this);
-        updateRelevantLink(item);
-    });
+    // $('.field-relevant_link').each(function(i, val){
+    //     var item = $(this);
+    //     updateRelevantLink(item);
+    // });
 
 });
 
 
-function updateRelevantLink(item)
-{
-    var link =item.html();
-    item.html('<a href="'+link+'" target="_blank">'+link+'</a>');
-}
+// function updateRelevantLink(item)
+// {
+//     var link =item.html();
+//     item.html('<a href="'+link+'" target="_blank">'+link+'</a>');
+// }
 
 function add_badge(item, frequency){
 
