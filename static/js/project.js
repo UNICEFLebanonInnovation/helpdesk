@@ -29,7 +29,34 @@ $(document).ready(function(){
     //     updateRelevantLink(item);
     // });
 
+    relocateAddButton();
+    relocateSaveButton();
+
 });
+
+
+function relocateAddButton()
+{
+
+    // var url_loc = window.location;
+    // var n = url_loc.includes("survey/knowledgetracker");
+    // alert(n);
+    $(".object-tools").addClass( "upper-add-button");
+}
+
+function relocateSaveButton()
+{
+    $("input[name='_save']").addClass( "lower-save-button");
+}
+
+function relocateElement(sourceElementLocator, destinationElementLocator)
+{
+    var sourceHTML = $(sourceElementLocator).prop('outerHTML');
+
+    //$(sourceElementLocator).remove();
+
+    $(destinationElementLocator).html(sourceHTML);
+}
 
 
 // function updateRelevantLink(item)
