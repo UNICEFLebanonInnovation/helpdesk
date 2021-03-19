@@ -19,7 +19,7 @@ class ResearchForm(forms.ModelForm):
 
 class KnowledgeTrackerForm(forms.ModelForm):
     validated_by_technical_committee = forms.ChoiceField(widget=forms.RadioSelect, choices=YES_NO_CHOICE, initial=False)
-    validated_by_moph = forms.ChoiceField(widget=forms.RadioSelect, choices=YES_NO_CHOICE, initial=False)
+    # validated_by_moph = forms.ChoiceField(widget=forms.RadioSelect, choices=YES_NO_CHOICE, initial=False)
     dissemination_method = forms.MultipleChoiceField(
         label='Dissemination method',
         choices=(
