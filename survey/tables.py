@@ -15,8 +15,8 @@ class BootstrapTable(tables.Table):
 class KnowledgeTrackerTable(BootstrapTable):
     link_column = tables.TemplateColumn(verbose_name='Related Link', orderable=False,
                                         template_name='django_tables2/link_column.html')
-    validated_by_moph_column = tables.TemplateColumn(verbose_name='Validated by MOPH', orderable=False,
-                                                     template_name='django_tables2/validated_by_moph_column.html')
+    # validated_by_moph_column = tables.TemplateColumn(verbose_name='Validated by MOPH', orderable=False,
+    #                                                  template_name='django_tables2/validated_by_moph_column.html')
     validated_by_ttc_column = tables.TemplateColumn(verbose_name='Validated by Technical Committee', orderable=False,
                                                      template_name='django_tables2/validated_by_ttc_column.html')
 
@@ -36,7 +36,7 @@ class KnowledgeTrackerTable(BootstrapTable):
             'other_population_considerations'
             'answer',
             'validated_by_ttc_column',
-            'validated_by_moph_column',
+            # 'validated_by_moph_column',
             'dissemination_method_list',
             'link_column',
         )

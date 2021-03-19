@@ -192,7 +192,7 @@ class KnowledgeTrackerResource(resources.ModelResource):
             'reported_by',
             'answer',
             'validated_by_technical_committee',
-            'validated_by_moph',
+            # 'validated_by_moph',
             # 'dissemination_method',
             'relevant_link',
         )
@@ -224,7 +224,7 @@ class KnowledgeTrackerAdmin(ExportActionModelAdmin, VersionAdmin):
             'other_population_considerations',
             'answer',
             'validated_by_technical_committee',
-            'validated_by_moph',
+            # 'validated_by_moph',
             'dissemination_method',
             'relevant_link',
         )
@@ -236,7 +236,7 @@ class KnowledgeTrackerAdmin(ExportActionModelAdmin, VersionAdmin):
         'target_population',
         'source',
         'validated_by_technical_committee',
-        'validated_by_moph',
+        # 'validated_by_moph',
         # DisseminationMethodFilter
     )
     suit_list_filter_horizontal = (
@@ -245,7 +245,7 @@ class KnowledgeTrackerAdmin(ExportActionModelAdmin, VersionAdmin):
         'target_population',
         'source',
         'validated_by_technical_committee',
-        'validated_by_moph',
+        # 'validated_by_moph',
         # DisseminationMethodFilter
     )
     search_fields = (
@@ -288,7 +288,7 @@ class KnowledgeTrackerAdmin(ExportActionModelAdmin, VersionAdmin):
             'fields': [
                 'answer',
                 'validated_by_technical_committee',
-                'validated_by_moph',
+                # 'validated_by_moph',
                 'dissemination_method',
                 'relevant_link',
             ]
@@ -325,7 +325,7 @@ class KnowledgeTrackerAdmin(ExportActionModelAdmin, VersionAdmin):
             'other_population_considerations',
             'answer',
             'validated_by_technical_committee',
-            'validated_by_moph',
+            # 'validated_by_moph',
             'dissemination_method',
             'relevant_link',
         ]
@@ -342,7 +342,7 @@ class KnowledgeTrackerAdmin(ExportActionModelAdmin, VersionAdmin):
                         'issue_number',
                         'answer',
                         'validated_by_technical_committee',
-                        'validated_by_moph',
+                        # 'validated_by_moph',
                         'dissemination_method',
                         'relevant_link',
                     ]
@@ -358,7 +358,7 @@ class KnowledgeTrackerAdmin(ExportActionModelAdmin, VersionAdmin):
                         'other_population_considerations',
                         'answer',
                         'validated_by_technical_committee',
-                        'validated_by_moph',
+                        # 'validated_by_moph',
                         'dissemination_method',
                         'relevant_link',
                     ]
@@ -367,7 +367,7 @@ class KnowledgeTrackerAdmin(ExportActionModelAdmin, VersionAdmin):
                     'issue_number',
                     'answer',
                     'validated_by_technical_committee',
-                    'validated_by_moph',
+                    # 'validated_by_moph',
                     'dissemination_method',
                     'relevant_link',
                 ]
@@ -385,7 +385,7 @@ class KnowledgeTrackerAdmin(ExportActionModelAdmin, VersionAdmin):
                     'other_population_considerations',
                     'answer',
                     'validated_by_technical_committee',
-                    'validated_by_moph',
+                    # 'validated_by_moph',
                     'dissemination_method',
                     'relevant_link',
                 ]
@@ -394,7 +394,7 @@ class KnowledgeTrackerAdmin(ExportActionModelAdmin, VersionAdmin):
                     'issue_number',
                     'answer',
                     'validated_by_technical_committee',
-                    'validated_by_moph',
+                    # 'validated_by_moph',
                     'dissemination_method',
                     'relevant_link',
                 ]

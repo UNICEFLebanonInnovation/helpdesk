@@ -67,7 +67,7 @@ class KnowledgeTrackerChartsView(TemplateView):
         instances = KnowledgeTracker.objects.all()
 
         total_validated_by_ttc = instances.filter(validated_by_technical_committee=True).count()
-        total_validated_by_moph = instances.filter(validated_by_moph=True).count()
+        # total_validated_by_moph = instances.filter(validated_by_moph=True).count()
 
         category_data = KnowledgeTracker.objects.all() \
             .values('issue_category') \
@@ -96,7 +96,7 @@ class KnowledgeTrackerChartsView(TemplateView):
         return {
             'total': instances.count(),
             'total_validated_by_ttc': total_validated_by_ttc,
-            'total_validated_by_moph': total_validated_by_moph,
+            # 'total_validated_by_moph': total_validated_by_moph,
             'category_data': category_data,
             'target_data': target_data,
             'source_data': source_data

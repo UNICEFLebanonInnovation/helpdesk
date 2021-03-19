@@ -359,14 +359,14 @@ class KnowledgeTracker(TimeStampedModel):
         'Issue Category',
         max_length=50,
         choices=(
-            ('Rumor', 'Rumor'),
+            # ('Rumor', 'Rumor'),
             ('Question', 'Question'),
             ('Trust issue', 'Trust issue'),
             ('Transparency', 'Transparency'),
             ('General Concern', 'General Concern'),
             ('Pre-registartion', 'Pre-registartion'),
             ('Vaccine technical questions', 'Vaccine technical questions'),
-            ('Vaccien quality', 'Vaccien quality'),
+            ('Vaccine quality', 'Vaccine quality'),
             ('Vaccine side effects', 'Vaccine side effects'),
             ('Access/Service Provision', 'Access/Service Provision'),
         ),
@@ -391,8 +391,13 @@ class KnowledgeTracker(TimeStampedModel):
         ),
         blank=False, null=True,
     )
-    source_number_percentage = models.IntegerField('Number Percentage', null=True, blank=True, default=0)
-
+    source_number_percentage = models.CharField(
+        'Number Percentage',
+        max_length=5,
+        null=True,
+        blank=False,
+        default='%'
+    )
     frequency = models.IntegerField('Frequency', null=True, blank=True, default=0)
     target_population = models.CharField(
         'Population Nationality',
@@ -438,7 +443,7 @@ class KnowledgeTracker(TimeStampedModel):
 
     validated_by_technical_committee = models.BooleanField('Validated by Technical Committee',
                                                            blank=True, default=False)
-    validated_by_moph = models.BooleanField('Validated by MOPH', blank=True, default=False)
+    # validated_by_moph = models.BooleanField('Validated by MOPH', blank=True, default=False)
     dissemination_method = ArrayField(
         models.CharField(
             choices=(

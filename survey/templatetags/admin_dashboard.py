@@ -13,15 +13,15 @@ def get_dashboard_number(name):
     if name == 'total':
         return KnowledgeTracker.objects.all().count()
     if name == 'new':
-        return KnowledgeTracker.objects.filter(answer__isnull=True).count()
+        return KnowledgeTracker.objects.filter(answer__exact='').count()
     if name == 'link':
         return KnowledgeTracker.objects.filter(relevant_link__isnull=False).count()
-    if name == 'validated_by_moph':
-        return KnowledgeTracker.objects.filter(validated_by_moph=True).count()
+    # if name == 'validated_by_moph':
+    #     return KnowledgeTracker.objects.filter(validated_by_moph=True).count()
     if name == 'validated_by_technical_committee':
         return KnowledgeTracker.objects.filter(validated_by_technical_committee=True).count()
-    if name == 'validated_by_both':
-        return KnowledgeTracker.objects.filter(validated_by_moph=True, validated_by_technical_committee=True).count()
+    # if name == 'validated_by_both':
+    #     return KnowledgeTracker.objects.filter(validated_by_moph=True, validated_by_technical_committee=True).count()
 
     return 0
 

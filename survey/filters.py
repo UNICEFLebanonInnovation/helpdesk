@@ -25,5 +25,5 @@ class KnowledgeTrackerFilter(FilterSet):
             'target_population': ['exact'],
             'source': ['exact'],
             'validated_by_technical_committee': ['exact'],
-            'validated_by_moph': ['exact'],
+            # 'validated_by_moph': ['exact'],
         }
