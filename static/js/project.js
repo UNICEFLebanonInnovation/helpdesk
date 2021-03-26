@@ -1,10 +1,10 @@
-$(document).ready(function(){
+$(document).ready(function() {
 
-    $('.search-filter').change(function(e){
+    $('.search-filter').change(function (e) {
         $('#changelist-search').submit();
     });
 
-    $('.field-frequency').each(function(i, val){
+    $('.field-frequency').each(function (i, val) {
         var item = $(this);
         var input = item.find('input');
         input.hide();
@@ -15,7 +15,7 @@ $(document).ready(function(){
         }
     });
 
-    $('.field-frequency').dblclick(function(e){
+    $('.field-frequency').dblclick(function (e) {
         var item = $(this);
         var input = item.find('input');
         var frequency = parseInt(input.val());
@@ -23,11 +23,12 @@ $(document).ready(function(){
         add_badge(item, frequency);
     });
 
-
-    $('.field-relevant_link').each(function(i, val){
-        var item = $(this);
-        updateRelevantLink(item);
-    });
+    if (isTrackerDetailsPage()) {
+        $('.field-relevant_link').each(function (i, val) {
+            var item = $(this);
+            updateRelevantLink(item);
+        });
+    }
 
     relocateAddButton();
     relocateSaveButton();
@@ -38,28 +39,33 @@ $(document).ready(function(){
 function relocateAddButton()
 {
 
-    var url_loc = window.location;
-    alert(url_loc);
+    if (isTrackerDetailsPage())
+    {
+        var originalButton = $(".object-tools");
+        var buttonParent = originalButton.parent();
+        var newButton = originalButton.clone();
 
-    // if (url_loc.toLowerCase().indexOf("survey/knowledgetracker") >= 0)
-    // {
-    //
-    // }
-    $(".object-tools").addClass( "upper-add-button");
+        newButton.addClass( "upper-add-button");
+        newButton.prependTo(buttonParent);
+        originalButton.css('visibility', 'hidden');
+    }
+
+
 }
 
-function relocateSaveButton()
+function isTrackerDetailsPage()
 {
-    $("input[name='_save']").addClass( "lower-save-button");
+
+    var url_loc = window.location.toString();
+
+    return (url_loc.toLowerCase().search(/^.*\/survey\/knowledgetracker(\/*)(\?.*)?$/i)>=0);
+
 }
 
-function relocateElement(sourceElementLocator, destinationElementLocator)
-{
-    var sourceHTML = $(sourceElementLocator).prop('outerHTML');
-
-    //$(sourceElementLocator).remove();
-
-    $(destinationElementLocator).html(sourceHTML);
+function relocateSaveButton() {
+    if (isTrackerDetailsPage()) {
+        $("input[name='_save']").addClass("lower-save-button");
+    }
 }
 
 
