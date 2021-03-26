@@ -22,8 +22,9 @@ class KnowledgeTrackerFilter(FilterSet):
             'answer': ['icontains'],
             'reported_by': ['exact'],
             'issue_category': ['exact'],
-            'target_population': ['exact'],
             'source': ['exact'],
+            'target_population': ['exact'],
+            # 'other_population_considerations': ['exact'],
             'validated_by_technical_committee': ['exact'],
             # 'validated_by_moph': ['exact'],
         }

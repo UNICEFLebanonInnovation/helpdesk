@@ -24,10 +24,10 @@ $(document).ready(function(){
     });
 
 
-    // $('.field-relevant_link').each(function(i, val){
-    //     var item = $(this);
-    //     updateRelevantLink(item);
-    // });
+    $('.field-relevant_link').each(function(i, val){
+        var item = $(this);
+        updateRelevantLink(item);
+    });
 
     relocateAddButton();
     relocateSaveButton();
@@ -38,9 +38,13 @@ $(document).ready(function(){
 function relocateAddButton()
 {
 
-    // var url_loc = window.location;
-    // var n = url_loc.includes("survey/knowledgetracker");
-    // alert(n);
+    var url_loc = window.location;
+    alert(url_loc);
+
+    // if (url_loc.toLowerCase().indexOf("survey/knowledgetracker") >= 0)
+    // {
+    //
+    // }
     $(".object-tools").addClass( "upper-add-button");
 }
 
@@ -59,11 +63,11 @@ function relocateElement(sourceElementLocator, destinationElementLocator)
 }
 
 
-// function updateRelevantLink(item)
-// {
-//     var link =item.html();
-//     item.html('<a href="'+link+'" target="_blank">'+link+'</a>');
-// }
+function updateRelevantLink(item)
+{
+    var link =item.html();
+    item.html('<a href="'+link+'" target="_blank">'+link+'</a>');
+}
 
 function add_badge(item, frequency){
 
