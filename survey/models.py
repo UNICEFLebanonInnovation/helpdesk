@@ -374,9 +374,10 @@ class KnowledgeTracker(TimeStampedModel):
     )
     issue_description = models.TextField(
         'Issue description',
+        max_length=50,
         null=True,
         blank=False,
-        help_text='40 characters max'
+        help_text='50 characters max'
     )
     source = models.CharField(
         'Source',
@@ -386,12 +387,14 @@ class KnowledgeTracker(TimeStampedModel):
             ('Poll/Study', 'Poll/Study'),
             ('Training', 'Training'),
             ('Community Activity', 'Community Activity'),
-            ('Media', 'Media'),
+            ('Media', 'Media (TV, radio, etc.)'),
             ('Social Media', 'Social Media'),
         ),
         blank=False, null=True,
     )
     # source_number_percentage = models.IntegerField('Number Percentage', null=True, blank=True, default=0)
+
+    source_relevant_link = models.URLField('Issue Relevant link', null=True, blank=True)
 
     source_number_percentage = models.CharField(
         'Number Percentage',
@@ -402,13 +405,13 @@ class KnowledgeTracker(TimeStampedModel):
 
     frequency = models.IntegerField('Frequency', null=True, blank=True, default=0)
     target_population = models.CharField(
-        'Population Nationality',
+        'Population / Nationality',
         max_length=100,
         choices=(
             ('All', 'All'),
             ('Lebanese', 'Lebanese'),
             ('Refugee', 'Refugee'),
-            ('Migrants workers', 'Migrants workers'),
+            ('Migrants', 'Migrants'),
             ('Stateless population', 'Stateless population'),
             ('Other Nationality', 'Other Nationality'),
         ),

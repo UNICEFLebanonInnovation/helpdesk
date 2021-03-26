@@ -28,6 +28,11 @@ $(document).ready(function() {
             var item = $(this);
             updateRelevantLink(item);
         });
+
+        $('.field-source_relevant_link').each(function (i, val) {
+            var item = $(this);
+            updateRelevantLink(item);
+        });
     }
 
     relocateAddButton();
