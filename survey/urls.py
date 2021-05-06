@@ -19,4 +19,16 @@ urlpatterns = [
         views.IndexView.as_view(),
         name='dashboard_researches'
     ),
+    url(
+        r'^feedback-select-view/$',
+        view=views.FeedbackSelectView,
+        name='feedback-select-view'
+    ),
+    url(
+        r'^feedback-update-view/$',
+        view=views.FeedbackUpdateView,
+        name='feedback-update-view'
+    ),
+
+
 ]

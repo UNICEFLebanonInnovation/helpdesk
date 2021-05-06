@@ -8,7 +8,8 @@ from import_export.admin import ImportExportModelAdmin, ExportActionModelAdmin
 from survey.models import LASER, Map, Research, KnowledgeTracker
 from survey.forms import ResearchForm, KnowledgeTrackerForm
 from .utils import has_group
-
+from django.utils.safestring import mark_safe
+from django.template.loader import render_to_string
 
 class DisseminationMethodFilter(admin.SimpleListFilter):
     # Human-readable title which will be displayed in the
@@ -194,7 +195,7 @@ class KnowledgeTrackerResource(resources.ModelResource):
             'validated_by_technical_committee',
             # 'validated_by_moph',
             # 'dissemination_method',
-            'relevant_link',
+            'relevant_link'
         )
         export_order = fields
 
@@ -214,6 +215,7 @@ class KnowledgeTrackerAdmin(ExportActionModelAdmin, VersionAdmin):
     form = KnowledgeTrackerForm
     list_display = (
             'issue_number',
+            'feedback',
             'reported_organization',
             'issue_category',
             'issue_description',
@@ -227,8 +229,15 @@ class KnowledgeTrackerAdmin(ExportActionModelAdmin, VersionAdmin):
             'validated_by_technical_committee',
             # 'validated_by_moph',
             'dissemination_method',
-            'relevant_link',
+            'relevant_link'
         )
+
+    def feedback(self, obj):
+        t = render_to_string("django_tables2/feedback_column.html", {'id': str(obj.id)})
+        return mark_safe(t)
+
+    feedback.allow_tags = True
+
     date_hierarchy = 'created'
 
     list_filter = (

@@ -1,3 +1,5 @@
+
+
 $(document).ready(function() {
 
     $('.search-filter').change(function (e) {
@@ -23,6 +25,56 @@ $(document).ready(function() {
         add_badge(item, frequency);
     });
 
+    $(document).on('click', '.close', function(){
+        $("#feedbackModal").hide();
+    });
+    $(document).on('click', '.btn-close', function(){
+        $("#feedbackModal").hide();
+    });
+
+    $(document).on('click', '.btn-save', function(){
+        var record_id= $('#record_id').val();
+        var feedback_text= $('#feedback_text').val();
+        // var feedback_status= $("input[type='radio'][name='feedback_status']:checked").val();
+        // alert(feedback_status);
+        requestHeaders = getHeader();
+        requestHeaders["content-type"] = 'application/x-www-form-urlencoded';
+
+        $.ajax({
+            type: "POST",
+            url: '/survey/feedback-update-view/',
+            data:{
+                record_id:record_id,
+                feedback_text:feedback_text,
+                feedback_status: 'completed',
+                feedback_color: 'red'
+            },
+            cache: false,
+            async: false,
+            headers: requestHeaders,
+            dataType: 'json',
+            success: function (response) {
+
+                if(response.result)
+                {
+                    $("#feedbackModal").hide();
+                }
+                else
+                {
+                    alert("error saving the feedback ");
+                }
+
+                console.log(response);
+                },
+                error: function(response) {
+                    console.log(response);
+                }
+
+    });
+
+
+    });
+
     if (isTrackerDetailsPage()) {
         $('.field-relevant_link').each(function (i, val) {
             var item = $(this);
@@ -40,6 +92,49 @@ $(document).ready(function() {
 
 });
 
+function showFeedbackPopup(recordID)
+{
+    $('#record_id').val(recordID);
+    requestHeaders = getHeader();
+    requestHeaders["content-type"] = 'application/x-www-form-urlencoded';
+
+    $.ajax({
+        type: "POST",
+        url: '/survey/feedback-select-view/',
+        data:{
+            record_id:recordID
+        },
+        cache: false,
+        async: false,
+        headers: requestHeaders,
+        dataType: 'json',
+        success: function (response) {
+            if(response.result)
+            {
+                feedback = response;
+                feedback_status = feedback.feedback_status;
+                feedback_text = feedback.feedback_text;
+                feedback_color = feedback.feedback_color;
+                // $('input[name="initiated"]').prop('checked', true);
+                // $(':input[type="radio"][name="initiated"]').prop('checked', true);
+                // $('input[name=feedback_status]').val('initiated').checked(true);
+
+                $('#feedback_text').val('testupdate');
+                $('#record_id').val(recordID);
+
+
+
+            }
+
+            console.log(response);
+            },
+            error: function(response) {
+                console.log(response);
+            }
+
+    });
+    $("#feedbackModal").show();
+}
 
 function relocateAddButton()
 {
@@ -106,3 +201,19 @@ function add_badge(item, frequency){
         console.log(badge);
         item.append(badge);
 }
+
+function getHeader()
+ {
+
+     var csrfHeader = $("[name=csrfmiddlewaretoken]").val();
+
+     var header = {
+         // 'Authorization': 'Token '+user_token,
+         // 'HTTP_REFERER': href_full_path,
+         // 'Cookie': 'token=Token '+user_token,
+         'X-CSRFToken': csrfHeader
+     };
+
+     return header;
+}
+

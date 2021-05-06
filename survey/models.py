@@ -468,6 +468,32 @@ class KnowledgeTracker(TimeStampedModel):
 
     relevant_link = models.URLField('Relevant link', null=True, blank=True)
 
+    feedback_status = models.CharField(
+        'Feedback from Partners',
+        max_length=50,
+        choices=(
+            ('not started', 'Not Started'),
+            ('initiated', 'Initiated'),
+            ('completed', 'Completed'),
+        ),
+        blank=True, null=True,
+    )
+
+    feedback_text = models.TextField(
+        'Feedback Text',
+        null=True,
+        blank=True,
+    )
+    feedback_color = models.CharField(
+        'Feedback color',
+        max_length=50,
+        choices=(
+            ('grey', 'Grey'),
+            ('yellow', 'Yellow'),
+            ('green', 'Green'),
+        ),
+        blank=True, null=True,
+    )
     created_by = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         blank=False, null=True,

@@ -8,7 +8,8 @@ from django_tables2.export.views import ExportMixin
 from .models import Map, Research, KnowledgeTracker
 from .tables import  KnowledgeTrackerTable
 from .filters import KnowledgeTrackerFilter
-
+from django.http import HttpResponse, JsonResponse
+from django.db.models import F
 
 class IndexView(TemplateView):
     template_name = 'index.html'
@@ -101,3 +102,53 @@ class KnowledgeTrackerChartsView(TemplateView):
             'target_data': target_data,
             'source_data': source_data
         }
+
+
+def FeedbackSelectView(request):
+    feedback_id = request.POST['record_id']
+
+    result = {'result': False}
+
+    try:
+
+        qs = KnowledgeTracker.objects.get(id=feedback_id)
+
+        if qs:
+            result['result'] = True
+            result['feedback_status'] = qs.feedback_status
+            result['feedback_text'] = qs.feedback_text
+            result['feedback_color'] = qs.feedback_color
+
+
+    except KnowledgeTracker.DoesNotExist:
+        pass
+
+
+    return JsonResponse(result)
+
+
+
+def FeedbackUpdateView(request):
+
+    feedback_id = request.POST['record_id']
+    feedback_status = request.POST['feedback_status']
+    feedback_text = request.POST['feedback_text']
+    feedback_color = request.POST['feedback_color']
+
+    result = {'result': False}
+
+    try:
+
+        feedback = KnowledgeTracker.objects.get(id=feedback_id)
+        feedback.feedback_status = feedback_status
+        feedback.feedback_text = feedback_text
+        feedback.feedback_color = feedback_color
+        feedback.save()
+
+        result['result'] = True
+
+
+    except KnowledgeTracker.DoesNotExist:
+        pass
+
+    return JsonResponse(result)
