@@ -35,8 +35,8 @@ $(document).ready(function() {
     $(document).on('click', '.btn-save', function(){
         var record_id= $('#record_id').val();
         var feedback_text= $('#feedback_text').val();
-        // var feedback_status= $("input[type='radio'][name='feedback_status']:checked").val();
-        // alert(feedback_status);
+
+        var feedback_status = $("input[name='status_options']:checked").val();
         requestHeaders = getHeader();
         requestHeaders["content-type"] = 'application/x-www-form-urlencoded';
 
@@ -46,7 +46,7 @@ $(document).ready(function() {
             data:{
                 record_id:record_id,
                 feedback_text:feedback_text,
-                feedback_status: 'completed',
+                feedback_status: feedback_status,
                 feedback_color: 'red'
             },
             cache: false,
@@ -115,15 +115,10 @@ function showFeedbackPopup(recordID)
                 feedback_status = feedback.feedback_status;
                 feedback_text = feedback.feedback_text;
                 feedback_color = feedback.feedback_color;
-                // $('input[name="initiated"]').prop('checked', true);
-                // $(':input[type="radio"][name="initiated"]').prop('checked', true);
-                // $('input[name=feedback_status]').val('initiated').checked(true);
 
-                $('#feedback_text').val('testupdate');
+                $("input[name='status_options'][value='"+feedback_status+"']").prop('checked', true);
+                $('#feedback_text').val(feedback_text);
                 $('#record_id').val(recordID);
-
-
-
             }
 
             console.log(response);

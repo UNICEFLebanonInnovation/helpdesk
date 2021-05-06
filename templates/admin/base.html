@@ -97,7 +97,7 @@
 
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-<script src="{% static 'js/project.js' %}?v=96" type="text/javascript"></script>
+<script src="{% static 'js/project.js' %}?v=99" type="text/javascript"></script>
 
 <style>
 
@@ -267,20 +267,20 @@ td.field-frequency {
                 </button>
             </div>
             <div class="modal-body">
-                <p>Some text in the Modal..</p>
+
                 <input type="hidden" id="record_id" name="record_id" >
 
                 <label for="feedback_text">Feedback Text:</label>
                 <input type="text" id="feedback_text" name="feedback_text">
                 <br><br>
 
-                <label >Status:</label>&nbsp;&nbsp;
-                <input type="radio" id="not_started" name="feedback_status" value="not started">&nbsp;&nbsp;
-                <label for="not_started">Not Started</label>
-                <input type="radio" id="initiated" name="feedback_status" value="initiated">&nbsp;&nbsp;
-                <label for="initiated">Initiated</label>
-                <input type="radio" id="completed" name="feedback_status" value="completed">&nbsp; &nbsp;
-                <label for="completed">Completed</label>
+                <div id="feedback">
+                    <label >Status:</label>&nbsp;&nbsp;
+                    <input type="radio" name="status_options" value="not started"> Not Started &nbsp;&nbsp;
+                    <input type="radio" name="status_options" value="initiated"> Initiated &nbsp;&nbsp;
+                    <input type="radio" name="status_options" value="completed"> Completed &nbsp;&nbsp;
+                </div>
+
                 <br><br>
 
             </div>
