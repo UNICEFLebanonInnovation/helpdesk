@@ -70,8 +70,8 @@ $(document).ready(function() {
 
                 if(response.result)
                 {
-                    item= "feedback"+record_id
-                    $("#feedback'"+record_id+"'").css("background-color", feedback_color);
+                    var item= "#feedback"+record_id;
+                    $(item).css("background-color", feedback_color);
                     $("#feedbackModal").hide();
                 }
                 else

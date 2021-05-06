@@ -155,6 +155,9 @@ td.field-frequency {
   background-color: #bbb;
   border-radius: 50%;
   display: block;
+    padding: 5px;
+    padding-left: 10px;
+    font-weight: bold;
 }
 
 /* The Modal (background) */
@@ -266,34 +269,32 @@ td.field-frequency {
 {% block footer %}
 
 <div id="feedbackModal" class="modal" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
+    <div class="modal-dialog-" role="document">
+        <div class="modal-content ">
             <div class="modal-header">
                 <h5 class="modal-title">Feedback</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body ">
 
                 <input type="hidden" id="record_id" name="record_id" >
 
-                <label for="feedback_text">Feedback Text:</label>
-                <input type="text" id="feedback_text" name="feedback_text">
-                <br><br>
-
-                <div id="feedback">
-                    <label >Status:</label>&nbsp;&nbsp;
-                    <input type="radio" name="status_options" value="not started"> Not Started &nbsp;&nbsp;
-                    <input type="radio" name="status_options" value="initiated"> Initiated &nbsp;&nbsp;
-                    <input type="radio" name="status_options" value="completed"> Completed &nbsp;&nbsp;
+                <div class="form-group" id="feedback">
+                    <label style="font-weight: bold;">Status</label>
+                    <label class="checkbox-inline"><input type="radio" class="" name="status_options" value="not started" style="margin-left: 15px; margin-right: 15px;">Not Started</label>
+                    <label class="checkbox-inline"><input type="radio" class="" name="status_options" value="initiated" style="margin-left: 15px; margin-right: 15px;">Initiated</label>
+                    <label class="checkbox-inline"><input type="radio" class="" name="status_options" value="completed" style="margin-left: 15px; margin-right: 15px;">Completed</label>
                 </div>
 
-                <br><br>
+                <div class="form-group">
+                    <label style="font-weight: bold;" for="feedback_text">Comments</label>
+                    <textarea class="form-control" id="feedback_text" name="feedback_text"></textarea>
+                </div>
+
             </div>
+
             <div class="modal-footer">
-                <button type="button" class="btn btn-save">Save changes</button>
-                <button type="button" class="btn btn-close" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-save btn-success">Save changes</button>
+                <button type="button" class="btn btn-close btn-warning" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
