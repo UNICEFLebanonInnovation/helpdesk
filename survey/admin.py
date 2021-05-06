@@ -233,7 +233,7 @@ class KnowledgeTrackerAdmin(ExportActionModelAdmin, VersionAdmin):
         )
 
     def feedback(self, obj):
-        t = render_to_string("django_tables2/feedback_column.html", {'id': str(obj.id)})
+        t = render_to_string("django_tables2/feedback_column.html", {'id': str(obj.id), 'feedback_color': str(obj.feedback_color)})
         return mark_safe(t)
 
     feedback.allow_tags = True

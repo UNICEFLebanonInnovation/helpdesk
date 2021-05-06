@@ -1,2 +1,6 @@
 {% load static i18n %}
-<span onclick = "showFeedbackPopup({{ id }});" style = "cursor: pointer;">Feedback</span>
+<span onclick="showFeedbackPopup({{ id }});"
+      style="cursor: pointer;
+      background-color: {{feedback_color}};"
+      class="dot">F
+</span>

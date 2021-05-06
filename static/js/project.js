@@ -35,8 +35,21 @@ $(document).ready(function() {
     $(document).on('click', '.btn-save', function(){
         var record_id= $('#record_id').val();
         var feedback_text= $('#feedback_text').val();
-
         var feedback_status = $("input[name='status_options']:checked").val();
+        var feedback_color='';
+        if (feedback_status=='not started')
+        {
+            feedback_color='grey';
+        }
+        else if (feedback_status=='initiated')
+        {
+            feedback_color='yellow';
+        }
+        else
+        {
+            feedback_color='green';
+        }
+
         requestHeaders = getHeader();
         requestHeaders["content-type"] = 'application/x-www-form-urlencoded';
 
@@ -47,7 +60,7 @@ $(document).ready(function() {
                 record_id:record_id,
                 feedback_text:feedback_text,
                 feedback_status: feedback_status,
-                feedback_color: 'red'
+                feedback_color: feedback_color
             },
             cache: false,
             async: false,
@@ -85,6 +98,14 @@ $(document).ready(function() {
             var item = $(this);
             updateRelevantLink(item);
         });
+
+
+        // $('.dot').each(function (i, val) {
+        //     var item = $(this);
+        //     updateFeedbackColor(item);
+        // });
+
+
     }
 
     relocateAddButton();
@@ -168,6 +189,11 @@ function updateRelevantLink(item)
 {
     var link =item.html();
     item.html('<a href="'+link+'" target="_blank">'+link+'</a>');
+}
+
+function updateFeedbackColor(item, color)
+{
+    item.css("background-color", color);
 }
 
 function add_badge(item, frequency){

@@ -492,7 +492,9 @@ class KnowledgeTracker(TimeStampedModel):
             ('yellow', 'Yellow'),
             ('green', 'Green'),
         ),
-        blank=True, null=True,
+        blank=True,
+        null=True,
+        default='grey'
     )
     created_by = models.ForeignKey(
         settings.AUTH_USER_MODEL,
