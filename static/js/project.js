@@ -70,6 +70,8 @@ $(document).ready(function() {
 
                 if(response.result)
                 {
+                    item= "feedback"+record_id
+                    $("#feedback'"+record_id+"'").css("background-color", feedback_color);
                     $("#feedbackModal").hide();
                 }
                 else
@@ -98,14 +100,6 @@ $(document).ready(function() {
             var item = $(this);
             updateRelevantLink(item);
         });
-
-
-        // $('.dot').each(function (i, val) {
-        //     var item = $(this);
-        //     updateFeedbackColor(item);
-        // });
-
-
     }
 
     relocateAddButton();
@@ -191,10 +185,7 @@ function updateRelevantLink(item)
     item.html('<a href="'+link+'" target="_blank">'+link+'</a>');
 }
 
-function updateFeedbackColor(item, color)
-{
-    item.css("background-color", color);
-}
+
 
 function add_badge(item, frequency){
 
