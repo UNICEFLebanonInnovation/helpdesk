@@ -195,7 +195,9 @@ class KnowledgeTrackerResource(resources.ModelResource):
             'validated_by_technical_committee',
             # 'validated_by_moph',
             # 'dissemination_method',
-            'relevant_link'
+            'relevant_link',
+            'feedback_status',
+            'feedback_text'
         )
         export_order = fields
 

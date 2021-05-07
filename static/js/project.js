@@ -130,6 +130,18 @@ function showFeedbackPopup(recordID)
                 feedback_status = feedback.feedback_status;
                 feedback_text = feedback.feedback_text;
                 feedback_color = feedback.feedback_color;
+                can_edit = feedback.can_edit;
+
+                if (can_edit)
+                {
+                    $(':input[type="button"][name="feedback_save"]').prop('disabled', false);
+
+                }
+                else
+                {
+                    $(':input[type="button"][name="feedback_save"]').prop('disabled', true);
+
+                }
 
                 $("input[name='status_options'][value='"+feedback_status+"']").prop('checked', true);
                 $('#feedback_text').val(feedback_text);

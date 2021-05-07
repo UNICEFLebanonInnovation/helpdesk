@@ -106,9 +106,8 @@ class KnowledgeTrackerChartsView(TemplateView):
 
 def FeedbackSelectView(request):
     feedback_id = request.POST['record_id']
-
     result = {'result': False}
-
+    can_edit= False
     try:
 
         qs = KnowledgeTracker.objects.get(id=feedback_id)
@@ -118,6 +117,12 @@ def FeedbackSelectView(request):
             result['feedback_status'] = qs.feedback_status
             result['feedback_text'] = qs.feedback_text
             result['feedback_color'] = qs.feedback_color
+            if (request.user.id == qs.created_by.id):
+                can_edit = True
+            else:
+                can_edit= False
+
+            result['can_edit'] = can_edit
 
 
     except KnowledgeTracker.DoesNotExist:
