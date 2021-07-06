@@ -374,10 +374,10 @@ class KnowledgeTracker(TimeStampedModel):
     )
     issue_description = models.TextField(
         'Issue description',
-        max_length=50,
+        max_length=100,
         null=True,
         blank=False,
-        help_text='50 characters max'
+        help_text='100 characters max'
     )
     source = models.CharField(
         'Source',
@@ -443,7 +443,9 @@ class KnowledgeTracker(TimeStampedModel):
 
     answer = models.TextField(
         'Answer/Clarification',
-        null=True, blank=True,
+        max_length=100,
+        null=True,
+        blank=True,
         help_text='100 characters max'
     )
     validated_by_technical_committee = models.BooleanField('Validated by Technical Committee',
