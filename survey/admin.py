@@ -227,6 +227,7 @@ class KnowledgeTrackerAdmin(ExportActionModelAdmin, VersionAdmin):
             'frequency',
             'target_population',
             'other_population_considerations',
+            'high_priority',
             'answer',
             'validated_by_technical_committee',
             # 'validated_by_moph',
@@ -248,6 +249,7 @@ class KnowledgeTrackerAdmin(ExportActionModelAdmin, VersionAdmin):
         'source',
         'target_population',
         'other_population_considerations',
+        'high_priority',
         'validated_by_technical_committee',
         # 'validated_by_moph',
         # DisseminationMethodFilter
@@ -258,6 +260,7 @@ class KnowledgeTrackerAdmin(ExportActionModelAdmin, VersionAdmin):
         'source',
         'target_population',
         'other_population_considerations',
+        'high_priority',
         'validated_by_technical_committee',
         # 'validated_by_moph',
         # DisseminationMethodFilter
@@ -272,6 +275,7 @@ class KnowledgeTrackerAdmin(ExportActionModelAdmin, VersionAdmin):
         'source_relevant_link',
         'target_population',
         'other_population_considerations',
+        'high_priority',
         'answer',
         # 'validated_by_technical_committee',
         # 'validated_by_moph',
@@ -299,6 +303,7 @@ class KnowledgeTrackerAdmin(ExportActionModelAdmin, VersionAdmin):
                 'frequency',
                 'target_population',
                 'other_population_considerations',
+            'high_priority',
             ]
         }),
         ('Response', {
@@ -341,6 +346,7 @@ class KnowledgeTrackerAdmin(ExportActionModelAdmin, VersionAdmin):
             'source_number_percentage',
             'target_population',
             'other_population_considerations',
+            'high_priority',
             'answer',
             'validated_by_technical_committee',
             # 'validated_by_moph',
@@ -375,6 +381,7 @@ class KnowledgeTrackerAdmin(ExportActionModelAdmin, VersionAdmin):
                         'source_number_percentage',
                         'target_population',
                         'other_population_considerations',
+                        'high_priority',
                         'answer',
                         'validated_by_technical_committee',
                         # 'validated_by_moph',
@@ -403,6 +410,7 @@ class KnowledgeTrackerAdmin(ExportActionModelAdmin, VersionAdmin):
                     'source_number_percentage',
                     'target_population',
                     'other_population_considerations',
+                    'high_priority',
                     'answer',
                     'validated_by_technical_committee',
                     # 'validated_by_moph',

@@ -42,6 +42,7 @@ class KnowledgeTrackerTable(BootstrapTable):
             'frequency',
             'target_population',
             'other_population_considerations'
+            'high_priority',
             'answer',
             'validated_by_ttc_column',
             # 'validated_by_moph_column',

@@ -439,13 +439,13 @@ class KnowledgeTracker(TimeStampedModel):
         ),
         blank=True, null=True,
     )
+    high_priority = models.BooleanField('High priority', blank=True, default=False)
 
     answer = models.TextField(
         'Answer/Clarification',
         null=True, blank=True,
-        help_text='50 characters max'
+        help_text='100 characters max'
     )
-
     validated_by_technical_committee = models.BooleanField('Validated by Technical Committee',
                                                            blank=True, default=False)
     # validated_by_moph = models.BooleanField('Validated by MOPH', blank=True, default=False, null=True)
@@ -496,6 +496,7 @@ class KnowledgeTracker(TimeStampedModel):
         null=True,
         default='grey'
     )
+
     created_by = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         blank=False, null=True,
