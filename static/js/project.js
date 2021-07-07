@@ -104,6 +104,7 @@ $(document).ready(function() {
 
     relocateAddButton();
     relocateSaveButton();
+    initializeTableHeader();
 
 });
 
@@ -158,20 +159,25 @@ function showFeedbackPopup(recordID)
     $("#feedbackModal").show();
 }
 
-function relocateAddButton()
-{
+function relocateAddButton() {
 
-    if (isTrackerDetailsPage())
-    {
+    if (isTrackerDetailsPage()) {
         var originalButton = $(".object-tools");
         var buttonParent = originalButton.parent();
         var newButton = originalButton.clone();
 
-        newButton.addClass( "upper-add-button");
+        newButton.addClass("upper-add-button");
         newButton.prependTo(buttonParent);
         originalButton.css('visibility', 'hidden');
     }
 
+
+}
+
+function initializeTableHeader() {
+    var resultsDIV = $(".results");
+
+    resultsDIV.addClass("tableFixHead");
 
 }
 

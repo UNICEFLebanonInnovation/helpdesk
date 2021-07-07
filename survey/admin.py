@@ -189,6 +189,7 @@ class KnowledgeTrackerResource(resources.ModelResource):
         model = KnowledgeTracker
         fields = (
             'issue_number',
+            'high_priority',
             'issue_description',
             'reported_by',
             'answer',
@@ -217,6 +218,7 @@ class KnowledgeTrackerAdmin(ExportActionModelAdmin, VersionAdmin):
     form = KnowledgeTrackerForm
     list_display = (
             'issue_number',
+            'high_priority',
             'feedback',
             'reported_organization',
             'issue_category',
@@ -227,7 +229,6 @@ class KnowledgeTrackerAdmin(ExportActionModelAdmin, VersionAdmin):
             'frequency',
             'target_population',
             'other_population_considerations',
-            'high_priority',
             'answer',
             'validated_by_technical_committee',
             # 'validated_by_moph',
@@ -244,29 +245,31 @@ class KnowledgeTrackerAdmin(ExportActionModelAdmin, VersionAdmin):
     date_hierarchy = 'created'
 
     list_filter = (
+        'high_priority',
         ('reported_by__last_name', custom_titled_filter('Reported By')),
+        # 'high_priority',
         'issue_category',
         'source',
         'target_population',
         'other_population_considerations',
-        'high_priority',
         'validated_by_technical_committee',
         # 'validated_by_moph',
         # DisseminationMethodFilter
     )
     suit_list_filter_horizontal = (
+        'high_priority',
         'reported_by__last_name',
         'issue_category',
         'source',
         'target_population',
         'other_population_considerations',
-        'high_priority',
         'validated_by_technical_committee',
         # 'validated_by_moph',
         # DisseminationMethodFilter
     )
     search_fields = (
         'issue_number',
+        'high_priority',
         # 'reported_by',
         'issue_category',
         'issue_description',
@@ -275,7 +278,6 @@ class KnowledgeTrackerAdmin(ExportActionModelAdmin, VersionAdmin):
         'source_relevant_link',
         'target_population',
         'other_population_considerations',
-        'high_priority',
         'answer',
         # 'validated_by_technical_committee',
         # 'validated_by_moph',
@@ -294,6 +296,7 @@ class KnowledgeTrackerAdmin(ExportActionModelAdmin, VersionAdmin):
         ('Issue details', {
             'fields': [
                 'issue_number',
+                'high_priority',
                 # 'reported_by',
                 'issue_category',
                 'issue_description',
@@ -303,7 +306,6 @@ class KnowledgeTrackerAdmin(ExportActionModelAdmin, VersionAdmin):
                 'frequency',
                 'target_population',
                 'other_population_considerations',
-            'high_priority',
             ]
         }),
         ('Response', {
@@ -338,6 +340,7 @@ class KnowledgeTrackerAdmin(ExportActionModelAdmin, VersionAdmin):
 
         fields = [
             'issue_number',
+            'high_priority',
             'reported_by',
             'issue_category',
             'issue_description',
@@ -346,7 +349,6 @@ class KnowledgeTrackerAdmin(ExportActionModelAdmin, VersionAdmin):
             'source_number_percentage',
             'target_population',
             'other_population_considerations',
-            'high_priority',
             'answer',
             'validated_by_technical_committee',
             # 'validated_by_moph',
@@ -373,6 +375,7 @@ class KnowledgeTrackerAdmin(ExportActionModelAdmin, VersionAdmin):
                 else:
                     fields = [
                         'issue_number',
+                        'high_priority',
                         'reported_by',
                         'issue_category',
                         'issue_description',
@@ -381,7 +384,6 @@ class KnowledgeTrackerAdmin(ExportActionModelAdmin, VersionAdmin):
                         'source_number_percentage',
                         'target_population',
                         'other_population_considerations',
-                        'high_priority',
                         'answer',
                         'validated_by_technical_committee',
                         # 'validated_by_moph',
@@ -402,6 +404,7 @@ class KnowledgeTrackerAdmin(ExportActionModelAdmin, VersionAdmin):
             if obj:
                 fields = [
                     'issue_number',
+                    'high_priority',
                     'reported_by',
                     'issue_category',
                     'issue_description',
@@ -410,7 +413,6 @@ class KnowledgeTrackerAdmin(ExportActionModelAdmin, VersionAdmin):
                     'source_number_percentage',
                     'target_population',
                     'other_population_considerations',
-                    'high_priority',
                     'answer',
                     'validated_by_technical_committee',
                     # 'validated_by_moph',

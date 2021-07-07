@@ -32,6 +32,7 @@ class KnowledgeTrackerTable(BootstrapTable):
         model = KnowledgeTracker
         fields = (
             'issue_number',
+            'high_priority',
             'feedback_column',
             'reported_by__last_name',
             'issue_category',
@@ -42,7 +43,6 @@ class KnowledgeTrackerTable(BootstrapTable):
             'frequency',
             'target_population',
             'other_population_considerations'
-            'high_priority',
             'answer',
             'validated_by_ttc_column',
             # 'validated_by_moph_column',

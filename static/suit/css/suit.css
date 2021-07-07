@@ -2979,8 +2979,12 @@ table#change-history thead > tr th { padding: 0.7rem 0.8rem !important; }
     margin-top: -54px!IMPORTANT;
 }
 
-.upper-add-button
-{
-    position: absolute !IMPORTANT;
-    margin-left: 375px !IMPORTANT;
+.upper-add-button {
+  position: absolute !IMPORTANT;
+  margin-left: 375px !IMPORTANT;
+}
+
+.tableFixHead thead th {
+  position: sticky !IMPORTANT;;
+  top: 0 !IMPORTANT;;
 }
