@@ -190,15 +190,23 @@ class KnowledgeTrackerResource(resources.ModelResource):
         fields = (
             'issue_number',
             'high_priority',
+            # 'reported_by__first_name',
+            'reported_by__last_name',
+            'issue_category',
             'issue_description',
-            'reported_by',
+            'source',
+            'source_relevant_link',
+            'source_number_percentage',
+            'frequency',
+            'target_population',
+            'other_population_considerations',
             'answer',
             'validated_by_technical_committee',
-            # 'validated_by_moph',
-            # 'dissemination_method',
+            'dissemination_method',
             'relevant_link',
             'feedback_status',
-            'feedback_text'
+            'feedback_text',
+            'feedback_color',
         )
         export_order = fields
 
@@ -247,7 +255,6 @@ class KnowledgeTrackerAdmin(ExportActionModelAdmin, VersionAdmin):
     list_filter = (
         'high_priority',
         ('reported_by__last_name', custom_titled_filter('Reported By')),
-        # 'high_priority',
         'issue_category',
         'source',
         'target_population',
