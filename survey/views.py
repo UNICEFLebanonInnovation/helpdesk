@@ -10,6 +10,7 @@ from .tables import  KnowledgeTrackerTable
 from .filters import KnowledgeTrackerFilter
 from django.http import HttpResponse, JsonResponse
 from django.db.models import F
+from django.db.models.functions import TruncMonth
 
 class IndexView(TemplateView):
     template_name = 'index.html'
@@ -68,6 +69,7 @@ class KnowledgeTrackerChartsView(TemplateView):
         instances = KnowledgeTracker.objects.all()
 
         total_validated_by_ttc = instances.filter(validated_by_technical_committee=True).count()
+        total_high_priority = instances.filter(high_priority=True).count()
         # total_validated_by_moph = instances.filter(validated_by_moph=True).count()
 
         category_data = KnowledgeTracker.objects.all() \
@@ -94,13 +96,54 @@ class KnowledgeTrackerChartsView(TemplateView):
 
         source_data = dumps(source_data)
 
+
+        organization_data = KnowledgeTracker.objects.all() \
+            .values('reported_by__last_name') \
+            .annotate(name=F('reported_by__last_name'), y=Count('reported_by__last_name')) \
+            .order_by('reported_by__last_name') \
+            .values('reported_by__last_name', 'y')
+
+        organization_data = dumps(organization_data)
+
+        # month_data = KnowledgeTracker.objects.all().annotate(
+        #     year=created__year,
+        #     month=created__month,
+        # ).values('year', 'month').annotate(count=Count('id'))
+
+        month_data= KnowledgeTracker.objects.values(
+            month=TruncMonth('created')
+        ).annotate(
+            count=Count('id')
+        ).order_by('month')
+
+        finalMonthData = []
+
+
+        for monthRecord in month_data:
+        #    # strftime("%Y-%m")
+            month = monthRecord['month'].strftime("%Y-%m")
+            recordCount = monthRecord['count']
+            finalMonthData.append({"month":month, "y":recordCount})
+
+        print('----------------------------------------------------------------------------------------')
+
+        print(finalMonthData)
+        print('----------------------------------------------------------------------------------------')
+        month_data = dumps(finalMonthData)
+
+
+        print(month_data)
+
         return {
             'total': instances.count(),
             'total_validated_by_ttc': total_validated_by_ttc,
+            'total_high_priority': total_high_priority,
             # 'total_validated_by_moph': total_validated_by_moph,
             'category_data': category_data,
             'target_data': target_data,
-            'source_data': source_data
+            'source_data': source_data,
+            'organization_data': organization_data,
+            'month_data' : month_data
         }
 
 

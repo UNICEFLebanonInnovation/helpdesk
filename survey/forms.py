@@ -39,7 +39,7 @@ class KnowledgeTrackerForm(forms.ModelForm):
             'issue_description': forms.Textarea(attrs={
                 'rows': '2',
                 'cols': '90',
-                'maxlength': '200',
+                'maxlength': '150',
             }),
             'answer': forms.Textarea(attrs={
                 'rows': '2',

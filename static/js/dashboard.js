@@ -7,7 +7,7 @@ function category_chart(data)
             type: 'column'
         },
         title: {
-            text: 'Issue per Category'
+            text: 'Issues per Category'
         },
         subtitle: {
             text: ''
@@ -53,6 +53,117 @@ function category_chart(data)
         }]
     });
 }
+
+function organization_chart(data)
+{
+
+    Highcharts.chart('organization_chart', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Issues per Organization'
+        },
+        subtitle: {
+            text: ''
+        },
+        xAxis: {
+            type: 'Category',
+            labels: {
+                rotation: -45,
+                style: {
+                    fontSize: '13px',
+                    fontFamily: 'Verdana, sans-serif'
+                },
+                formatter: function() { return data[this.value]['reported_by__last_name'];},
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Staff'
+            }
+        },
+        legend: {
+            enabled: false
+        },
+        tooltip: {
+            pointFormat: 'Issue: <b>{point.y:.1f}</b>'
+        },
+        series: [{
+            name: 'category',
+            data: data,
+            dataLabels: {
+                enabled: true,
+//                rotation: -90,
+                color: '#FFFFFF',
+                align: 'right',
+                format: '{point.y}', // one decimal
+//                y: 10, // 10 pixels down from the top
+                style: {
+                    fontSize: '13px',
+                    fontFamily: 'Verdana, sans-serif'
+                }
+            }
+        }]
+    });
+}
+
+function month_chart(data)
+{
+
+    Highcharts.chart('month_chart', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Issues per Month'
+        },
+        subtitle: {
+            text: ''
+        },
+        xAxis: {
+            type: 'Category',
+            labels: {
+                rotation: -45,
+                style: {
+                    fontSize: '13px',
+                    fontFamily: 'Verdana, sans-serif'
+                },
+                formatter: function() { return data[this.value]['month'];},
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Staff'
+            }
+        },
+        legend: {
+            enabled: false
+        },
+        tooltip: {
+            pointFormat: 'Issue: <b>{point.y:.1f}</b>'
+        },
+        series: [{
+            name: 'category',
+            data: data,
+            dataLabels: {
+                enabled: true,
+//                rotation: -90,
+                color: '#FFFFFF',
+                align: 'right',
+                format: '{point.y}', // one decimal
+//                y: 10, // 10 pixels down from the top
+                style: {
+                    fontSize: '13px',
+                    fontFamily: 'Verdana, sans-serif'
+                }
+            }
+        }]
+    });
+}
+
 
 function target_chart(data)
 {

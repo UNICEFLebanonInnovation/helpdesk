@@ -374,10 +374,10 @@ class KnowledgeTracker(TimeStampedModel):
     )
     issue_description = models.TextField(
         'Issue description',
-        max_length=100,
+        max_length=150,
         null=True,
         blank=False,
-        help_text='100 characters max'
+        help_text='150 characters max'
     )
     source = models.CharField(
         'Source',
