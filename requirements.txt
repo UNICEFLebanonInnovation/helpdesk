@@ -16,7 +16,7 @@ gevent
 gunicorn
 whitenoise
 #environ
-psycopg2
+psycopg2==2.8.6
 django-anymail
 sendgrid
 #azure-storage
