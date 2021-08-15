@@ -12,6 +12,7 @@ from django.http import HttpResponse, JsonResponse
 from django.db.models import F
 from django.db.models.functions import TruncMonth
 
+
 class IndexView(TemplateView):
     template_name = 'index.html'
 
@@ -96,7 +97,6 @@ class KnowledgeTrackerChartsView(TemplateView):
 
         source_data = dumps(source_data)
 
-
         organization_data = KnowledgeTracker.objects.all() \
             .values('reported_by__last_name') \
             .annotate(name=F('reported_by__last_name'), y=Count('reported_by__last_name')) \
@@ -118,21 +118,11 @@ class KnowledgeTrackerChartsView(TemplateView):
 
         finalMonthData = []
 
-
         for monthRecord in month_data:
-        #    # strftime("%Y-%m")
             month = monthRecord['month'].strftime("%Y-%m")
             recordCount = monthRecord['count']
-            finalMonthData.append({"month":month, "y":recordCount})
-
-        print('----------------------------------------------------------------------------------------')
-
-        print(finalMonthData)
-        print('----------------------------------------------------------------------------------------')
+            finalMonthData.append({"month": month, "y":recordCount})
         month_data = dumps(finalMonthData)
-
-
-        print(month_data)
 
         return {
             'total': instances.count(),
