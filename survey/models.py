@@ -443,10 +443,10 @@ class KnowledgeTracker(TimeStampedModel):
 
     answer = models.TextField(
         'Answer/Clarification',
-        max_length=100,
+        max_length=150,
         null=True,
         blank=True,
-        help_text='100 characters max'
+        help_text='150 characters max'
     )
     validated_by_technical_committee = models.BooleanField('Validated by Technical Committee',
                                                            blank=True, default=False)

@@ -207,6 +207,7 @@ class KnowledgeTrackerResource(resources.ModelResource):
             'feedback_status',
             'feedback_text',
             'feedback_color',
+            'created'
         )
         export_order = fields
 
