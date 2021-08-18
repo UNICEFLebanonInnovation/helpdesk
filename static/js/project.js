@@ -184,10 +184,10 @@ function initializeTableHeader() {
 function isTrackerDetailsPage()
 {
 
-    var url_loc = window.location.toString();
-
-    return (url_loc.toLowerCase().search(/^.*\/survey\/knowledgetracker(\/*)(\?.*)?$/i)>=0);
-
+//    var url_loc = window.location.toString();
+//
+//    return (url_loc.toLowerCase().search(/^.*\/survey\/knowledgetracker(\/*)(\?.*)?$/i)>=0);
+        return true;
 }
 
 function relocateSaveButton() {
@@ -248,18 +248,18 @@ function initialiseFrequency(item) {
 
     if(frequency > 0) {
 
-        var clear_button = '<img src="/static/admin/img/icon-no.svg" alt="False" style="vertical-align:top">';
-
-        clearButton = $(clear_button).appendTo(item);
-        clearButton.click
-        (
-            function ()
-            {
-                input.val(0);
-
-                initialiseFrequency(item,0);
-            }
-        );
+//        var clear_button = '<img src="/static/admin/img/icon-no.svg" alt="Remove Frequency" style="vertical-align:top">';
+//
+//        clearButton = $(clear_button).appendTo(item);
+//        clearButton.click
+//        (
+//            function ()
+//            {
+//                input.val(0);
+//
+//                initialiseFrequency(item,0);
+//            }
+//        );
     }
 
 }

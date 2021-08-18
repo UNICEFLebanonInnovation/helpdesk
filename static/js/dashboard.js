@@ -7,7 +7,7 @@ function category_chart(data)
             type: 'column'
         },
         title: {
-            text: 'Issues per Category'
+            text: 'Issue per Category'
         },
         subtitle: {
             text: ''
@@ -62,7 +62,7 @@ function organization_chart(data)
             type: 'column'
         },
         title: {
-            text: 'Issues per Organization'
+            text: 'Issue per Organization'
         },
         subtitle: {
             text: ''
@@ -117,7 +117,7 @@ function month_chart(data)
             type: 'column'
         },
         title: {
-            text: 'Issues per Month'
+            text: 'Issue per Date (Month)'
         },
         subtitle: {
             text: ''
@@ -176,7 +176,7 @@ function target_chart(data)
 //            type: 'variablepie'
         },
         title: {
-            text: 'Issues per Target Population'
+            text: 'Issue per Target Population'
         },
         subtitle: {
             text: ''
@@ -233,7 +233,7 @@ function source_chart(typeData)
             type: 'pie'
         },
         title: {
-            text: 'Issues per Source'
+            text: 'Issue per Source'
         },
         subtitle: {
             text: ''
