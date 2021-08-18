@@ -10,13 +10,9 @@ $(document).ready(function() {
 
         $('.field-frequency').each(function (i, val) {
             var item = $(this);
-            var input = item.find('input');
-            input.hide();
-            var frequency = parseInt(input.val());
 
-            for (i = 0; i < frequency; i++) {
-                add_badge(item, i);
-            }
+            initialiseFrequency(item);
+
         });
 
         $('.field-frequency').dblclick(function (e) {
@@ -24,7 +20,8 @@ $(document).ready(function() {
             var input = item.find('input');
             var frequency = parseInt(input.val());
             input.val(frequency + 1);
-            add_badge(item, frequency);
+
+            initialiseFrequency(item);
         });
     }
 
@@ -233,6 +230,43 @@ function add_badge(item, frequency){
         console.log(frequency);
         console.log(badge);
         item.append(badge);
+
+
+}
+function initialiseFrequency(item) {
+
+    remove_badges(item);
+
+    var input = item.find('input');
+    input.hide();
+    var frequency = parseInt(input.val());
+
+    for (i = 0; i < frequency; i++) {
+        add_badge(item, i);
+    }
+
+
+    if(frequency > 0) {
+
+        var clear_button = '<img src="/static/admin/img/icon-no.svg" alt="False" style="vertical-align:top">';
+
+        clearButton = $(clear_button).appendTo(item);
+        clearButton.click
+        (
+            function ()
+            {
+                input.val(0);
+
+                initialiseFrequency(item,0);
+            }
+        );
+    }
+
+}
+function remove_badges(item){
+
+    item.find("div").remove();
+    item.find("img").remove();
 }
 
 function getHeader()
