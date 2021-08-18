@@ -1,5 +1,14 @@
 
 
+
+$(document).on('click', '.just-added', function(e){
+    var input = $(this).parent().find('input');
+    var frequency = parseInt(input.val());
+    input.val(frequency - 1);
+    $(this).remove();
+});
+
+
 $(document).ready(function() {
 
     $('.search-filter').change(function (e) {
@@ -20,8 +29,8 @@ $(document).ready(function() {
             var input = item.find('input');
             var frequency = parseInt(input.val());
             input.val(frequency + 1);
-
-            initialiseFrequency(item);
+            add_badge(item, frequency + 1, 'just-added', "Click to Remove This Frequency");
+//            initialiseFrequency(item);
         });
     }
 
@@ -205,12 +214,12 @@ function updateRelevantLink(item)
 
 
 
-function add_badge(item, frequency){
+function add_badge(item, frequency, add_css_cls, title){
 
-    var badge_info = '<div class="mb-2 mr-2 badge badge-dot badge-dot-lg badge-info"></div>';
-    var badge_primary = '<div class="mb-2 mr-2 badge badge-dot badge-dot-lg badge-primary"></div>';
-    var badge_warning = '<div class="mb-2 mr-2 badge badge-dot badge-dot-lg badge-warning"></div>';
-    var badge_danger = '<div class="mb-2 mr-2 badge badge-dot badge-dot-lg badge-danger"></div>';
+    var badge_info = '<div class="mb-2 mr-2 badge badge-dot badge-dot-lg badge-info '+add_css_cls+'" title="'+title+'"></div>';
+    var badge_primary = '<div class="mb-2 mr-2 badge badge-dot badge-dot-lg badge-primary '+add_css_cls+'" title="'+title+'"></div>';
+    var badge_warning = '<div class="mb-2 mr-2 badge badge-dot badge-dot-lg badge-warning '+add_css_cls+'" title="'+title+'"></div>';
+    var badge_danger = '<div class="mb-2 mr-2 badge badge-dot badge-dot-lg badge-danger '+add_css_cls+'" title="'+title+'"></div>';
 
 
         var badge = ''
@@ -230,9 +239,8 @@ function add_badge(item, frequency){
         console.log(frequency);
         console.log(badge);
         item.append(badge);
-
-
 }
+
 function initialiseFrequency(item) {
 
     remove_badges(item);
@@ -242,7 +250,7 @@ function initialiseFrequency(item) {
     var frequency = parseInt(input.val());
 
     for (i = 0; i < frequency; i++) {
-        add_badge(item, i);
+        add_badge(item, i, '', '');
     }
 
 
