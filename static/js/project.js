@@ -15,24 +15,21 @@ $(document).ready(function() {
         $('#changelist-search').submit();
     });
 
-    if (isTrackerDetailsPage()) {
+    $('#result_list .field-frequency').each(function (i, val) {
+        var item = $(this);
 
-        $('.field-frequency').each(function (i, val) {
-            var item = $(this);
+        initialiseFrequency(item);
 
-            initialiseFrequency(item);
+    });
 
-        });
-
-        $('.field-frequency').dblclick(function (e) {
-            var item = $(this);
-            var input = item.find('input');
-            var frequency = parseInt(input.val());
-            input.val(frequency + 1);
-            add_badge(item, frequency + 1, 'just-added', "Click to Remove This Frequency");
+    $('#result_list .field-frequency').dblclick(function (e) {
+        var item = $(this);
+        var input = item.find('input');
+        var frequency = parseInt(input.val());
+        input.val(frequency + 1);
+        add_badge(item, frequency + 1, 'just-added', "Click to Remove This Frequency");
 //            initialiseFrequency(item);
-        });
-    }
+    });
 
     $(document).on('click', '.close', function(){
         $("#feedbackModal").hide();
@@ -99,17 +96,15 @@ $(document).ready(function() {
 
     });
 
-    if (isTrackerDetailsPage()) {
-        $('.field-relevant_link').each(function (i, val) {
-            var item = $(this);
-            updateRelevantLink(item);
-        });
+    $('#result_list .field-relevant_link').each(function (i, val) {
+        var item = $(this);
+        updateRelevantLink(item);
+    });
 
-        $('.field-source_relevant_link').each(function (i, val) {
-            var item = $(this);
-            updateRelevantLink(item);
-        });
-    }
+    $('#result_list .field-source_relevant_link').each(function (i, val) {
+        var item = $(this);
+        updateRelevantLink(item);
+    });
 
     relocateAddButton();
     relocateSaveButton();
@@ -170,17 +165,13 @@ function showFeedbackPopup(recordID)
 
 function relocateAddButton() {
 
-    if (isTrackerDetailsPage()) {
-        var originalButton = $(".object-tools");
-        var buttonParent = originalButton.parent();
-        var newButton = originalButton.clone();
+    var originalButton = $(".object-tools");
+    var buttonParent = originalButton.parent();
+    var newButton = originalButton.clone();
 
-        newButton.addClass("upper-add-button");
-        newButton.prependTo(buttonParent);
-        originalButton.css('visibility', 'hidden');
-    }
-
-
+    newButton.addClass("upper-add-button");
+    newButton.prependTo(buttonParent);
+    originalButton.css('visibility', 'hidden');
 }
 
 function initializeTableHeader() {
@@ -190,26 +181,24 @@ function initializeTableHeader() {
 
 }
 
-function isTrackerDetailsPage()
-{
+//function isTrackerDetailsPage()
+//{
 
 //    var url_loc = window.location.toString();
 //
 //    return (url_loc.toLowerCase().search(/^.*\/survey\/knowledgetracker(\/*)(\?.*)?$/i)>=0);
-        return true;
-}
+//        return true;
+//}
 
 function relocateSaveButton() {
-    if (isTrackerDetailsPage()) {
-        $("input[name='_save']").addClass("lower-save-button");
-    }
+    $("p.paginator input[name='_save']").addClass("lower-save-button");
 }
 
 
 function updateRelevantLink(item)
 {
     var link =item.html();
-    //item.html('<a href="'+link+'" target="_blank">'+link+'</a>');
+    item.html('<a href="'+link+'" target="_blank">'+link+'</a>');
 }
 
 
