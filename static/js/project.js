@@ -209,7 +209,7 @@ function relocateSaveButton() {
 function updateRelevantLink(item)
 {
     var link =item.html();
-    item.html('<a href="'+link+'" target="_blank">'+link+'</a>');
+    //item.html('<a href="'+link+'" target="_blank">'+link+'</a>');
 }
 
 

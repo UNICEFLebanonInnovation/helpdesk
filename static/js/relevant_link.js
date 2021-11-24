@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    $('.field-relevant_link').each(function (i, val) {
+    $('#result_list .field-relevant_link').each(function (i, val) {
         var item = $(this);
         //updateRelevantLink(item);
     });
