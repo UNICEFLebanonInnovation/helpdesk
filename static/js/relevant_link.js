@@ -2,7 +2,7 @@ $(document).ready(function () {
 
     $('.field-relevant_link').each(function (i, val) {
         var item = $(this);
-        updateRelevantLink(item);
+        //updateRelevantLink(item);
     });
 
 });
