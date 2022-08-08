@@ -1,13 +1,9 @@
-
-
-
 $(document).on('click', '.just-added', function(e){
     var input = $(this).parent().find('input');
     var frequency = parseInt(input.val());
     input.val(frequency - 1);
     $(this).remove();
 });
-
 
 $(document).ready(function() {
 
@@ -280,4 +276,3 @@ function getHeader()
 
      return header;
 }
-
