@@ -194,7 +194,7 @@ DATABASES = {
          'NAME': 'dio4lhn3mj0va',
          'USER': 'xnsfajsmwawhba',
          'PASSWORD': '2eae12dfbdc4328f38ac544b58271179add7eeb729544a323a3c741333f89ff1',
-         'HOST': 'ec2-54-217-206-236.eu-west-1.compute.amazonaws.com',
+         'HOST': 'ec2-54-155-125-79.eu-west-1.compute.amazonaws.com',
          'PORT': '5432',
      }
 }
