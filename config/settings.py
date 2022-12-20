@@ -188,16 +188,30 @@ LOGIN_REDIRECT_URL = '/'
 #      }
 # }
 
+# DATABASES = {
+#      'default': {
+#          'ENGINE': 'django.db.backends.postgresql',
+#          'NAME': 'dio4lhn3mj0va',
+#          'USER': 'xnsfajsmwawhba',
+#          'PASSWORD': '2eae12dfbdc4328f38ac544b58271179add7eeb729544a323a3c741333f89ff1',
+#          'HOST': 'ec2-54-155-125-79.eu-west-1.compute.amazonaws.com',
+#          'PORT': '5432',
+#      }
+# }
+
 DATABASES = {
      'default': {
          'ENGINE': 'django.db.backends.postgresql',
-         'NAME': 'dio4lhn3mj0va',
-         'USER': 'xnsfajsmwawhba',
-         'PASSWORD': '2eae12dfbdc4328f38ac544b58271179add7eeb729544a323a3c741333f89ff1',
-         'HOST': 'ec2-54-155-125-79.eu-west-1.compute.amazonaws.com',
+         'NAME': 'd1fls56u78arvh',
+         'USER': 'atfvlnoctyetdk',
+         'PASSWORD': '5b8d52776d8dd8220e54547217a8209296eb5cbc044a0521985fc176cf76daad',
+         'HOST': 'ec2-3-248-121-12.eu-west-1.compute.amazonaws.com',
          'PORT': '5432',
      }
 }
+
+# postgres://xnsfajsmwawhba:2eae12dfbdc4328f38ac544b58271179add7eeb729544a323a3c741333f89ff1@ec2-54-155-125-79.eu-west-1.compute.amazonaws.com:5432/dio4lhn3mj0va
+
 
 # Sites
 # - this allows hosting of more than one site from a single server,
